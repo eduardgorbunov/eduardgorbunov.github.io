@@ -3325,7 +3325,7 @@ body {
 }
 .cid-qYQcPnXtWp {
   padding-top: 120px;
-  padding-bottom: 30px;
+  padding-bottom: 0px;
   background: linear-gradient(45deg, #073b4c, #073b4c);
 }
 .cid-qYQdgeqyOU {
@@ -3361,6 +3361,9 @@ body {
   border-radius: 50%;
 }
 .cid-qYQdgeqyOU .mbr-text UL {
+  color: #ffffff;
+}
+.cid-qYQdgeqyOU .mbr-text DIV {
   color: #ffffff;
 }
 .cid-qYQfsSe8yn {

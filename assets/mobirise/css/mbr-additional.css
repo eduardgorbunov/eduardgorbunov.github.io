@@ -2605,8 +2605,20 @@ body {
 .cid-qTkzRZLJNu .dropdown-item:hover {
   color: #c1c1c1 !important;
 }
-.cid-qYPeIvBjNI {
+.cid-rgnI44l8pY {
   padding-top: 120px;
+  padding-bottom: 30px;
+  background: linear-gradient(45deg, #073b4c, #073b4c);
+}
+.cid-rgnI44l8pY H1 {
+  text-align: center;
+}
+.cid-rgnI44l8pY .mbr-text,
+.cid-rgnI44l8pY .mbr-section-btn {
+  text-align: left;
+}
+.cid-qYPeIvBjNI {
+  padding-top: 0px;
   padding-bottom: 30px;
   background: linear-gradient(45deg, #073b4c, #073b4c);
 }

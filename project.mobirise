@@ -1,7 +1,7 @@
 {
   "settings": {
     "name": "edgorbunov",
-    "currentPage": "teaching.html",
+    "currentPage": "amc2019.html",
     "theme": {
       "name": "mobirise4",
       "title": "Mobirise 4",
@@ -3749,7 +3749,7 @@
             }
           },
           "_name": "content1",
-          "_customHTML": "<section class=\"mbr-section article content1\">\n    \n    <mbr-parameters>\n    <!-- Block parameters controls (Blue \"Gear\" panel) -->\n        <input type=\"range\" inline title=\"Сверху\" name=\"paddingTop\" min=\"0\" max=\"8\" step=\"1\" value=\"0\">\n        <input type=\"range\" inline title=\"Снизу\" name=\"paddingBottom\" min=\"0\" max=\"8\" step=\"1\" value=\"6\">\n        <input type=\"color\" title=\"Цвет фона\" name=\"bgColor\" value=\"#073b4c\">\n    <!-- End block parameters -->\n    </mbr-parameters> \n\n    <div class=\"container\">\n        <div class=\"media-container-row\">\n            <div class=\"mbr-text col-12 col-md-8 mbr-fonts-style\" mbr-theme-style=\"display-2\" data-app-selector=\".mbr-text\" data-multiline mbr-article><p><b><a href=\"https://drive.google.com/drive/folders/1u_p6pNM1DSHYXR4CynwoAcpGTC1wF5cV?usp=sharing\" target=\"_blank\" class=\"text-secondary\">Google Drive</a></b></p><p><b><a href=\"pr_th.html#header2-1j\" class=\"text-secondary\">Семинары</a></b></p><p><a href=\"amc2019.html#header2-20\" class=\"text-secondary\">Домашние задания</a></p><p><b><a href=\"pr_th.html#header2-1i\" class=\"text-secondary\">Новости</a></b></p></div>\n        </div>\n    </div>\n</section>",
+          "_customHTML": "<section class=\"mbr-section article content1\">\n    \n    <mbr-parameters>\n    <!-- Block parameters controls (Blue \"Gear\" panel) -->\n        <input type=\"range\" inline title=\"Сверху\" name=\"paddingTop\" min=\"0\" max=\"8\" step=\"1\" value=\"0\">\n        <input type=\"range\" inline title=\"Снизу\" name=\"paddingBottom\" min=\"0\" max=\"8\" step=\"1\" value=\"6\">\n        <input type=\"color\" title=\"Цвет фона\" name=\"bgColor\" value=\"#073b4c\">\n    <!-- End block parameters -->\n    </mbr-parameters> \n\n    <div class=\"container\">\n        <div class=\"media-container-row\">\n            <div class=\"mbr-text col-12 col-md-8 mbr-fonts-style\" mbr-theme-style=\"display-2\" data-app-selector=\".mbr-text\" data-multiline mbr-article><p><b><a href=\"https://drive.google.com/drive/folders/1u_p6pNM1DSHYXR4CynwoAcpGTC1wF5cV?usp=sharing\" target=\"_blank\" class=\"text-secondary\">Google Drive</a></b></p><p><b><a href=\"amc2019.html#header2-1w\" class=\"text-secondary\">Семинары</a></b></p><p><a href=\"amc2019.html#header2-20\" class=\"text-secondary\">Домашние задания</a></p><p><b><a href=\"amc2019.html#header2-22\" class=\"text-secondary\">Новости</a></b></p></div>\n        </div>\n    </div>\n</section>",
           "_cid": "rhpTi5SvcI",
           "_protectedParams": [],
           "_global": false,

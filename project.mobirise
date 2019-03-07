@@ -39,7 +39,9 @@
     "versionPublish": "4.8.1",
     "screenshot": "screenshot.png",
     "favicon": "@PROJECT_PATH@/assets/images/soccer-ball-128x128.png",
-    "noImageResize": ""
+    "noImageResize": "",
+    "publishType": "local",
+    "publishPath": "file:///C:/Users/Alex/Desktop/website/eduardgorbunov.github.io"
   },
   "pages": {
     "teaching.html": {

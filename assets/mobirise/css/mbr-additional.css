@@ -1545,6 +1545,9 @@ section.lazy-placeholder:after {
 .cid-qYPxmmdJt0 .mbr-section-btn {
   text-align: left;
 }
+.cid-qYPxmmdJt0 H1 {
+  text-align: left;
+}
 .cid-qYPB3gVE0c {
   padding-top: 0px;
   padding-bottom: 30px;
@@ -1552,6 +1555,9 @@ section.lazy-placeholder:after {
 }
 .cid-qYPB3gVE0c .mbr-text,
 .cid-qYPB3gVE0c .mbr-section-btn {
+  text-align: left;
+}
+.cid-qYPB3gVE0c H1 {
   text-align: left;
 }
 .cid-qTkzRZLJNu .navbar {
@@ -1949,7 +1955,7 @@ section.lazy-placeholder:after {
   background: linear-gradient(45deg, #073b4c, #073b4c);
 }
 .cid-rgnI44l8pY H1 {
-  text-align: center;
+  text-align: left;
 }
 .cid-rgnI44l8pY .mbr-text,
 .cid-rgnI44l8pY .mbr-section-btn {
@@ -1961,7 +1967,7 @@ section.lazy-placeholder:after {
   background: linear-gradient(45deg, #073b4c, #073b4c);
 }
 .cid-qYPeIvBjNI H1 {
-  text-align: center;
+  text-align: left;
 }
 .cid-qYPeIvBjNI .mbr-text,
 .cid-qYPeIvBjNI .mbr-section-btn {
@@ -1974,6 +1980,9 @@ section.lazy-placeholder:after {
 }
 .cid-qYPCOXlUjg .mbr-text,
 .cid-qYPCOXlUjg .mbr-section-btn {
+  text-align: left;
+}
+.cid-qYPCOXlUjg H1 {
   text-align: left;
 }
 .cid-qTkzRZLJNu .navbar {

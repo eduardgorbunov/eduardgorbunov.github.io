@@ -688,8 +688,7 @@ blockquote {
 .lazy-bg {
   background-image: none !important;
 }
-.lazy-placeholder:not(section),
-.lazy-none {
+.lazy-placeholder:not(section) {
   display: block;
   position: relative;
   padding-bottom: 56.25%;

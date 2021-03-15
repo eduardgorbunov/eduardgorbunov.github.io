@@ -2790,6 +2790,99 @@ section.lazy-placeholder:after {
   padding-bottom: 0px;
   background: linear-gradient(45deg, #073b4c, #073b4c);
 }
+.cid-srIeFH4KKX {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: #073b4c;
+}
+.cid-srIeFH4KKX .counter-container {
+  color: #767676;
+}
+.cid-srIeFH4KKX .counter-container ul {
+  margin-bottom: 0;
+}
+.cid-srIeFH4KKX .counter-container ul li {
+  margin-bottom: 1rem;
+  list-style: none;
+}
+.cid-srIeFH4KKX .counter-container ul li:before {
+  position: absolute;
+  left: 0px;
+  margin-top: -10px;
+  padding-top: 3px;
+  content: '';
+  display: inline-block;
+  text-align: center;
+  margin: 5px 10px;
+  line-height: 20px;
+  transition: all .2s;
+  color: #ffffff;
+  background: #149dcc;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+.cid-srIeFH4KKX .mbr-text UL {
+  color: #ffffff;
+  text-align: left;
+}
+.cid-srIeEfIO9u {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background: #073b4c;
+}
+.cid-srIeEfIO9u .image-block {
+  margin: auto;
+}
+.cid-srIeEfIO9u figcaption {
+  position: relative;
+}
+.cid-srIeEfIO9u figcaption div {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .cid-srIeEfIO9u .image-block {
+    width: 100% !important;
+  }
+}
+.cid-srIeD9qRTl {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: #073b4c;
+}
+.cid-srIeD9qRTl .counter-container {
+  color: #767676;
+}
+.cid-srIeD9qRTl .counter-container ul {
+  margin-bottom: 0;
+}
+.cid-srIeD9qRTl .counter-container ul li {
+  margin-bottom: 1rem;
+  list-style: none;
+}
+.cid-srIeD9qRTl .counter-container ul li:before {
+  position: absolute;
+  left: 0px;
+  margin-top: -10px;
+  padding-top: 3px;
+  content: '';
+  display: inline-block;
+  text-align: center;
+  margin: 5px 10px;
+  line-height: 20px;
+  transition: all .2s;
+  color: #ffffff;
+  background: #073b4c;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+.cid-srIeD9qRTl .mbr-text UL {
+  color: #ffffff;
+  text-align: left;
+}
 .cid-sr4veA1Hvx {
   padding-top: 0px;
   padding-bottom: 0px;

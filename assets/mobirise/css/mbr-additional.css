@@ -2790,6 +2790,99 @@ section.lazy-placeholder:after {
   padding-bottom: 0px;
   background: linear-gradient(45deg, #073b4c, #073b4c);
 }
+.cid-swWlqbTb2L {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: #073b4c;
+}
+.cid-swWlqbTb2L .counter-container {
+  color: #767676;
+}
+.cid-swWlqbTb2L .counter-container ul {
+  margin-bottom: 0;
+}
+.cid-swWlqbTb2L .counter-container ul li {
+  margin-bottom: 1rem;
+  list-style: none;
+}
+.cid-swWlqbTb2L .counter-container ul li:before {
+  position: absolute;
+  left: 0px;
+  margin-top: -10px;
+  padding-top: 3px;
+  content: '';
+  display: inline-block;
+  text-align: center;
+  margin: 5px 10px;
+  line-height: 20px;
+  transition: all .2s;
+  color: #ffffff;
+  background: #149dcc;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+.cid-swWlqbTb2L .mbr-text UL {
+  color: #ffffff;
+  text-align: left;
+}
+.cid-swWkbDzFBD {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background: #073b4c;
+}
+.cid-swWkbDzFBD .image-block {
+  margin: auto;
+}
+.cid-swWkbDzFBD figcaption {
+  position: relative;
+}
+.cid-swWkbDzFBD figcaption div {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .cid-swWkbDzFBD .image-block {
+    width: 100% !important;
+  }
+}
+.cid-swWkjzDRpL {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: #073b4c;
+}
+.cid-swWkjzDRpL .counter-container {
+  color: #767676;
+}
+.cid-swWkjzDRpL .counter-container ul {
+  margin-bottom: 0;
+}
+.cid-swWkjzDRpL .counter-container ul li {
+  margin-bottom: 1rem;
+  list-style: none;
+}
+.cid-swWkjzDRpL .counter-container ul li:before {
+  position: absolute;
+  left: 0px;
+  margin-top: -10px;
+  padding-top: 3px;
+  content: '';
+  display: inline-block;
+  text-align: center;
+  margin: 5px 10px;
+  line-height: 20px;
+  transition: all .2s;
+  color: #ffffff;
+  background: #073b4c;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+.cid-swWkjzDRpL .mbr-text UL {
+  color: #ffffff;
+  text-align: left;
+}
 .cid-srIeFH4KKX {
   padding-top: 0px;
   padding-bottom: 0px;

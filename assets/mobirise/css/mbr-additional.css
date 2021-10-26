@@ -2790,6 +2790,99 @@ section.lazy-placeholder:after {
   padding-bottom: 0px;
   background: linear-gradient(45deg, #073b4c, #073b4c);
 }
+.cid-sMWSgp9Xz5 {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: #073b4c;
+}
+.cid-sMWSgp9Xz5 .counter-container {
+  color: #767676;
+}
+.cid-sMWSgp9Xz5 .counter-container ul {
+  margin-bottom: 0;
+}
+.cid-sMWSgp9Xz5 .counter-container ul li {
+  margin-bottom: 1rem;
+  list-style: none;
+}
+.cid-sMWSgp9Xz5 .counter-container ul li:before {
+  position: absolute;
+  left: 0px;
+  margin-top: -10px;
+  padding-top: 3px;
+  content: '';
+  display: inline-block;
+  text-align: center;
+  margin: 5px 10px;
+  line-height: 20px;
+  transition: all .2s;
+  color: #ffffff;
+  background: #149dcc;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+.cid-sMWSgp9Xz5 .mbr-text UL {
+  color: #ffffff;
+  text-align: left;
+}
+.cid-sMWSeYOkay {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background: #073b4c;
+}
+.cid-sMWSeYOkay .image-block {
+  margin: auto;
+}
+.cid-sMWSeYOkay figcaption {
+  position: relative;
+}
+.cid-sMWSeYOkay figcaption div {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .cid-sMWSeYOkay .image-block {
+    width: 100% !important;
+  }
+}
+.cid-sMWSdeAsXu {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: #073b4c;
+}
+.cid-sMWSdeAsXu .counter-container {
+  color: #767676;
+}
+.cid-sMWSdeAsXu .counter-container ul {
+  margin-bottom: 0;
+}
+.cid-sMWSdeAsXu .counter-container ul li {
+  margin-bottom: 1rem;
+  list-style: none;
+}
+.cid-sMWSdeAsXu .counter-container ul li:before {
+  position: absolute;
+  left: 0px;
+  margin-top: -10px;
+  padding-top: 3px;
+  content: '';
+  display: inline-block;
+  text-align: center;
+  margin: 5px 10px;
+  line-height: 20px;
+  transition: all .2s;
+  color: #ffffff;
+  background: #073b4c;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+.cid-sMWSdeAsXu .mbr-text UL {
+  color: #ffffff;
+  text-align: left;
+}
 .cid-swWlqbTb2L {
   padding-top: 0px;
   padding-bottom: 0px;

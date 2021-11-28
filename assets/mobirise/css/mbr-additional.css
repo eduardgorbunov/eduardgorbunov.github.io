@@ -2790,6 +2790,99 @@ section.lazy-placeholder:after {
   padding-bottom: 0px;
   background: linear-gradient(45deg, #073b4c, #073b4c);
 }
+.cid-sQ5CaGrZHg {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: #073b4c;
+}
+.cid-sQ5CaGrZHg .counter-container {
+  color: #767676;
+}
+.cid-sQ5CaGrZHg .counter-container ul {
+  margin-bottom: 0;
+}
+.cid-sQ5CaGrZHg .counter-container ul li {
+  margin-bottom: 1rem;
+  list-style: none;
+}
+.cid-sQ5CaGrZHg .counter-container ul li:before {
+  position: absolute;
+  left: 0px;
+  margin-top: -10px;
+  padding-top: 3px;
+  content: '';
+  display: inline-block;
+  text-align: center;
+  margin: 5px 10px;
+  line-height: 20px;
+  transition: all .2s;
+  color: #ffffff;
+  background: #149dcc;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+.cid-sQ5CaGrZHg .mbr-text UL {
+  color: #ffffff;
+  text-align: left;
+}
+.cid-sQ5BIKLCLn {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background: #073b4c;
+}
+.cid-sQ5BIKLCLn .image-block {
+  margin: auto;
+}
+.cid-sQ5BIKLCLn figcaption {
+  position: relative;
+}
+.cid-sQ5BIKLCLn figcaption div {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .cid-sQ5BIKLCLn .image-block {
+    width: 100% !important;
+  }
+}
+.cid-sQ5Bq0n9iF {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: #073b4c;
+}
+.cid-sQ5Bq0n9iF .counter-container {
+  color: #767676;
+}
+.cid-sQ5Bq0n9iF .counter-container ul {
+  margin-bottom: 0;
+}
+.cid-sQ5Bq0n9iF .counter-container ul li {
+  margin-bottom: 1rem;
+  list-style: none;
+}
+.cid-sQ5Bq0n9iF .counter-container ul li:before {
+  position: absolute;
+  left: 0px;
+  margin-top: -10px;
+  padding-top: 3px;
+  content: '';
+  display: inline-block;
+  text-align: center;
+  margin: 5px 10px;
+  line-height: 20px;
+  transition: all .2s;
+  color: #ffffff;
+  background: #073b4c;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+.cid-sQ5Bq0n9iF .mbr-text UL {
+  color: #ffffff;
+  text-align: left;
+}
 .cid-sMWSgp9Xz5 {
   padding-top: 0px;
   padding-bottom: 0px;

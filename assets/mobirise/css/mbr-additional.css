@@ -1955,8 +1955,23 @@ section.lazy-placeholder:after {
 .cid-qTkzRZLJNu .dropdown-item:hover {
   color: #c1c1c1 !important;
 }
+.cid-uPy0wiOGSy {
+  padding-top: 120px;
+  padding-bottom: 30px;
+  background: linear-gradient(45deg, #073b4c, #073b4c);
+}
+.cid-uPy0wiOGSy H1 {
+  text-align: left;
+}
+.cid-uPy0wiOGSy .mbr-text,
+.cid-uPy0wiOGSy .mbr-section-btn {
+  text-align: left;
+}
+.cid-uPy0wiOGSy P {
+  text-align: left;
+}
 .cid-u3YavPYtFN {
-  padding-top: 105px;
+  padding-top: 0px;
   padding-bottom: 30px;
   background: linear-gradient(45deg, #073b4c, #073b4c);
 }

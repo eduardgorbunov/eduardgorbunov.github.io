@@ -1,239 +1,455 @@
 <!DOCTYPE html>
-<html  >
+<html lang="ru">
 <head>
-  <!-- Site made with Mobirise Website Builder v5.9.6, https://mobirise.com -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Mobirise v5.9.6, mobirise.com">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <link rel="shortcut icon" href="assets/images/soccer-ball-128x128.png" type="image/x-icon">
-  <meta name="description" content="Course page">
-  
-  
-  <title>Probability Theory</title>
-  <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
-  <link rel="stylesheet" href="assets/tether/tether.min.css">
-  <link rel="stylesheet" href="assets/dropdown/css/style.css">
-  <link rel="stylesheet" href="assets/theme/css/style.css">
-  <link rel="preload" href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap"></noscript>
-  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+  <meta name="description" content="Архивные материалы курса «Теория вероятностей». Eduard Gorbunov.">
+  <meta name="author" content="Eduard Gorbunov">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#073b4c">
+  <meta name="color-scheme" content="light">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta property="og:title" content="Теория вероятностей | Eduard Gorbunov">
+  <meta property="og:description" content="Архивные материалы курса «Теория вероятностей». Eduard Gorbunov.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Eduard Gorbunov">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://eduardgorbunov.github.io/pr_th.html">
+  <meta property="og:image" content="https://eduardgorbunov.github.io/assets/images/eg-social-card.png">
+  <meta property="og:image:secure_url" content="https://eduardgorbunov.github.io/assets/images/eg-social-card.png">
+  <meta property="og:image:alt" content="Превью академического сайта Эдуарда Горбунова">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Теория вероятностей | Eduard Gorbunov">
+  <meta name="twitter:description" content="Архивные материалы курса «Теория вероятностей». Eduard Gorbunov.">
+  <meta name="twitter:image" content="https://eduardgorbunov.github.io/assets/images/eg-social-card.png">
+  <meta name="twitter:image:alt" content="Превью академического сайта Эдуарда Горбунова">
+  <link rel="canonical" href="https://eduardgorbunov.github.io/pr_th.html">
+  <link rel="me" href="https://scholar.google.com/citations?user=QPVriwoAAAAJ&amp;hl=en">
+  <link rel="me" href="https://arxiv.org/search/math?searchtype=author&amp;query=Gorbunov%2C+E">
+  <link rel="me" href="https://www.researchgate.net/profile/Eduard_Gorbunov">
+  <link rel="me" href="https://twitter.com/ed_gorbunov">
+  <link rel="icon" href="assets/images/eg-favicon.svg?v=20260706b" type="image/svg+xml">
+  <link rel="preload" as="image" href="assets/images/img-3924-690x1130.jpeg" type="image/jpeg" fetchpriority="high">
 
-  
-  
-  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://eduardgorbunov.github.io/pr_th.html#webpage",
+    "url": "https://eduardgorbunov.github.io/pr_th.html",
+    "name": "Теория вероятностей | Eduard Gorbunov",
+    "description": "Архивные материалы курса «Теория вероятностей». Eduard Gorbunov.",
+    "dateModified": "2026-07-05",
+    "inLanguage": "ru",
+    "isPartOf": {
+      "@id": "https://eduardgorbunov.github.io/#website"
+    },
+    "author": {
+      "@id": "https://eduardgorbunov.github.io/#person"
+    },
+    "mainEntity": {
+      "@type": "Course",
+      "name": "Теория вероятностей",
+      "inLanguage": "ru",
+      "provider": {
+        "@id": "https://eduardgorbunov.github.io/#person"
+      }
+    }
+  }
+  </script>
+
+  <title>Теория вероятностей | Eduard Gorbunov</title>
+  <link rel="stylesheet" href="assets/theme/css/modern-academic.css?v=20260706f" type="text/css">
+
+
+
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://eduardgorbunov.github.io/pr_th.html#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Новости",
+        "item": "https://eduardgorbunov.github.io/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Преподавание",
+        "item": "https://eduardgorbunov.github.io/teaching.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Теория вероятностей",
+        "item": "https://eduardgorbunov.github.io/pr_th.html"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://eduardgorbunov.github.io/#website",
+        "url": "https://eduardgorbunov.github.io/",
+        "name": "Eduard Gorbunov",
+        "publisher": {
+          "@id": "https://eduardgorbunov.github.io/#person"
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://eduardgorbunov.github.io/#person",
+        "name": "Eduard Gorbunov",
+        "url": "https://eduardgorbunov.github.io/",
+        "image": "https://eduardgorbunov.github.io/assets/images/img-3924-690x1130.jpeg",
+        "jobTitle": "Assistant Professor of Statistics and Data Science",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "Mohamed bin Zayed University of Artificial Intelligence",
+          "url": "https://mbzuai.ac.ae/"
+        },
+        "email": "mailto:eduard.gorbunov@mbzuai.ac.ae",
+        "sameAs": [
+          "https://scholar.google.com/citations?user=QPVriwoAAAAJ&hl=en",
+          "https://www.researchgate.net/profile/Eduard_Gorbunov",
+          "https://arxiv.org/search/math?searchtype=author&query=Gorbunov%2C+E",
+          "https://twitter.com/ed_gorbunov"
+        ],
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Moscow Institute of Physics and Technology",
+          "url": "https://mipt.ru/english/"
+        },
+        "knowsAbout": [
+          "Stochastic optimization",
+          "Distributed learning",
+          "Variational inequalities",
+          "High-probability bounds",
+          "Byzantine robustness",
+          "Differential privacy"
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
-  
-  <section class="menu cid-qTkzRZLJNu" once="menu" id="menu1-1d">
+<a class="eg-skip-link" href="#main-content" lang="en">Skip to main content</a>
 
-    
+  <aside class="eg-sidebar" id="site-navigation" aria-label="Site profile and navigation" lang="en">
 
-    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </button>
-        <div class="menu-logo">
-            <div class="navbar-brand">
-                
-                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-5" href="index.html">Eduard Gorbunov</a></span>
+
+
+    <nav class="eg-sidebar-nav" aria-label="Primary navigation">
+        <div class="eg-sidebar-logo">
+            <span class="eg-sidebar-photo-frame"><img class="eg-sidebar-photo" src="assets/images/img-3924-690x1130.jpeg" alt="Eduard Gorbunov" width="104" height="104" decoding="async" fetchpriority="high"></span>
+            <div class="eg-sidebar-brand">
+
+                <span class="eg-sidebar-title-wrap"><a class="eg-sidebar-title" href="index.html">Eduard Gorbunov</a></span>
+                <p class="eg-sidebar-affiliation"><span>MBZUAI</span><span>Statistics and Data Science</span></p><div class="eg-sidebar-topics" role="group" aria-label="Research focus links"><a class="eg-sidebar-topic-link" href="publications.html?tag=stochastic-optimization#publication-list">Stochastic Optimization</a><a class="eg-sidebar-topic-link" href="publications.html?tag=distributed-learning#publication-list">Distributed Learning</a><a class="eg-sidebar-topic-link" href="publications.html?tag=min-max-variational-inequalities#publication-list">Variational Inequalities</a></div><div class="eg-sidebar-profiles" role="group" aria-label="Profile links"><a class="eg-sidebar-profile-link" href="mailto:eduard.gorbunov@mbzuai.ac.ae" aria-label="Email Eduard Gorbunov">Email</a><a class="eg-sidebar-profile-link" href="https://scholar.google.com/citations?user=QPVriwoAAAAJ&amp;hl=en" target="_blank" rel="me noopener noreferrer" aria-label="Google Scholar profile">Scholar</a><a class="eg-sidebar-profile-link" href="https://arxiv.org/search/math?searchtype=author&amp;query=Gorbunov%2C+E" target="_blank" rel="me noopener noreferrer" aria-label="arXiv author profile">arXiv</a><a class="eg-sidebar-profile-link" href="https://www.researchgate.net/profile/Eduard_Gorbunov" target="_blank" rel="me noopener noreferrer" aria-label="ResearchGate profile">RG</a><a class="eg-sidebar-profile-link" href="https://twitter.com/ed_gorbunov" target="_blank" rel="me noopener noreferrer" aria-label="X/Twitter profile">X</a></div>
             </div>
         </div>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="index.html">
-                        
-                        Home<br></a>
-                </li><li class="nav-item"><a class="nav-link link text-white display-4" href="index.html#timeline1-f">
-                        
-                        Education<br></a></li><li class="nav-item"><a class="nav-link link text-white display-4" href="index.html#timeline1-2a">
-                        
-                        Work Experience<br></a></li><li class="nav-item"><a class="nav-link link text-white display-4" href="index.html#header5-v">
-                        
-                        News<br></a></li><li class="nav-item"><a class="nav-link link text-white text-primary display-4" href="team.html">Team</a></li><li class="nav-item"><a class="nav-link link text-white display-4" href="publications.html">
-                        
-                        Publications<br></a></li><li class="nav-item"><a class="nav-link link text-white display-4" href="conferences.html#header5-s">Talks<br></a></li><li class="nav-item"><a class="nav-link link text-white display-4" href="conferences.html#header5-t">Posters<br></a></li><li class="nav-item"><a class="nav-link link text-white display-4" href="teaching.html">Teaching<br></a></li><li class="nav-item"><a class="nav-link link text-white display-4" href="page6.html">Books<br></a></li></ul>
-            
+        <div class="eg-sidebar-links-wrap" id="primary-navigation-links">
+            <ul class="eg-sidebar-links"><li class="eg-nav-item">
+                    <a class="eg-nav-link" href="index.html">News</a>
+                </li><li class="eg-nav-item"><a class="eg-nav-link" href="about.html">About me</a></li><li class="eg-nav-item"><a class="eg-nav-link" href="research.html">Research</a></li><li class="eg-nav-item"><a class="eg-nav-link" href="team.html">Team</a></li><li class="eg-nav-item"><a class="eg-nav-link" href="publications.html">Publications</a></li><li class="eg-nav-item"><a class="eg-nav-link" href="conferences.html#talks">Talks</a></li><li class="eg-nav-item"><a class="eg-nav-link" href="conferences.html#posters">Posters</a></li><li class="eg-nav-item is-active"><a class="eg-nav-link" href="teaching.html" aria-current="location">Teaching</a></li><li class="eg-nav-item"><a class="eg-nav-link" href="assets/files/CV.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Open academic CV PDF">CV</a></li></ul>
+
         </div>
     </nav>
+</aside>
+
+
+<main id="main-content" tabindex="-1">
+<section class="eg-course-page" id="course-top" aria-labelledby="course-heading">
+  <div class="eg-container">
+    <header class="eg-page-heading">
+      <h1 id="course-heading">Теория вероятностей</h1>
+      <p>Архивная страница семинаров для группы 675: конспекты, версии с решениями, дополнительные задания, теоретические минимумы и объявления.</p>
+    </header>
+
+    <aside class="eg-course-archive-note" aria-label="Архивная заметка">
+      <strong>Архив курса</strong>
+      <span>Материалы сохранены для справки; расписание, дедлайны и объявления относятся к прошедшему семестру.</span>
+    </aside>
+
+    <section class="eg-course-summary" aria-label="Краткая информация о курсе" role="list">
+      <article data-accent="teal" role="listitem">
+        <span>Роль</span>
+        <strong>Семинарист</strong>
+      </article>
+      <article data-accent="blue" role="listitem">
+        <span>Организация</span>
+        <strong>ФУПМ, МФТИ</strong>
+      </article>
+      <article data-accent="gold" role="listitem">
+        <span>Семестр</span>
+        <strong>осень 2018</strong>
+      </article>
+      <article data-accent="rose" role="listitem">
+        <span>Материалы</span>
+        <strong>14 семинаров · 10 необязательных домашних заданий</strong>
+      </article>
+    </section>
+
+    <nav class="eg-course-shortcuts" aria-label="Навигация по странице курса">
+      <a href="teaching.html">Все курсы</a>
+      <a href="https://drive.google.com/drive/folders/1Wd0otdu9K42WatmDAIFnTvOGX86MlCj0?ogsrc=32" target="_blank" rel="noopener noreferrer" aria-label="Открыть Google Drive: Теория вероятностей">Google Drive</a>
+      <a href="#seminars">Семинары</a>
+      <a href="#optional-homework">Необязательные ДЗ</a>
+      <a href="assets/files/theory01.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF: Теор. минимум 1">Теор. минимум 1</a>
+      <a href="assets/files/theory02.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF: Теор. минимум 2">Теор. минимум 2</a>
+      <a href="assets/files/kanon01_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF: Канон. задание 1">Канон. задание 1</a>
+      <a href="assets/files/kanon02_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF: Канон. задание 2">Канон. задание 2</a>
+      <a href="#course-news">Новости</a>
+    </nav>
+
+    <section class="eg-course-panel" id="seminars" aria-labelledby="seminars-heading">
+      <div class="eg-course-section-heading">
+        <h2 id="seminars-heading">Семинары</h2>
+        <p>Версии без решений предназначались для предварительной подготовки; версии с решениями добавлялись после семинаров.</p>
+      </div>
+      <div class="eg-course-resource-grid eg-course-resource-grid-wide" role="list" aria-label="Материалы семинаров">
+      <article id="pr-th-seminar-01" class="eg-course-resource-card" role="listitem" data-kind="seminar" aria-label="Теория вероятностей, 2018: Семинар 01, 04.09.2018">
+        <h3>Семинар 01</h3>
+        <time datetime="2018-09-04">04.09.2018</time>
+        <div class="eg-course-resource-actions"><a href="assets/files/Seminar01_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF без решений: Семинар 01">Без решений</a><a href="assets/files/Seminar01_675_with_solutions.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF с решениями: Семинар 01">С решениями</a></div>
+      </article>
+      <article id="pr-th-seminar-02" class="eg-course-resource-card" role="listitem" data-kind="seminar" aria-label="Теория вероятностей, 2018: Семинар 02, 11.09.2018">
+        <h3>Семинар 02</h3>
+        <time datetime="2018-09-11">11.09.2018</time>
+        <div class="eg-course-resource-actions"><a href="assets/files/Seminar02_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF без решений: Семинар 02">Без решений</a><a href="assets/files/Seminar02_675_with_solutions.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF с решениями: Семинар 02">С решениями</a></div>
+      </article>
+      <article id="pr-th-seminar-03" class="eg-course-resource-card" role="listitem" data-kind="seminar" aria-label="Теория вероятностей, 2018: Семинар 03, 18.09.2018">
+        <h3>Семинар 03</h3>
+        <time datetime="2018-09-18">18.09.2018</time>
+        <div class="eg-course-resource-actions"><a href="assets/files/Seminar03_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF без решений: Семинар 03">Без решений</a><a href="assets/files/Seminar03_675_676_with_solutions.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF с решениями: Семинар 03">С решениями</a></div>
+      </article>
+      <article id="pr-th-seminar-04" class="eg-course-resource-card" role="listitem" data-kind="seminar" aria-label="Теория вероятностей, 2018: Семинар 04, 25.09.2018">
+        <h3>Семинар 04</h3>
+        <time datetime="2018-09-25">25.09.2018</time>
+        <div class="eg-course-resource-actions"><a href="assets/files/Seminar04_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF без решений: Семинар 04">Без решений</a><a href="assets/files/Seminar04_675_with_solutions.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF с решениями: Семинар 04">С решениями</a></div>
+      </article>
+      <article id="pr-th-seminar-05" class="eg-course-resource-card" role="listitem" data-kind="seminar" aria-label="Теория вероятностей, 2018: Семинар 05, 02.10.2018">
+        <h3>Семинар 05</h3>
+        <time datetime="2018-10-02">02.10.2018</time>
+        <div class="eg-course-resource-actions"><a href="assets/files/Seminar05_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF без решений: Семинар 05">Без решений</a><a href="assets/files/Seminar05_675_with_solutions.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF с решениями: Семинар 05">С решениями</a></div>
+      </article>
+      <article id="pr-th-seminar-06" class="eg-course-resource-card" role="listitem" data-kind="seminar" aria-label="Теория вероятностей, 2018: Семинар 06, 09.10.2018">
+        <h3>Семинар 06</h3>
+        <time datetime="2018-10-09">09.10.2018</time>
+        <div class="eg-course-resource-actions"><a href="assets/files/Seminar06_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF без решений: Семинар 06">Без решений</a></div>
+      </article>
+      <article id="pr-th-seminar-07" class="eg-course-resource-card" role="listitem" data-kind="seminar" aria-label="Теория вероятностей, 2018: Семинар 07, 16.10.2018">
+        <h3>Семинар 07</h3>
+        <time datetime="2018-10-16">16.10.2018</time>
+        <div class="eg-course-resource-actions"><a href="assets/files/Seminar07_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF без решений: Семинар 07">Без решений</a><a href="assets/files/Seminar07_675_with_solutions.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF с решениями: Семинар 07">С решениями</a></div>
+      </article>
+      <article id="pr-th-seminar-08" class="eg-course-resource-card" role="listitem" data-kind="seminar" aria-label="Теория вероятностей, 2018: Семинар 08, 23.10.2018">
+        <h3>Семинар 08</h3>
+        <time datetime="2018-10-23">23.10.2018</time>
+        <div class="eg-course-resource-actions"><a href="assets/files/Seminar08_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF без решений: Семинар 08">Без решений</a><a href="assets/files/Seminar08_675_with_solutions.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF с решениями: Семинар 08">С решениями</a></div>
+      </article>
+      <article id="pr-th-seminar-09" class="eg-course-resource-card" role="listitem" data-kind="seminar" aria-label="Теория вероятностей, 2018: Семинар 09, 30.10.2018">
+        <h3>Семинар 09</h3>
+        <time datetime="2018-10-30">30.10.2018</time>
+        <div class="eg-course-resource-actions"><a href="assets/files/Seminar09_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF без решений: Семинар 09">Без решений</a><a href="assets/files/Seminar09_675_with_solutions.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF с решениями: Семинар 09">С решениями</a></div>
+      </article>
+      <article id="pr-th-seminar-10" class="eg-course-resource-card" role="listitem" data-kind="seminar" aria-label="Теория вероятностей, 2018: Семинар 10, 06.11.2018">
+        <h3>Семинар 10</h3>
+        <time datetime="2018-11-06">06.11.2018</time>
+        <div class="eg-course-resource-actions"><a href="assets/files/Seminar10_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF без решений: Семинар 10">Без решений</a><a href="assets/files/Seminar10_675_with_solutions.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF с решениями: Семинар 10">С решениями</a></div>
+      </article>
+      <article id="pr-th-seminar-11" class="eg-course-resource-card" role="listitem" data-kind="seminar" aria-label="Теория вероятностей, 2018: Семинар 11, 13.11.2018">
+        <h3>Семинар 11</h3>
+        <time datetime="2018-11-13">13.11.2018</time>
+        <div class="eg-course-resource-actions"><a href="assets/files/Seminar11_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF без решений: Семинар 11">Без решений</a><a href="assets/files/Seminar11_675_with_solutions.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF с решениями: Семинар 11">С решениями</a></div>
+      </article>
+      <article id="pr-th-seminar-12" class="eg-course-resource-card" role="listitem" data-kind="seminar" aria-label="Теория вероятностей, 2018: Семинар 12, 20.11.2018">
+        <h3>Семинар 12</h3>
+        <time datetime="2018-11-20">20.11.2018</time>
+        <div class="eg-course-resource-actions"><a href="assets/files/Seminar12_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF без решений: Семинар 12">Без решений</a><a href="assets/files/Seminar12_675_with_solutions.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF с решениями: Семинар 12">С решениями</a></div>
+      </article>
+      <article id="pr-th-seminar-13" class="eg-course-resource-card" role="listitem" data-kind="seminar" aria-label="Теория вероятностей, 2018: Семинар 13, 27.11.2018">
+        <h3>Семинар 13</h3>
+        <time datetime="2018-11-27">27.11.2018</time>
+        <div class="eg-course-resource-actions"><a href="assets/files/Seminar13_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF без решений: Семинар 13">Без решений</a></div>
+      </article>
+      <article id="pr-th-seminar-14" class="eg-course-resource-card" role="listitem" data-kind="seminar" aria-label="Теория вероятностей, 2018: Семинар 14">
+        <h3>Семинар 14</h3>
+        <span>декабрь 2018</span>
+        <div class="eg-course-resource-actions"><a href="assets/files/Seminar14_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF без решений: Семинар 14">Без решений</a></div>
+      </article>
+      </div>
+    </section>
+
+    <section class="eg-course-panel" id="optional-homework" aria-labelledby="optional-homework-heading">
+      <div class="eg-course-section-heading">
+        <h2 id="optional-homework-heading">Необязательные ДЗ</h2>
+        <p>Дополнительные задания для желающих; похожие задачи могли встречаться на контрольных или как задачи на повышение оценки.</p>
+      </div>
+      <div class="eg-course-resource-grid" role="list" aria-label="Необязательные домашние задания">
+      <article id="pr-th-homework-01" class="eg-course-resource-card" role="listitem" data-kind="homework" aria-label="Теория вероятностей, 2018: Необязательное ДЗ 01, 04.09.2018">
+        <h3>Необязательное ДЗ 01</h3>
+        <time datetime="2018-09-04">04.09.2018</time>
+        <div class="eg-course-resource-actions"><a href="assets/files/hw01_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF: Необязательное ДЗ 01">PDF</a></div>
+      </article>
+      <article id="pr-th-homework-02" class="eg-course-resource-card" role="listitem" data-kind="homework" aria-label="Теория вероятностей, 2018: Необязательное ДЗ 02, 11.09.2018">
+        <h3>Необязательное ДЗ 02</h3>
+        <time datetime="2018-09-11">11.09.2018</time>
+        <div class="eg-course-resource-actions"><a href="assets/files/hw02_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF: Необязательное ДЗ 02">PDF</a></div>
+      </article>
+      <article id="pr-th-homework-03" class="eg-course-resource-card" role="listitem" data-kind="homework" aria-label="Теория вероятностей, 2018: Необязательное ДЗ 03, 18.09.2018">
+        <h3>Необязательное ДЗ 03</h3>
+        <time datetime="2018-09-18">18.09.2018</time>
+        <div class="eg-course-resource-actions"><a href="assets/files/hw03_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF: Необязательное ДЗ 03">PDF</a></div>
+      </article>
+      <article id="pr-th-homework-04" class="eg-course-resource-card" role="listitem" data-kind="homework" aria-label="Теория вероятностей, 2018: Необязательное ДЗ 04, 25.09.2018">
+        <h3>Необязательное ДЗ 04</h3>
+        <time datetime="2018-09-25">25.09.2018</time>
+        <div class="eg-course-resource-actions"><a href="assets/files/hw04_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF: Необязательное ДЗ 04">PDF</a></div>
+      </article>
+      <article id="pr-th-homework-05" class="eg-course-resource-card" role="listitem" data-kind="homework" aria-label="Теория вероятностей, 2018: Необязательное ДЗ 05, 02.10.2018">
+        <h3>Необязательное ДЗ 05</h3>
+        <time datetime="2018-10-02">02.10.2018</time>
+        <div class="eg-course-resource-actions"><a href="assets/files/hw05_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF: Необязательное ДЗ 05">PDF</a></div>
+      </article>
+      <article id="pr-th-homework-06" class="eg-course-resource-card" role="listitem" data-kind="homework" aria-label="Теория вероятностей, 2018: Необязательное ДЗ 06, 23.10.2018">
+        <h3>Необязательное ДЗ 06</h3>
+        <time datetime="2018-10-23">23.10.2018</time>
+        <div class="eg-course-resource-actions"><a href="assets/files/hw06_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF: Необязательное ДЗ 06">PDF</a></div>
+      </article>
+      <article id="pr-th-homework-07" class="eg-course-resource-card" role="listitem" data-kind="homework" aria-label="Теория вероятностей, 2018: Необязательное ДЗ 07, 30.10.2018">
+        <h3>Необязательное ДЗ 07</h3>
+        <time datetime="2018-10-30">30.10.2018</time>
+        <div class="eg-course-resource-actions"><a href="assets/files/hw07_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF: Необязательное ДЗ 07">PDF</a></div>
+      </article>
+      <article id="pr-th-homework-08" class="eg-course-resource-card" role="listitem" data-kind="homework" aria-label="Теория вероятностей, 2018: Необязательное ДЗ 08, 06.11.2018">
+        <h3>Необязательное ДЗ 08</h3>
+        <time datetime="2018-11-06">06.11.2018</time>
+        <div class="eg-course-resource-actions"><a href="assets/files/hw08_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF: Необязательное ДЗ 08">PDF</a></div>
+      </article>
+      <article id="pr-th-homework-09" class="eg-course-resource-card" role="listitem" data-kind="homework" aria-label="Теория вероятностей, 2018: Необязательное ДЗ 09, 13.11.2018">
+        <h3>Необязательное ДЗ 09</h3>
+        <time datetime="2018-11-13">13.11.2018</time>
+        <div class="eg-course-resource-actions"><a href="assets/files/hw09_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF: Необязательное ДЗ 09">PDF</a></div>
+      </article>
+      <article id="pr-th-homework-10" class="eg-course-resource-card" role="listitem" data-kind="homework" aria-label="Теория вероятностей, 2018: Необязательное ДЗ 10, 20.11.2018">
+        <h3>Необязательное ДЗ 10</h3>
+        <time datetime="2018-11-20">20.11.2018</time>
+        <div class="eg-course-resource-actions"><a href="assets/files/hw10_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Открыть PDF: Необязательное ДЗ 10">PDF</a></div>
+      </article>
+      </div>
+    </section>
+
+    <section class="eg-course-panel" id="course-news" aria-labelledby="course-news-heading">
+      <div class="eg-course-section-heading">
+        <h2 id="course-news-heading">Новости</h2>
+      </div>
+      <div class="eg-course-update-list" role="list" aria-label="Архив новостей курса">
+      <article id="pr-th-update-01" class="eg-course-update-card" role="listitem" aria-label="Теория вероятностей, 2018: Обновление, 27 ноября, 2018">
+        <time datetime="2018-11-27" class="eg-course-update-date">27 ноября, 2018</time>
+        <div class="eg-course-update-body"><strong>Контрольная работа по второй части курса пройдёт на семинаре 11-го декабря. </strong>На семинаре 4-го декабря будет разбор задач из необязательных домашних заданий.</div>
+      </article>
+      <article id="pr-th-update-02" class="eg-course-update-card" role="listitem" aria-label="Теория вероятностей, 2018: Обновление, 20 ноября, 2018">
+        <time datetime="2018-11-20" class="eg-course-update-date">20 ноября, 2018</time>
+        <div class="eg-course-update-body"><p>Исправлено решение упражнения 2 из <a href="assets/files/Seminar11_675_with_solutions.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer">одиннадцатого семинара</a>. Выложена <a href="assets/files/Seminar12_675_with_solutions.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer">версия с решениями 12-го семинара</a>.</p><p><strong>Предварительная информация: контрольная работа состоится на семинаре 4-го декабря.</strong> <strong>В этот раз контрольная будет на всю пару.</strong></p></div>
+      </article>
+      <article id="pr-th-update-03" class="eg-course-update-card" role="listitem" aria-label="Теория вероятностей, 2018: Обновление, 13 ноября, 2018">
+        <time datetime="2018-11-13" class="eg-course-update-date">13 ноября, 2018</time>
+        <div class="eg-course-update-body">Выложена <a href="assets/files/Seminar11_675_with_solutions.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer">версия с решениями одиннадцатого семинара.</a></div>
+      </article>
+      <article id="pr-th-update-04" class="eg-course-update-card" role="listitem" aria-label="Теория вероятностей, 2018: Обновление, 6 ноября, 2018">
+        <time datetime="2018-11-06" class="eg-course-update-date">6 ноября, 2018</time>
+        <div class="eg-course-update-body">Выложена <a href="assets/files/Seminar10_675_with_solutions.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer">версия с решениями десятого семинара</a>. Кроме того, доступно <a href="assets/files/kanon02_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer">второе каноническое задание</a>.</div>
+      </article>
+      <article id="pr-th-update-05" class="eg-course-update-card" role="listitem" aria-label="Теория вероятностей, 2018: Обновление, 30 октября, 2018">
+        <time datetime="2018-10-30" class="eg-course-update-date">30 октября, 2018</time>
+        <div class="eg-course-update-body">Исправлены опечатки в <a href="assets/files/Seminar09_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer">версии без решений</a> и выложена <a href="assets/files/Seminar09_675_with_solutions.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer">версия с решениями девятого семинара</a>.</div>
+      </article>
+      <article id="pr-th-update-06" class="eg-course-update-card" role="listitem" aria-label="Теория вероятностей, 2018: Обновление, 23 октября, 2018">
+        <time datetime="2018-10-23" class="eg-course-update-date">23 октября, 2018</time>
+        <div class="eg-course-update-body"><p>Выложены <a href="https://docs.google.com/spreadsheets/d/1ge7vgFtX5ujWn-Nn6hh253pGsWLJtXm2uCG1RV3jL4U/edit?usp=drive_web&amp;ouid=104950775638529440051" target="_blank" rel="noopener noreferrer">результаты первой контрольной работы</a>.</p><p>Исправлены опечатки и внесены некоторые изменения в конспекты седьмого (<a href="assets/files/Seminar07_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer">без решений</a>/<a href="assets/files/Seminar07_675_with_solutions.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer">с решениями</a>) и восьмого семинаров (<a href="assets/files/Seminar08_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer">без решений</a>/<a href="assets/files/Seminar08_675_with_solutions.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer">с решениями</a>).</p><p>В следующий раз начинаем новую и важную тему - характеристические функции.</p></div>
+      </article>
+      <article id="pr-th-update-07" class="eg-course-update-card" role="listitem" aria-label="Теория вероятностей, 2018: Обновление, 10 октября, 2018">
+        <time datetime="2018-10-10" class="eg-course-update-date">10 октября, 2018</time>
+        <div class="eg-course-update-body"><p>Доступна <a href="assets/files/Seminar05_675_with_solutions.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer">версия с решениями пятого семинара</a>. Кроме того, в обеих версиях семинара исправлены мелкие опечатки.</p><p><strong>16 октября состоится контрольная работа на 40 минут (будет проводиться на первой половине пары). </strong>На контрольной можно будет пользоваться любым печатным или рукописным источником информации, но нельзя использовать электронные устройства.</p></div>
+      </article>
+      <article id="pr-th-update-08" class="eg-course-update-card" role="listitem" aria-label="Теория вероятностей, 2018: Обновление, 25 сентября, 2018">
+        <time datetime="2018-09-25" class="eg-course-update-date">25 сентября, 2018</time>
+        <div class="eg-course-update-body">Выложена <a href="assets/files/Seminar04_675_with_solutions.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer">версия с решениями четвёртого семинара</a>. Кроме того, в обеих версиях семинара исправлены мелкие опечатки и добавлено объяснение того факта, что функцию распределения можно представить в виде суммы непрерывной и дискретной компонент.</div>
+      </article>
+      <article id="pr-th-update-09" class="eg-course-update-card" role="listitem" aria-label="Теория вероятностей, 2018: Обновление, 22 сентября, 2018">
+        <time datetime="2018-09-22" class="eg-course-update-date">22 сентября, 2018</time>
+        <div class="eg-course-update-body"><p>Раздел, касающийся <strong>организационных вопросов</strong>, из <a href="assets/files/Seminar01_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer">первого семинара</a> <strong>немного изменился</strong> (уточнилась процедура сдачи теоретических минимумов и даты контрольных теперь окончательные).</p><p>Появилось <a href="assets/files/hw10_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer">десятое необязательное домашнее задание</a> и <a href="assets/files/theory02.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer">теоретический минимум по второй части курса</a>.</p></div>
+      </article>
+      <article id="pr-th-update-10" class="eg-course-update-card" role="listitem" aria-label="Теория вероятностей, 2018: Обновление, 18 сентября, 2018">
+        <time datetime="2018-09-18" class="eg-course-update-date">18 сентября, 2018</time>
+        <div class="eg-course-update-body">Выложена <a href="assets/files/Seminar03_675_676_with_solutions.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer">версия с решениями третьего семинара</a>.</div>
+      </article>
+      <article id="pr-th-update-11" class="eg-course-update-card" role="listitem" aria-label="Теория вероятностей, 2018: Обновление, 17 сентября, 2018">
+        <time datetime="2018-09-17" class="eg-course-update-date">17 сентября, 2018</time>
+        <div class="eg-course-update-body">Выложено <a href="assets/files/kanon01_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer">первое каноническое задание</a>. Обращаю внимание, что <strong>номера задач указаны по новой версии задачника</strong> "<a href="https://arxiv.org/pdf/1508.03461.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer">Стохастический анализ в задачах. Часть 1</a>". <strong>На семинаре номера задач были указаны по печатной версии пособия.</strong></div>
+      </article>
+      <article id="pr-th-update-12" class="eg-course-update-card" role="listitem" aria-label="Теория вероятностей, 2018: Обновление, 11 сентября, 2018">
+        <time datetime="2018-09-11" class="eg-course-update-date">11 сентября, 2018</time>
+        <div class="eg-course-update-body"><p>Доступна <a href="assets/files/Seminar02_675_with_solutions.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer">версия с решениями второго семинара</a>.</p><p>На семинаре были объявлены номера задач из сборника <a href="https://drive.google.com/drive/folders/1k0tVs8Jvk4YR85x5jjm9RrGznXKgIlCW?ogsrc=32" target="_blank" rel="noopener noreferrer">"Стохастический анализ в задачах. Часть 1"</a>. Пока что это предварительная версия. В ближайшее время будет выложена окончательная версия первого канонического задания.</p></div>
+      </article>
+      <article id="pr-th-update-13" class="eg-course-update-card" role="listitem" aria-label="Теория вероятностей, 2018: Обновление, 4 сентября, 2018">
+        <time datetime="2018-09-04" class="eg-course-update-date">4 сентября, 2018</time>
+        <div class="eg-course-update-body"><p>Сегодня прошёл первый семинар по теории вероятностей. Версия конспекта с решениями <a href="assets/files/Seminar01_675_with_solutions.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer">уже доступна</a>.</p><p>Я создал беседу в ВК, где можно будет задавать вопросы по курсу и где я смогу быстро сообщать новости. Важные новости будут дублироваться здесь. Если Вас нет в беседе, но Вы в моей группе, то напишите мне в ВК, я Вас добавлю.</p><p>[<a href="https://vk.com/eduard_gorbunov" target="_blank" rel="noopener noreferrer">моя страница в ВК</a>]</p></div>
+      </article>
+      <article id="pr-th-update-14" class="eg-course-update-card" role="listitem" aria-label="Теория вероятностей, 2018: Обновление, 2 сентября, 2018">
+        <time datetime="2018-09-02" class="eg-course-update-date">2 сентября, 2018</time>
+        <div class="eg-course-update-body">На странице доступна большая часть семинаров (в частности, по первой части курса не хватает только канонического задания - его даст лектор, об этом будет отдельно объявлено). Тем, кто будет в моей группе и кто планирует переводиться ко мне в группу, советую прочитать про организационные вопросы (правила получения зачёта, ориентировочные даты контрольных и пр.), которые описаны в <a href="assets/files/Seminar01_675.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer">конспекте первого семинара</a>.</div>
+      </article>
+      </div>
+    </section>
+  </div>
 </section>
-
-<section class="cid-qZH27ml42i" id="header2-1e">
-
-    
-
-    
-
-    <div class="container align-center">
-        <div class="row justify-content-md-center">
-            <div class="mbr-white col-md-10">
-                <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-2">Семинары по Теории Вероятностей<br>Группа 675</h1>
-                
-                <p class="mbr-text pb-3 mbr-fonts-style display-5">На этой странице будут размещаться новости о семинарах, сдачах и контрольных по Теории Вероятностей для 675-й группы. Кроме того, здесь будут выкладываться конспекты семинаров, домашние задания, списки вопросов для сдачи теоретического минимума, а также здесь можно найти ссылку на Google Drive, где будет выкладываться всё вышеперечисленное и где лежат полезные для освоения курса пособия.</p>
-                
-            </div>
+</main>
+<footer class="eg-site-footer" lang="en">
+  <div class="eg-container">
+    <div class="eg-footer-main">
+      <p><strong>Eduard Gorbunov</strong><span>Assistant Professor, Department of Statistics and Data Science, MBZUAI</span></p>
+      <nav class="eg-footer-links" aria-label="Footer links">
+        <div class="eg-footer-link-group" aria-label="Contact and profiles">
+          <a href="mailto:eduard.gorbunov@mbzuai.ac.ae" aria-label="Email Eduard Gorbunov">Email</a>
+          <a href="https://scholar.google.com/citations?user=QPVriwoAAAAJ&amp;hl=en" target="_blank" rel="me noopener noreferrer" aria-label="Google Scholar profile">Google Scholar</a>
+          <a href="https://arxiv.org/search/math?searchtype=author&amp;query=Gorbunov%2C+E" target="_blank" rel="me noopener noreferrer" aria-label="arXiv author profile">arXiv</a>
         </div>
-    </div>
-    
-</section>
-
-<section class="mbr-section article content1 cid-qZH44O4icP" id="content1-1f">
-    
-     
-
-    <div class="container">
-        <div class="media-container-row">
-            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-2"><p><strong><a href="https://drive.google.com/drive/folders/1Wd0otdu9K42WatmDAIFnTvOGX86MlCj0?ogsrc=32" target="_blank" class="text-secondary">Google Drive</a></strong></p><p><strong><a href="pr_th.html#header2-1j" class="text-secondary">Семинары</a></strong></p><p><strong><a href="pr_th.html#header2-1m" class="text-secondary">Необязательные ДЗ</a><br><a href="assets/files/theory01.pdf" target="_blank" class="text-secondary">Теор. минимум 1</a></strong></p><p><strong><a href="assets/files/kanon01_675.pdf" target="_blank" class="text-secondary">Канон. задание 1</a></strong></p><p><strong><a href="assets/files/theory02.pdf" target="_blank" class="text-secondary">Теор. минимум 2</a></strong></p><p><strong><a href="assets/files/kanon02_675.pdf" target="_blank" class="text-secondary">Канон. задание 2</a></strong></p><p><strong><a href="pr_th.html#header2-1i" class="text-secondary">Новости</a></strong></p></div>
+        <div class="eg-footer-link-group" aria-label="Site sections">
+          <a href="index.html">News</a>
+          <a href="about.html">About me</a>
+          <a href="research.html">Research</a>
+          <a href="team.html">Team</a>
+          <a href="publications.html">Publications</a>
+          <a href="conferences.html#talks">Talks</a>
+          <a href="conferences.html#posters">Posters</a>
+          <a href="teaching.html">Teaching</a>
         </div>
-    </div>
-</section>
-
-<section class="cid-r04fpYyIOl" id="header2-1j">
-
-    
-
-    
-
-    <div class="container align-center">
-        <div class="row justify-content-md-center">
-            <div class="mbr-white col-md-10">
-                <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">
-                    Семинары</h1>
-                
-                <p class="mbr-text pb-3 mbr-fonts-style display-5">
-                    Здесь доступны конспекты всех семинаров, так что можно заранее ознакомиться с материалом, который будет разбираться на конкретном семинаре. Изначально семинары доступны без решений и доказательств, чтобы дать студентам возможность догадаться до решений самим или хотя бы немного подумать, как можно решить задачу. После каждого семинара соответствующий конспект будет размещаться с решениями.</p>
-                
-            </div>
+        <div class="eg-footer-link-group" aria-label="Documents">
+          <a href="assets/files/CV.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Open academic CV PDF">CV</a>
         </div>
+      </nav>
     </div>
-    
-</section>
+    <p class="eg-footer-note">Last updated <time datetime="2026-07-05">July 5, 2026</time>.</p>
+  </div>
+</footer>
 
-<section class="cid-r1z5VCodcC" id="image3-1p">
+<script src="assets/theme/js/script.js?v=20260705a" defer></script>
 
-    
 
-    <figure class="mbr-figure container">
-            <div class="image-block" style="width: 88%;">
-                <img src="assets/images/the-matrix-1-1198x498.png" width="1400" alt="Mobirise" title="">
-                
-            </div>
-    </figure>
-</section>
-
-<section class="mbr-section article content1 cid-r1z6qGKH8J" id="content1-1q">
-    
-     
-
-    <div class="container">
-        <div class="media-container-row">
-            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">Кадр из фильма <em>The Matrix, </em><a href="https://cameralabs.org/10214-25-filmov-rasshiryayushchikh-soznanie" target="_blank">источник</a></div>
-        </div>
-    </div>
-</section>
-
-<section class="mbr-section article content12 cid-r04g3DoDsk" id="content12-1k">
-     
-
-    <div class="container">
-        <div class="media-container-row">
-            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-5">
-                <ul>
-                    <li><a href="assets/files/Seminar01_675_with_solutions.pdf" target="_blank"></a><strong>[Семинар 01, 04.09.2018]</strong><br><a href="assets/files/Seminar01_675.pdf" target="_blank" class="text-secondary">Версия без решений</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="assets/files/Seminar01_675_with_solutions.pdf" target="_blank">Версия с решениями</a></li><li><strong>[Семинар 02, 11.09.2018]</strong>
-<br><a href="assets/files/Seminar02_675.pdf" target="_blank" class="text-secondary">Версия без решений</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="assets/files/Seminar02_675_with_solutions.pdf" target="_blank">Версия с решениями</a></li><li><strong>[Семинар 03, 18.09.2018]
-</strong><br><a href="assets/files/Seminar03_675.pdf" target="_blank" class="text-secondary">Версия без решений</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="assets/files/Seminar03_675_676_with_solutions.pdf" target="_blank">Версия с решениями</a></li><li><strong>[Семинар 04, 25.09.2018]
-</strong><br><a href="assets/files/Seminar04_675.pdf" target="_blank" class="text-secondary">Версия без решений</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="assets/files/Seminar04_675_with_solutions.pdf" target="_blank">Версия с решениями</a></li><li><strong>[Семинар 05, 02.10.2018]</strong> 
-<br><a href="assets/files/Seminar05_675.pdf" target="_blank" class="text-secondary">Версия без решений</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="assets/files/Seminar05_675_with_solutions.pdf" target="_blank">Версия с решениями</a></li><li><strong>[Семинар 06, 09.10.2018]</strong> 
-<br><a href="assets/files/Seminar06_675.pdf" target="_blank" class="text-secondary">Версия без решений</a></li><li><strong>[Семинар 07, 16.10.2018]</strong> 
-<br><a href="assets/files/Seminar07_675.pdf" target="_blank" class="text-secondary">Версия без решений</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="assets/files/Seminar07_675_with_solutions.pdf" target="_blank">Версия с решениями</a></li><li><strong>[Семинар 08, 23.10.2018]<br></strong><a href="assets/files/Seminar08_675.pdf" target="_blank" class="text-secondary">Версия без решений</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="assets/files/Seminar08_675_with_solutions.pdf" target="_blank">Версия с решениями</a></li><li><strong>[Семинар 09, 30.10.2018]<br></strong><a href="assets/files/Seminar09_675.pdf" target="_blank" class="text-secondary" style="font-size: 1.5rem; background-color: rgb(255, 255, 255);">Версия без решений</a><span style="font-size: 1.5rem;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="font-size: 1.5rem;"><a href="assets/files/Seminar09_675_with_solutions.pdf" target="_blank">Версия с решениями</a></span></li><li><strong>[Семинар 10, 06.11.2018]<br></strong><a href="assets/files/Seminar10_675.pdf" target="_blank" class="text-secondary" style="font-size: 1.5rem; background-color: rgb(255, 255, 255);">Версия без решений</a><span style="font-size: 1.5rem;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="font-size: 1.5rem;"><a href="assets/files/Seminar10_675_with_solutions.pdf" target="_blank">Версия с решениями</a></span></li><li><span style="font-size: 1.5rem;"><strong>[Семинар 11, 13.11.2018]</strong>
-<br></span><a href="assets/files/Seminar11_675.pdf" target="_blank" class="text-secondary">Версия без решений</a>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 1.5rem;"><a href="assets/files/Seminar11_675_with_solutions.pdf" target="_blank">Версия с решениями</a></span></li><li><span style="font-size: 1.5rem;"><strong>[Семинар 12, 20.11.2018]</strong> 
-<br></span><a href="assets/files/Seminar12_675.pdf" target="_blank" class="text-secondary">Версия без решений</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="assets/files/Seminar12_675_with_solutions.pdf" target="_blank">Версия с решениями</a></li><li><strong>[Семинар 13, 27.11.2018]</strong> 
-<br><a href="assets/files/Seminar13_675.pdf" target="_blank" class="text-secondary">Версия без решений</a></li><li><strong>[Семинар 14, ??.12.2018]</strong> 
-<br><a href="assets/files/Seminar14_675.pdf" target="_blank" class="text-secondary">Версия без решений</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="cid-r04p6D9hOp" id="header2-1m">
-
-    
-
-    
-
-    <div class="container align-center">
-        <div class="row justify-content-md-center">
-            <div class="mbr-white col-md-10">
-                <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">
-                    Необязательные ДЗ</h1>
-                
-                <p class="mbr-text pb-3 mbr-fonts-style display-5">
-                    Здесь выложены необязательные задания для желающих. Тем не менее всем рекомендуется хотя бы читать условия задач, потому что похожие задачи могут встретиться на контрольных или в качестве задач на повышение оценки в конце семестра. Для каждого задания дата, до которой браться за задание не рекомендуется, если только вы не ознакомились с семинаром, который назначен на соответствующую дату, заранее.</p>
-                
-            </div>
-        </div>
-    </div>
-    
-</section>
-
-<section class="mbr-section article content12 cid-r04pgoerQ5" id="content12-1n">
-     
-
-    <div class="container">
-        <div class="media-container-row">
-            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-5">
-                <ul>
-                    <li><a href="assets/files/hw01_675.pdf" target="_blank" class="text-secondary">Необязательное ДЗ 01</a>&nbsp;(04.09.2018)<br></li><li><strong><a href="assets/files/hw02_675.pdf" target="_blank" class="text-secondary">Необязательное ДЗ 02</a>&nbsp;&nbsp;</strong>(11.09.2018)&nbsp;<br></li><li><a href="assets/files/hw03_675.pdf" target="_blank" class="text-secondary">Необязательное ДЗ 03</a><strong>&nbsp;</strong>(18.09.2018)<strong>&nbsp;</strong></li><li><a href="assets/files/hw04_675.pdf" target="_blank" class="text-secondary">Необязательное ДЗ 04</a> (25.09.2018)</li><li><a href="assets/files/hw05_675.pdf" target="_blank" class="text-secondary">Необязательное ДЗ 05</a> (02.10.2018)</li><li><a href="assets/files/hw06_675.pdf" target="_blank" class="text-secondary">Необязательное ДЗ 06</a> (23.10.2018)</li><li><a href="assets/files/hw07_675.pdf" target="_blank" class="text-secondary">Необязательное ДЗ 07</a> (30.10.2018)</li><li><a href="assets/files/hw08_675.pdf" target="_blank" class="text-secondary">Необязательное ДЗ 08</a> (06.11.2018)</li><li><a href="assets/files/hw09_675.pdf" target="_blank" class="text-secondary">Необязательное ДЗ 09</a> (13.11.2018)</li><li><a href="assets/files/hw10_675.pdf" target="_blank" class="text-secondary">Необязательное ДЗ 10</a>&nbsp;(20.11.2018)&nbsp;<br></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="cid-qZH5d0yrcv" id="header2-1i">
-
-    
-
-    
-
-    <div class="container align-center">
-        <div class="row justify-content-md-center">
-            <div class="mbr-white col-md-10">
-                <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">
-                    Новости</h1>
-                
-                
-                
-            </div>
-        </div>
-    </div>
-    
-</section>
-
-<section class="mbr-section article content12 cid-qZH54dCjGu" id="content12-1h">
-     
-
-    <div class="container">
-        <div class="media-container-row">
-            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-5">
-                <ul>
-                    <li><strong>[27 ноября, 2018]<br>Контрольная работа по второй части курса пройдёт на семинаре 11-го декабря. </strong>На семинаре 4-го декабря будет разбор задач из необязательных домашних заданий.</li><li><strong>[20 ноября, 2018]</strong><br>Исправлено решение упражнения 2 из <a href="assets/files/Seminar11_675_with_solutions.pdf" target="_blank">одиннадцатого семинара</a>. Выложена <a href="assets/files/Seminar12_675_with_solutions.pdf" target="_blank">версия с решениями 12-го семинара</a>.<br><br><strong>Предварительная информация: контрольная работа состоится на семинаре 4-го декабря.</strong>&nbsp;<strong>В этот раз контрольная будет на всю пару.</strong></li><li><strong>[13 ноября, 2018] 
-<br></strong><span style="font-size: 1.5rem;">Выложена <a href="assets/files/Seminar11_675_with_solutions.pdf" target="_blank">версия с решениями одиннадцатого семинара.</a></span><strong>&nbsp;</strong></li><li><strong>[6 ноября, 2018]&nbsp;<br></strong>Выложена <a href="assets/files/Seminar10_675_with_solutions.pdf" target="_blank" style="font-size: 1.5rem; background-color: rgb(255, 255, 255);">версия с решениями десятого семинара</a><span style="font-size: 1.5rem;">. Кроме того, доступно </span><a href="assets/files/kanon02_675.pdf" target="_blank" class="text-secondary" style="font-size: 1.5rem; background-color: rgb(255, 255, 255);">второе каноническое задание</a><span style="font-size: 1.5rem;">.&nbsp;</span></li><li><strong>[30 октября, 2018]</strong><br>Исправлены опечатки в <a href="assets/files/Seminar09_675.pdf" target="_blank" class="text-secondary">версии без решений</a> &nbsp;и выложена <a href="assets/files/Seminar09_675_with_solutions.pdf" target="_blank">версия с решениями девятого семинара</a>.</li><li><strong>[23 октября, 2018]</strong><br>Выложены <a href="https://docs.google.com/spreadsheets/d/1ge7vgFtX5ujWn-Nn6hh253pGsWLJtXm2uCG1RV3jL4U/edit?usp=drive_web&ouid=104950775638529440051" target="_blank">результаты первой контрольной работы</a>.<br><br>Исправлены опечатки и внесены некоторые изменения в конспекты седьмого (<a href="assets/files/Seminar07_675.pdf" target="_blank" class="text-secondary">без решений</a>/<a href="assets/files/Seminar07_675_with_solutions.pdf" target="_blank">с решениями</a>) и восьмого семинаров (<a href="assets/files/Seminar08_675.pdf" target="_blank" class="text-secondary">без решений</a>/<a href="assets/files/Seminar08_675_with_solutions.pdf" target="_blank">с решениями</a>).<br><br>В следующий раз начинаем новую и важную тему - характеристические функции.</li><li><strong>[10 октября, 2018] <br></strong>Доступна <a href="assets/files/Seminar05_675_with_solutions.pdf" target="_blank">версия с решениями пятого семинара</a>. Кроме того, в обеих версиях семинара исправлены мелкие опечатки.<br><br><strong>16 октября состоится контрольная работа на 40 минут (будет проводиться на первой половине пары). </strong>На контрольной можно будет пользоваться любым печатным или рукописным источником информации, но нельзя использовать электронные устройства.<br></li><li><strong>[25 сентября, 2018]<br></strong>Выложена <a href="assets/files/Seminar04_675_with_solutions.pdf" target="_blank" style="font-size: 1.5rem; background-color: rgb(255, 255, 255);">версия с решениями четвёртого семинара</a><span style="font-size: 1.5rem;">. Кроме того, в обеих версиях семинара исправлены мелкие опечатки и добавлено объяснение того факта, что функцию распределения можно представить в виде суммы непрерывной и дискретной компонент.</span></li><li><strong>[22 сентября, 2018]</strong><br>Раздел, касающийся <strong>организационных вопросов</strong>, из <a href="assets/files/Seminar01_675.pdf" target="_blank" class="text-secondary">первого семинара</a>&nbsp;<strong>немного изменился</strong> (уточнилась процедура сдачи теоретических минимумов и даты контрольных теперь окончательные).<br><br>Появилось <a href="assets/files/hw10_675.pdf" target="_blank" class="text-secondary">десятое необязательное домашнее задание</a>&nbsp;и <a href="assets/files/theory02.pdf" target="_blank" class="text-secondary">теоретический минимум по второй части курса</a>.<br></li><li><strong>[18 сентября, 2018]</strong><br>Выложена <a href="assets/files/Seminar03_675_676_with_solutions.pdf" target="_blank">версия с решениями третьего семинара</a>.</li><li><strong>[17 сентября, 2018]</strong><br>Выложено <a href="assets/files/kanon01_675.pdf" target="_blank" class="text-secondary">первое каноническое задание</a>. Обращаю внимание, что <strong>номера задач указаны по новой версии задачника</strong> "<a href="https://arxiv.org/pdf/1508.03461.pdf" target="_blank" class="text-secondary">Стохастический анализ в задачах. Часть 1</a>". <strong>На семинаре номера задач были указаны по печатной версии пособия.</strong></li><li><strong>[11 сентября, 2018]</strong><br>Доступна <a href="assets/files/Seminar02_675_with_solutions.pdf" target="_blank">версия с решениями второго семинара</a>.<br><br>На семинаре были объявлены номера задач из сборника <a href="https://drive.google.com/drive/folders/1k0tVs8Jvk4YR85x5jjm9RrGznXKgIlCW?ogsrc=32" target="_blank" class="text-secondary">"Стохастический анализ в задачах. Часть 1"</a>. Пока что это предварительная версия. В ближайшее время будет выложена окончательная версия первого канонического задания.</li><li><strong>[4 сентября, 2018]</strong><br>Сегодня прошёл первый семинар по теории вероятностей. Версия конспекта с решениями <a href="assets/files/Seminar01_675_with_solutions.pdf" target="_blank">уже доступна</a>.<br><br>Я создал беседу в ВК, где можно будет задававать вопросы по курсу и где я смогу быстро сообщать новости. Важные новости будут дублироваться здесь. Если Вас нет в беседе, но Вы в моей группе, то напишите мне в ВК, я Вас добавлю.<br>[<a href="https://vk.com/eduard_gorbunov" target="_blank" class="text-secondary">моя страница в ВК</a>]</li><li><strong>[2 сентября, 2018]</strong><br>На странице доступна большая часть семинаров (в частности, по первой части курса не хватает только канонического задания - его даст лектор, об этом будет отдельно объявлено). &nbsp;Тем, кто будет в моей группе и кто планирует переводиться ко мне в группу, советую прочитать про организационные вопросы (правила получения зачёта, ориентировочные даты контрольных и пр.), которые описаны в <a href="assets/files/Seminar01_675.pdf" target="_blank" class="text-secondary">конспекте первого семинара</a>.</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section><section class="display-7" style="padding: 0;align-items: center;justify-content: center;flex-wrap: wrap;    align-content: center;display: flex;position: relative;height: 4rem;"><a href="https://mobiri.se/2867284" style="flex: 1 1;height: 4rem;position: absolute;width: 100%;z-index: 1;"><img alt="" style="height: 4rem;" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="></a><p style="margin: 0;text-align: center;" class="display-7">&#8204;</p><a style="z-index:1" href="https://mobirise.com/builder/ai-website-maker.html">Best AI Website Maker</a></section><script src="assets/popper/popper.min.js"></script>  <script src="assets/web/assets/jquery/jquery.min.js"></script>  <script src="assets/bootstrap/js/bootstrap.min.js"></script>  <script src="assets/tether/tether.min.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/dropdown/js/nav-dropdown.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>  <script src="assets/theme/js/script.js"></script>  
-  
-  
 </body>
 </html>

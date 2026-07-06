@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="EG monogram">
+  <defs>
+    <linearGradient id="eg-logo-bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#183847"/>
+      <stop offset="1" stop-color="#000000"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#eg-logo-bg)"/>
+  <text x="24" y="42" fill="#f7f4ee" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="900" text-anchor="middle">E</text>
+  <text x="42" y="42" fill="#e8dcc6" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="900" text-anchor="middle">G</text>
+</svg>

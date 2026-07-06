@@ -1,0 +1,14 @@
+.DS_Store
+**/.DS_Store
+
+# Local QA and validation artifacts
+.qa-screenshots/
+qa-screenshots/
+playwright-report/
+test-results/
+*.log
+
+# Local runtime caches
+__pycache__/
+.pytest_cache/
+node_modules/

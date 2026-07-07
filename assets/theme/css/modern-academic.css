@@ -2146,6 +2146,62 @@ main > section[id],
   margin-left: 2px;
 }
 
+.eg-author-relation {
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 0.56em;
+  font-weight: 950;
+  justify-content: center;
+  line-height: 1;
+  margin-left: 3px;
+  min-height: 1.42em;
+  min-width: 1.42em;
+  padding: 0.18em 0.34em;
+  position: relative;
+  text-decoration: none;
+  top: -0.18em;
+  vertical-align: super;
+}
+
+.eg-author-relation-team {
+  background: var(--eg-blue-soft);
+  border-color: color-mix(in srgb, var(--eg-blue) 28%, transparent);
+  color: var(--eg-blue);
+}
+
+.eg-author-relation-visitor {
+  background: var(--eg-gold-soft);
+  border-color: color-mix(in srgb, var(--eg-gold) 30%, transparent);
+  color: var(--eg-gold);
+}
+
+.eg-author-relation-external-msc {
+  background: var(--eg-teal-soft);
+  border-color: color-mix(in srgb, var(--eg-teal) 25%, transparent);
+  color: var(--eg-teal);
+}
+
+.eg-author-relation-external-phd {
+  background: var(--eg-rose-soft);
+  border-color: color-mix(in srgb, var(--eg-rose) 28%, transparent);
+  color: var(--eg-rose);
+}
+
+.eg-author-relation-external-researcher {
+  background: color-mix(in srgb, var(--eg-indigo) 12%, #ffffff);
+  border-color: color-mix(in srgb, var(--eg-indigo) 28%, transparent);
+  color: var(--eg-indigo);
+}
+
+.eg-publication-legend .eg-author-relation {
+  font-size: 0.72rem;
+  margin: 0 4px 0 0;
+  top: 0;
+  vertical-align: baseline;
+}
+
 .eg-author-note {
   color: var(--eg-muted);
   display: block;

@@ -315,7 +315,7 @@
     <form class="eg-publication-controls" id="publication-filters" role="search" aria-label="Publication filters">
       <div class="eg-filter-heading">
         <h2 id="publication-filters-heading">Filter publications</h2>
-        <span>Type · venue · topic · search</span>
+        <span>Type · marker · topic · search</span>
       </div>
       <div class="eg-filter-row eg-filter-row-primary">
         <div class="eg-filter-control eg-type-control">
@@ -328,9 +328,20 @@
             <option value="living reference work entry">Reference work entry</option>
           </select>
         </div>
+        <div class="eg-filter-control eg-marker-control">
+          <label for="publication-marker-filter">Author marker</label>
+          <select id="publication-marker-filter" class="eg-publication-marker-filter" aria-label="Filter publications by author marker" aria-controls="publication-list publication-count-status publication-filter-summary">
+            <option value="all">All markers</option>
+            <option value="team">Team member</option>
+            <option value="visitor">Visiting student</option>
+            <option value="external-msc">Externally mentored MSc student</option>
+            <option value="external-phd">Externally mentored PhD student</option>
+            <option value="external-researcher">Externally mentored postdoc or research assistant</option>
+          </select>
+        </div>
         <div class="eg-filter-control eg-search-control">
           <label for="publication-search-filter">Search</label>
-          <input id="publication-search-filter" class="eg-publication-search-filter" type="search" placeholder="Title, author, venue, topic" autocomplete="off" enterkeyhint="search" spellcheck="false" aria-label="Search publications by title, author, venue, or topic tag" aria-controls="publication-list publication-count-status publication-filter-summary">
+          <input id="publication-search-filter" class="eg-publication-search-filter" type="search" placeholder="Title, author, venue, topic, marker" autocomplete="off" enterkeyhint="search" spellcheck="false" aria-label="Search publications by title, author, venue, topic tag, or author marker" aria-controls="publication-list publication-count-status publication-filter-summary">
         </div>
       </div>
       <div class="eg-filter-row eg-filter-row-topics">
@@ -385,7 +396,7 @@
       <span><strong>Bold</strong>&nbsp;highlights my name</span>
       <span><sup>*</sup> equal contribution</span>
       <span><sup>†</sup> shared senior authorship</span>
-      <span><sup class="eg-author-relation eg-author-relation-team" aria-hidden="true">T</sup> current team student</span>
+      <span><sup class="eg-author-relation eg-author-relation-team" aria-hidden="true">T</sup> team member</span>
       <span><sup class="eg-author-relation eg-author-relation-visitor" aria-hidden="true">V</sup> visiting student</span>
       <span><sup class="eg-author-relation eg-author-relation-external-msc" aria-hidden="true">EM</sup> externally mentored MSc student</span>
       <span><sup class="eg-author-relation eg-author-relation-external-phd" aria-hidden="true">EP</sup> externally mentored PhD student</span>
@@ -408,7 +419,7 @@
 <article class="eg-publication-card" role="listitem" id="pub-lmo-optimizers-bounded-variance" aria-labelledby="pub-lmo-optimizers-bounded-variance-title" data-type="conference paper" data-tags="stochastic-optimization heavy-tailed-noise adaptive-methods conditional-gradient-lmo-methods">
   <div class="eg-publication-meta"><span>#73</span><span class="eg-publication-type-badge">conference paper</span><span>ICML 2026</span></div>
   <h2 id="pub-lmo-optimizers-bounded-variance-title"><a href="https://openreview.net/forum?id=s0Q8nVsrMu" target="_blank" rel="noopener noreferrer" aria-label="Open paper page for General Analysis of LMO-based Optimizers: Beyond Bounded Variance">General Analysis of LMO-based Optimizers: Beyond Bounded Variance</a></h2>
-  <p class="eg-publication-authors">Egor Shulgin<sup class="eg-author-relation eg-author-relation-visitor" title="Visiting student" aria-label="Visiting student">V</sup>, Mohamed Awad<sup class="eg-author-relation eg-author-relation-team" title="Current team student" aria-label="Current team student">T</sup>, Peter Richtárik, <strong>Eduard Gorbunov</strong></p>
+  <p class="eg-publication-authors">Egor Shulgin<sup class="eg-author-relation eg-author-relation-visitor" title="Visiting student" aria-label="Visiting student">V</sup>, Mohamed Awad<sup class="eg-author-relation eg-author-relation-team" title="Team member" aria-label="Team member">T</sup>, Peter Richtárik, <strong>Eduard Gorbunov</strong></p>
   <p class="eg-publication-venue">ICML 2026</p>
   <details class="eg-publication-abstract">
     <summary>Abstract</summary>
@@ -456,7 +467,7 @@
 <article class="eg-publication-card" role="listitem" id="pub-federated-distillation-trust" aria-labelledby="pub-federated-distillation-trust-title" data-type="conference paper" data-tags="distributed-learning federated-learning">
   <div class="eg-publication-meta"><span>#69</span><span class="eg-publication-type-badge">conference paper</span><span>UAI 2026</span></div>
   <h2 id="pub-federated-distillation-trust-title"><a href="https://arxiv.org/pdf/2509.15147" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Open PDF for Who to Trust? Aggregating Client Predictions in Federated Distillation">Who to Trust? Aggregating Client Predictions in Federated Distillation</a></h2>
-  <p class="eg-publication-authors">Viktor Kovalchuk<sup class="eg-author-relation eg-author-relation-team" title="Current team student" aria-label="Current team student">T</sup>, Denis Son, Arman Bolatov, Mohsen Guizani, Samuel Horváth, Maxim Panov, Martin Takáč, <strong>Eduard Gorbunov</strong>, Nikita Kotelevskii</p>
+  <p class="eg-publication-authors">Viktor Kovalchuk<sup class="eg-author-relation eg-author-relation-team" title="Team member" aria-label="Team member">T</sup>, Denis Son, Arman Bolatov, Mohsen Guizani, Samuel Horváth, Maxim Panov, Martin Takáč, <strong>Eduard Gorbunov</strong>, Nikita Kotelevskii</p>
   <p class="eg-publication-venue">UAI 2026</p>
   <details class="eg-publication-abstract">
     <summary>Abstract</summary>
@@ -1328,6 +1339,6 @@
     }
   }, true);
 </script>
-<script src="assets/theme/js/publication-filters.js?v=20260706a" defer></script>
+<script src="assets/theme/js/publication-filters.js?v=20260707a" defer></script>
 </body>
 </html>

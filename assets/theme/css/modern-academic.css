@@ -1644,7 +1644,7 @@ main > section[id],
 }
 
 .eg-filter-row-primary {
-  grid-template-columns: minmax(152px, 210px) minmax(240px, 1fr);
+  grid-template-columns: minmax(142px, 190px) minmax(190px, 250px) minmax(240px, 1fr);
 }
 
 .eg-filter-row-topics {
@@ -1684,6 +1684,7 @@ main > section[id],
 }
 
 .eg-publication-type-filter,
+.eg-publication-marker-filter,
 .eg-publication-tag-filter,
 .eg-publication-search-filter {
   -webkit-appearance: none;
@@ -1701,6 +1702,7 @@ main > section[id],
 }
 
 .eg-publication-type-filter,
+.eg-publication-marker-filter,
 .eg-publication-tag-filter {
   background-image:
     linear-gradient(45deg, transparent 50%, var(--eg-teal) 50%),
@@ -1837,6 +1839,7 @@ main > section[id],
 }
 
 .eg-publication-type-filter:focus-visible,
+.eg-publication-marker-filter:focus-visible,
 .eg-publication-tag-filter:focus-visible,
 .eg-publication-search-filter:focus-visible {
   border-color: rgba(23, 79, 76, 0.58);

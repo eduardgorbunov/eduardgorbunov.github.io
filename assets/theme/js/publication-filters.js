@@ -19,6 +19,7 @@
   var authorMarkerClasses = {
     "team": "eg-author-relation-team",
     "visitor": "eg-author-relation-visitor",
+    "external-bsc": "eg-author-relation-external-bsc",
     "external-msc": "eg-author-relation-external-msc",
     "external-phd": "eg-author-relation-external-phd",
     "external-researcher": "eg-author-relation-external-researcher"
@@ -89,6 +90,8 @@
       "current-team-student": "team",
       "v": "visitor",
       "visiting-student": "visitor",
+      "eb": "external-bsc",
+      "externally-mentored-bsc-student": "external-bsc",
       "em": "external-msc",
       "externally-mentored-msc-student": "external-msc",
       "ep": "external-phd",

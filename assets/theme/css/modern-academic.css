@@ -2180,6 +2180,12 @@ main > section[id],
   color: var(--eg-gold);
 }
 
+.eg-author-relation-external-bsc {
+  background: color-mix(in srgb, var(--eg-blue) 10%, #ffffff);
+  border-color: color-mix(in srgb, var(--eg-blue) 22%, var(--eg-teal) 10%);
+  color: color-mix(in srgb, var(--eg-blue) 82%, var(--eg-teal));
+}
+
 .eg-author-relation-external-msc {
   background: var(--eg-teal-soft);
   border-color: color-mix(in srgb, var(--eg-teal) 25%, transparent);

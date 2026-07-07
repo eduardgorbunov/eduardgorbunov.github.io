@@ -109,13 +109,13 @@ EXPECTED_HEAD_PROFILE_LINKS = [
     "https://scholar.google.com/citations?user=QPVriwoAAAAJ&hl=en",
     "https://arxiv.org/search/math?searchtype=author&query=Gorbunov%2C+E",
     "https://www.researchgate.net/profile/Eduard_Gorbunov",
-    "https://twitter.com/ed_gorbunov",
+    "https://x.com/ed_gorbunov",
 ]
 EXPECTED_PERSON_SAME_AS = [
     "https://scholar.google.com/citations?user=QPVriwoAAAAJ&hl=en",
     "https://www.researchgate.net/profile/Eduard_Gorbunov",
     "https://arxiv.org/search/math?searchtype=author&query=Gorbunov%2C+E",
-    "https://twitter.com/ed_gorbunov",
+    "https://x.com/ed_gorbunov",
 ]
 EXPECTED_PERSON_KNOWS_ABOUT = [
     "Stochastic optimization",
@@ -174,8 +174,8 @@ EXPECTED_SIDEBAR_PROFILE_LINKS = [
     },
     {
         "label": "X",
-        "href": "https://twitter.com/ed_gorbunov",
-        "aria_label": "X/Twitter profile",
+        "href": "https://x.com/ed_gorbunov",
+        "aria_label": "X profile",
         "target": "_blank",
         "rel": "me noopener noreferrer",
     },
@@ -3990,7 +3990,7 @@ def check_about() -> list[str]:
         "https://scholar.google.com/citations?user=QPVriwoAAAAJ&hl=en",
         "https://www.researchgate.net/profile/Eduard_Gorbunov",
         "https://arxiv.org/search/math?searchtype=author&query=Gorbunov%2C+E",
-        "https://twitter.com/ed_gorbunov",
+        "https://x.com/ed_gorbunov",
     }
     for href in expected_identity_links:
         matching_links = [
@@ -4007,7 +4007,7 @@ def check_about() -> list[str]:
         '<a href="https://scholar.google.com/citations?user=QPVriwoAAAAJ&amp;hl=en" target="_blank" rel="me noopener noreferrer" aria-label="Google Scholar profile">Google Scholar</a>',
         '<a href="https://www.researchgate.net/profile/Eduard_Gorbunov" target="_blank" rel="me noopener noreferrer" aria-label="ResearchGate profile">ResearchGate</a>',
         '<a href="https://arxiv.org/search/math?searchtype=author&amp;query=Gorbunov%2C+E" target="_blank" rel="me noopener noreferrer" aria-label="arXiv author profile">arXiv</a>',
-        '<a href="https://twitter.com/ed_gorbunov" target="_blank" rel="me noopener noreferrer" aria-label="X/Twitter profile">X/Twitter</a>',
+        '<a href="https://x.com/ed_gorbunov" target="_blank" rel="me noopener noreferrer" aria-label="X profile">X</a>',
         '<a href="mailto:eduard.gorbunov@mbzuai.ac.ae" aria-label="Email Eduard Gorbunov">Email</a>',
         '<a href="assets/files/CV.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Open academic CV PDF">CV</a>',
         '<a href="research.html">Research</a>',

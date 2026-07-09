@@ -3763,6 +3763,20 @@ main > section[id],
   margin-top: 22px;
 }
 
+.eg-opportunity-status {
+  align-self: start;
+  border: 1px solid color-mix(in srgb, var(--eg-opportunity-accent) 24%, transparent);
+  border-radius: 999px;
+  color: color-mix(in srgb, var(--eg-opportunity-accent) 78%, #465665);
+  font-size: 0.72rem;
+  font-weight: 900;
+  justify-self: end;
+  line-height: 1.2;
+  margin-top: 20px;
+  padding: 6px 10px;
+  text-transform: uppercase;
+}
+
 .eg-opportunity-item .eg-opportunity-actions {
   align-items: flex-start;
   display: flex;
@@ -4758,7 +4772,8 @@ main > section[id],
   }
 
   .eg-opportunity-item > a,
-  .eg-opportunity-item .eg-opportunity-actions {
+  .eg-opportunity-item .eg-opportunity-actions,
+  .eg-opportunity-status {
     justify-content: flex-start;
     justify-self: start;
     margin-top: 0;

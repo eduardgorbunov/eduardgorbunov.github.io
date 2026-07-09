@@ -3030,6 +3030,25 @@ main > section[id],
   margin-bottom: 0;
 }
 
+.eg-representative-paper-groups {
+  display: grid;
+  gap: 22px;
+}
+
+.eg-representative-paper-group {
+  display: grid;
+  gap: 12px;
+}
+
+.eg-representative-group-heading {
+  color: var(--eg-ink);
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 1.25;
+  margin: 0;
+}
+
 
 .eg-activity-overview {
   display: grid;

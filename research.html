@@ -236,49 +236,104 @@
   <div class="eg-container">
     <header class="eg-section-heading">
       <h2 id="representative-papers-heading">Representative papers</h2>
-      <p>A few papers that give a quick entry point into my main research themes.</p>
+      <p>These lists follow the selected publication groups in my short CV.</p>
     </header>
-    <div class="eg-about-list-grid" role="list" aria-label="Representative papers">
-      <article class="eg-about-list-card" id="representative-batch-size-scaling-laws" role="listitem" aria-labelledby="representative-batch-size-scaling-laws-title" data-kind="paper">
-        <span class="eg-date">ICML 2026</span>
-        <h3 id="representative-batch-size-scaling-laws-title"><a href="publications.html#pub-batch-size-conditional-gradient">On the Role of Batch Size in Stochastic Conditional Gradient Methods</a></h3>
-        <p>Theoretically derived scaling laws that help tune batch size and stepsize in large-scale stochastic conditional gradient training.</p>
-      </article>
-      <article class="eg-about-list-card" id="representative-last-iterate-clipped-sgd" role="listitem" aria-labelledby="representative-last-iterate-clipped-sgd-title" data-kind="paper">
-        <span class="eg-date">ICLR 2026</span>
-        <h3 id="representative-last-iterate-clipped-sgd-title"><a href="publications.html#pub-last-iterate-clipped-sgd">High-Probability Bounds for the Last Iterate of Clipped SGD</a></h3>
-        <p>Recent work on last-iterate convergence for clipped stochastic gradient methods under heavy-tailed noise.</p>
-      </article>
-      <article class="eg-about-list-card" id="representative-generalized-smoothness" role="listitem" aria-labelledby="representative-generalized-smoothness-title" data-kind="paper">
-        <span class="eg-date">ICLR 2025</span>
-        <h3 id="representative-generalized-smoothness-title"><a href="publications.html#pub-methods-for-convex-l0-l1-smooth-optimization-clipping-acceleration-and-adaptivity">Methods for Convex $(L_0,L_1)$-Smooth Optimization</a></h3>
-        <p>Clipping, acceleration, and adaptivity for generalized smoothness assumptions beyond the classical Lipschitz-gradient model.</p>
-      </article>
-      <article class="eg-about-list-card" id="representative-heavy-tailed-composite-distributed" role="listitem" aria-labelledby="representative-heavy-tailed-composite-distributed-title" data-kind="paper">
-        <span class="eg-date">ICML 2024 oral</span>
-        <h3 id="representative-heavy-tailed-composite-distributed-title"><a href="publications.html#pub-high-probability-convergence-for-composite-and-distributed-stochastic-minimization-and-variational-inequalities">High-Probability Convergence for Composite and Distributed Optimization</a></h3>
-        <p>Clipping stochastic gradient differences for composite, distributed, and variational inequality problems with heavy-tailed noise.</p>
-      </article>
-      <article class="eg-about-list-card" id="representative-variance-reduction-byzantines" role="listitem" aria-labelledby="representative-variance-reduction-byzantines-title" data-kind="paper">
-        <span class="eg-date">ICLR 2023</span>
-        <h3 id="representative-variance-reduction-byzantines-title"><a href="publications.html#pub-variance-reduction-is-an-antidote-to-byzantines-better-rates-weaker-assumptions-and">Variance Reduction Is an Antidote to Byzantines</a></h3>
-        <p>The first variance-reduced Byzantine-robust method with strong convergence guarantees, weaker assumptions, and communication compression.</p>
-      </article>
-      <article class="eg-about-list-card" id="representative-secure-distributed-training" role="listitem" aria-labelledby="representative-secure-distributed-training-title" data-kind="paper">
-        <span class="eg-date">ICML 2022</span>
-        <h3 id="representative-secure-distributed-training-title"><a href="publications.html#pub-secure-distributed-training-at-scale">Secure Distributed Training at Scale</a></h3>
-        <p>The first scalable Byzantine-robust distributed training method with convergence guarantees matching Byzantine-free SGD.</p>
-      </article>
-      <article class="eg-about-list-card" id="representative-extragradient-last-iterate" role="listitem" aria-labelledby="representative-extragradient-last-iterate-title" data-kind="paper">
-        <span class="eg-date">AISTATS 2022</span>
-        <h3 id="representative-extragradient-last-iterate-title"><a href="publications.html#pub-extragradient-method-o-1-k-last-iterate-convergence-for-monotone-variational-inequalities">Extragradient Method: $O(1/K)$ Last-Iterate Convergence</a></h3>
-        <p>Resolved a long-standing open question on last-iterate convergence of extragradient for monotone variational inequalities.</p>
-      </article>
-      <article class="eg-about-list-card" id="representative-heavy-tailed-accelerated-clipping" role="listitem" aria-labelledby="representative-heavy-tailed-accelerated-clipping-title" data-kind="paper">
-        <span class="eg-date">NeurIPS 2020</span>
-        <h3 id="representative-heavy-tailed-accelerated-clipping-title"><a href="publications.html#pub-stochastic-optimization-with-heavy-tailed-noise-via-accelerated-gradient-clipping">Stochastic Optimization with Heavy-Tailed Noise via Accelerated Gradient Clipping</a></h3>
-        <p>The first near-optimal high-probability complexity guarantees under heavy-tailed gradient noise assumptions.</p>
-      </article>
+    <div class="eg-representative-paper-groups">
+      <section class="eg-representative-paper-group" aria-labelledby="selected-recent-publications-heading">
+        <h3 class="eg-representative-group-heading" id="selected-recent-publications-heading">Selected recent publications</h3>
+        <div class="eg-about-list-grid" role="list" aria-label="Selected recent publications">
+          <article class="eg-about-list-card" id="representative-heavy-tailed-data-gradient-clipping" role="listitem" aria-labelledby="representative-heavy-tailed-data-gradient-clipping-title" data-kind="paper">
+            <span class="eg-date">ICML 2026</span>
+            <h3 id="representative-heavy-tailed-data-gradient-clipping-title"><a href="publications.html#pub-heavy-tailed-data-gradient-clipping">From Optimization to Generalization under Heavy-Tailed Data: The Role of Gradient Clipping</a></h3>
+            <p>Recent work connecting heavy-tailed optimization theory with generalization and the role of gradient clipping in modern training.</p>
+          </article>
+          <article class="eg-about-list-card" id="representative-lmo-optimizers-bounded-variance" role="listitem" aria-labelledby="representative-lmo-optimizers-bounded-variance-title" data-kind="paper">
+            <span class="eg-date">ICML 2026</span>
+            <h3 id="representative-lmo-optimizers-bounded-variance-title"><a href="publications.html#pub-lmo-optimizers-bounded-variance">General Analysis of LMO-based Optimizers: Beyond Bounded Variance</a></h3>
+            <p>A general analysis of linear-minimization-oracle optimizers beyond the classical bounded-variance stochastic-gradient setting.</p>
+          </article>
+          <article class="eg-about-list-card" id="representative-batch-size-scaling-laws" role="listitem" aria-labelledby="representative-batch-size-scaling-laws-title" data-kind="paper">
+            <span class="eg-date">ICML 2026</span>
+            <h3 id="representative-batch-size-scaling-laws-title"><a href="publications.html#pub-batch-size-conditional-gradient">On the Role of Batch Size in Stochastic Conditional Gradient Methods</a></h3>
+            <p>Theoretically derived scaling laws that help tune batch size and stepsize in large-scale stochastic conditional gradient training.</p>
+          </article>
+          <article class="eg-about-list-card" id="representative-last-iterate-clipped-sgd" role="listitem" aria-labelledby="representative-last-iterate-clipped-sgd-title" data-kind="paper">
+            <span class="eg-date">ICLR 2026</span>
+            <h3 id="representative-last-iterate-clipped-sgd-title"><a href="publications.html#pub-last-iterate-clipped-sgd">High-Probability Bounds for the Last Iterate of Clipped SGD</a></h3>
+            <p>Last-iterate convergence guarantees for clipped stochastic gradient methods under heavy-tailed noise.</p>
+          </article>
+          <article class="eg-about-list-card" id="representative-error-feedback-l0-l1" role="listitem" aria-labelledby="representative-error-feedback-l0-l1-title" data-kind="paper">
+            <span class="eg-date">NeurIPS 2025</span>
+            <h3 id="representative-error-feedback-l0-l1-title"><a href="publications.html#pub-error-feedback-under-l0-l1-smoothness-normalization-and-momentum">Error Feedback under $(L_0,L_1)$-Smoothness: Normalization and Momentum</a></h3>
+            <p>Error-feedback methods under generalized smoothness, with normalization and momentum for communication-efficient training.</p>
+          </article>
+          <article class="eg-about-list-card" id="representative-differentially-private-clipped-sgd" role="listitem" aria-labelledby="representative-differentially-private-clipped-sgd-title" data-kind="paper">
+            <span class="eg-date">AISTATS 2026</span>
+            <h3 id="representative-differentially-private-clipped-sgd-title"><a href="publications.html#pub-differentially-private-clipped-sgd">Differentially Private Clipped-SGD: High-Probability Convergence with Arbitrary Clipping Level</a></h3>
+            <p>High-probability convergence guarantees for differentially private clipped SGD with arbitrary clipping levels.</p>
+          </article>
+          <article class="eg-about-list-card" id="representative-clipping-adam-adagrad-norm" role="listitem" aria-labelledby="representative-clipping-adam-adagrad-norm-title" data-kind="paper">
+            <span class="eg-date">ICML 2025</span>
+            <h3 id="representative-clipping-adam-adagrad-norm-title"><a href="publications.html#pub-clipping-improves-adam-norm-and-adagrad-norm-when-the-noise-is-heavy">Clipping Improves Adam-Norm and AdaGrad-Norm When the Noise Is Heavy-Tailed</a></h3>
+            <p>Shows how clipping stabilizes adaptive normalization methods under heavy-tailed stochastic gradients.</p>
+          </article>
+        </div>
+      </section>
+      <section class="eg-representative-paper-group" aria-labelledby="selected-foundational-publications-heading">
+        <h3 class="eg-representative-group-heading" id="selected-foundational-publications-heading">Selected foundational and high-visibility publications</h3>
+        <div class="eg-about-list-grid" role="list" aria-label="Selected foundational and high-visibility publications">
+          <article class="eg-about-list-card" id="representative-generalized-smoothness" role="listitem" aria-labelledby="representative-generalized-smoothness-title" data-kind="paper">
+            <span class="eg-date">ICLR 2025</span>
+            <h3 id="representative-generalized-smoothness-title"><a href="publications.html#pub-methods-for-convex-l0-l1-smooth-optimization-clipping-acceleration-and-adaptivity">Methods for Convex $(L_0,L_1)$-Smooth Optimization: Clipping, Acceleration, and Adaptivity</a></h3>
+            <p>Clipping, acceleration, and adaptivity for generalized smoothness assumptions beyond the classical Lipschitz-gradient model.</p>
+          </article>
+          <article class="eg-about-list-card" id="representative-heavy-tailed-composite-distributed" role="listitem" aria-labelledby="representative-heavy-tailed-composite-distributed-title" data-kind="paper">
+            <span class="eg-date">ICML 2024 oral</span>
+            <h3 id="representative-heavy-tailed-composite-distributed-title"><a href="publications.html#pub-high-probability-convergence-for-composite-and-distributed-stochastic-minimization-and-variational-inequalities">High-Probability Convergence for Composite and Distributed Stochastic Minimization and Variational Inequalities with Heavy-Tailed Noise</a></h3>
+            <p>Clipping stochastic gradient differences for composite, distributed, and variational inequality problems with heavy-tailed noise.</p>
+          </article>
+          <article class="eg-about-list-card" id="representative-compressed-gradient-differences" role="listitem" aria-labelledby="representative-compressed-gradient-differences-title" data-kind="paper">
+            <span class="eg-date">OMS 2025</span>
+            <h3 id="representative-compressed-gradient-differences-title"><a href="publications.html#pub-distributed-learning-with-compressed-gradient-differences">Distributed Learning with Compressed Gradient Differences</a></h3>
+            <p>A compressed-gradient-difference approach for communication-efficient distributed learning.</p>
+          </article>
+          <article class="eg-about-list-card" id="representative-heavy-tailed-accelerated-clipping" role="listitem" aria-labelledby="representative-heavy-tailed-accelerated-clipping-title" data-kind="paper">
+            <span class="eg-date">NeurIPS 2020</span>
+            <h3 id="representative-heavy-tailed-accelerated-clipping-title"><a href="publications.html#pub-stochastic-optimization-with-heavy-tailed-noise-via-accelerated-gradient-clipping">Stochastic Optimization with Heavy-Tailed Noise via Accelerated Gradient Clipping</a></h3>
+            <p>The first near-optimal high-probability complexity guarantees under heavy-tailed gradient noise assumptions.</p>
+          </article>
+          <article class="eg-about-list-card" id="representative-variance-reduction-byzantines" role="listitem" aria-labelledby="representative-variance-reduction-byzantines-title" data-kind="paper">
+            <span class="eg-date">ICLR 2023</span>
+            <h3 id="representative-variance-reduction-byzantines-title"><a href="publications.html#pub-variance-reduction-is-an-antidote-to-byzantines-better-rates-weaker-assumptions-and">Variance Reduction Is an Antidote to Byzantines</a></h3>
+            <p>The first variance-reduced Byzantine-robust method with strong convergence guarantees, weaker assumptions, and communication compression.</p>
+          </article>
+          <article class="eg-about-list-card" id="representative-extragradient-last-iterate" role="listitem" aria-labelledby="representative-extragradient-last-iterate-title" data-kind="paper">
+            <span class="eg-date">AISTATS 2022</span>
+            <h3 id="representative-extragradient-last-iterate-title"><a href="publications.html#pub-extragradient-method-o-1-k-last-iterate-convergence-for-monotone-variational-inequalities">Extragradient Method: $O(1/K)$ Last-Iterate Convergence</a></h3>
+            <p>Resolved a long-standing open question on last-iterate convergence of extragradient for monotone variational inequalities.</p>
+          </article>
+          <article class="eg-about-list-card" id="representative-moshpit-sgd" role="listitem" aria-labelledby="representative-moshpit-sgd-title" data-kind="paper">
+            <span class="eg-date">NeurIPS 2021</span>
+            <h3 id="representative-moshpit-sgd-title"><a href="publications.html#pub-moshpit-sgd-communication-efficient-decentralized-training-on-heterogeneous-unreliable-devices">Moshpit SGD: Communication-Efficient Decentralized Training on Heterogeneous Unreliable Devices</a></h3>
+            <p>Communication-efficient decentralized training for heterogeneous and unreliable devices.</p>
+          </article>
+          <article class="eg-about-list-card" id="representative-marina" role="listitem" aria-labelledby="representative-marina-title" data-kind="paper">
+            <span class="eg-date">ICML 2021</span>
+            <h3 id="representative-marina-title"><a href="publications.html#pub-marina-faster-non-convex-distributed-learning-with-compression">MARINA: Faster Non-Convex Distributed Learning with Compression</a></h3>
+            <p>A communication-efficient method for non-convex distributed learning with compressed gradient differences.</p>
+          </article>
+          <article class="eg-about-list-card" id="representative-error-compensated-sgd" role="listitem" aria-labelledby="representative-error-compensated-sgd-title" data-kind="paper">
+            <span class="eg-date">NeurIPS 2020 spotlight</span>
+            <h3 id="representative-error-compensated-sgd-title"><a href="publications.html#pub-linearly-converging-error-compensated-sgd">Linearly Converging Error Compensated SGD</a></h3>
+            <p>A NeurIPS 2020 spotlight paper on linear convergence for error-compensated compressed SGD.</p>
+          </article>
+          <article class="eg-about-list-card" id="representative-unified-theory-sgd" role="listitem" aria-labelledby="representative-unified-theory-sgd-title" data-kind="paper">
+            <span class="eg-date">AISTATS 2020</span>
+            <h3 id="representative-unified-theory-sgd-title"><a href="publications.html#pub-a-unified-theory-of-sgd-variance-reduction-sampling-quantization-and-coordinate-descent">A Unified Theory of SGD: Variance Reduction, Sampling, Quantization and Coordinate Descent</a></h3>
+            <p>A unifying view of SGD variants through variance reduction, sampling, quantization, and coordinate descent.</p>
+          </article>
+        </div>
+      </section>
     </div>
   </div>
 </section>

@@ -179,8 +179,55 @@
       }
     }
   }
+
+  function setupMobileNavigation() {
+    var sidebar = document.querySelector(".eg-sidebar");
+    var logo = sidebar ? sidebar.querySelector(".eg-sidebar-logo") : null;
+    var linksWrap = sidebar ? sidebar.querySelector(".eg-sidebar-links-wrap") : null;
+    var mobileQuery = window.matchMedia ? window.matchMedia("(max-width: 520px)") : null;
+
+    if (!sidebar || !logo || !linksWrap || document.querySelector(".eg-mobile-nav-toggle")) {
+      return;
+    }
+
+    var button = document.createElement("button");
+    button.type = "button";
+    button.className = "eg-mobile-nav-toggle";
+    button.setAttribute("aria-controls", linksWrap.id || "primary-navigation-links");
+    button.setAttribute("aria-expanded", "false");
+    button.setAttribute("aria-label", "Open site menu");
+    button.innerHTML = '<span class="eg-mobile-nav-toggle-icon" aria-hidden="true">&#9776;</span><span>Menu</span>';
+    logo.appendChild(button);
+
+    function setOpen(open) {
+      sidebar.classList.toggle("is-mobile-nav-open", open);
+      button.setAttribute("aria-expanded", open ? "true" : "false");
+      button.setAttribute("aria-label", open ? "Close site menu" : "Open site menu");
+      button.querySelector(".eg-mobile-nav-toggle-icon").textContent = open ? "\u00d7" : "\u2630";
+    }
+
+    button.addEventListener("click", function () {
+      setOpen(button.getAttribute("aria-expanded") !== "true");
+    });
+
+    linksWrap.addEventListener("click", function (event) {
+      if (mobileQuery && mobileQuery.matches && event.target.closest("a")) {
+        setOpen(false);
+      }
+    });
+
+    if (mobileQuery && typeof mobileQuery.addEventListener === "function") {
+      mobileQuery.addEventListener("change", function (event) {
+        if (!event.matches) {
+          setOpen(false);
+        }
+      });
+    }
+  }
+
   labelRepeatedActionLinks();
   compactNewsArchiveAbstracts();
+  setupMobileNavigation();
   markActiveNavigation();
 
   window.addEventListener("hashchange", markActiveNavigation);

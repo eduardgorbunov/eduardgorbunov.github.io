@@ -1,0 +1,34 @@
+{
+  "lastUpdated": "2026-07-15",
+  "assetVersions": {
+    "stylesheet": "20260715e",
+    "sharedScript": "20260715a",
+    "publicationFilters": "20260715a",
+    "activityFilters": "20260715a",
+    "favicon": "20260706b"
+  },
+  "navigation": [
+    { "label": "News", "href": "index.html", "pages": ["index.html"] },
+    { "label": "About me", "href": "about.html", "pages": ["about.html"] },
+    { "label": "Research", "href": "research.html", "pages": ["research.html"] },
+    { "label": "Team", "href": "team.html", "pages": ["team.html"] },
+    { "label": "Publications", "href": "publications.html", "pages": ["publications.html"] },
+    { "label": "Talks", "href": "conferences.html#talks", "pages": ["conferences.html"], "current": "location" },
+    { "label": "Posters", "href": "conferences.html#posters", "pages": [] },
+    { "label": "Teaching", "href": "teaching.html", "pages": ["teaching.html", "amc2019.html", "pr_th.html"] },
+    { "label": "CV", "href": "assets/files/CV.pdf", "document": true, "ariaLabel": "Open full academic CV PDF" },
+    { "label": "Short CV", "href": "assets/files/CV_short.pdf", "document": true, "ariaLabel": "Open short academic CV PDF" }
+  ],
+  "profileLinks": [
+    { "label": "Email", "href": "mailto:eduard.gorbunov@mbzuai.ac.ae", "ariaLabel": "Email Eduard Gorbunov" },
+    { "label": "Scholar", "href": "https://scholar.google.com/citations?user=QPVriwoAAAAJ&hl=en", "ariaLabel": "Google Scholar profile", "external": true },
+    { "label": "arXiv", "href": "https://arxiv.org/search/math?searchtype=author&query=Gorbunov%2C+E", "ariaLabel": "arXiv author profile", "external": true },
+    { "label": "RG", "href": "https://www.researchgate.net/profile/Eduard_Gorbunov", "ariaLabel": "ResearchGate profile", "external": true },
+    { "label": "X", "href": "https://x.com/ed_gorbunov", "ariaLabel": "X profile", "external": true }
+  ],
+  "researchLinks": [
+    { "label": "Stochastic Optimization", "href": "publications.html?tag=stochastic-optimization#publication-list" },
+    { "label": "Distributed Learning", "href": "publications.html?tag=distributed-learning#publication-list" },
+    { "label": "Variational Inequalities", "href": "publications.html?tag=min-max-variational-inequalities#publication-list" }
+  ]
+}

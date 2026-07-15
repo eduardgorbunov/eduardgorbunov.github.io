@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 import re
 from collections import Counter
+from datetime import datetime
 from html import unescape
 from html.parser import HTMLParser
 from pathlib import Path
@@ -15,18 +16,22 @@ from xml.etree import ElementTree
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE_URL = "https://eduardgorbunov.github.io"
+SITE_CONFIG = json.loads((ROOT / "site.config.json").read_text(encoding="utf-8"))
+ASSET_VERSIONS = SITE_CONFIG["assetVersions"]
 
 PRIMARY_STYLESHEET = "assets/theme/css/modern-academic.css"
-PRIMARY_STYLESHEET_VERSION = "20260706e"
+PRIMARY_STYLESHEET_VERSION = ASSET_VERSIONS["stylesheet"]
 SHARED_SCRIPT = "assets/theme/js/script.js"
-SHARED_SCRIPT_VERSION = "20260705a"
+SHARED_SCRIPT_VERSION = ASSET_VERSIONS["sharedScript"]
 PUBLICATION_FILTER_SCRIPT = "assets/theme/js/publication-filters.js"
-PUBLICATION_FILTER_SCRIPT_VERSION = "20260706a"
+PUBLICATION_FILTER_SCRIPT_VERSION = ASSET_VERSIONS["publicationFilters"]
+ACTIVITY_FILTER_SCRIPT = "assets/theme/js/activity-filters.js"
+ACTIVITY_FILTER_SCRIPT_VERSION = ASSET_VERSIONS["activityFilters"]
 PUBLICATION_FILTER_TARGETS = "publication-list publication-count-status publication-filter-summary"
 SIDEBAR_PHOTO = "assets/images/img-3924-690x1130.jpeg"
 SOCIAL_CARD_IMAGE = "assets/images/eg-social-card.png"
 SOCIAL_CARD_SOURCE = "assets/images/eg-social-card.svg"
-SITE_FAVICON = "assets/images/eg-favicon.svg?v=20260706a"
+SITE_FAVICON = f'assets/images/eg-favicon.svg?v={ASSET_VERSIONS["favicon"]}'
 MATHJAX_SCRIPT = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
 MATHJAX_PRECONNECT = "https://cdn.jsdelivr.net"
 DISALLOWED_FONT_HOSTS = ("fonts.googleapis.com", "fonts.gstatic.com")
@@ -60,8 +65,13 @@ SHARE_IMAGE_ALT_BY_LANG = {
 SHARE_IMAGE_WIDTH = "1200"
 SHARE_IMAGE_HEIGHT = "630"
 SHARE_IMAGE_TYPE = "image/png"
-SITEMAP_LASTMOD = "2026-07-05"
-FOOTER_UPDATED_TEXT = '<p class="eg-footer-note">Last updated <time datetime="2026-07-05">July 5, 2026</time>.</p>'
+SITEMAP_LASTMOD = SITE_CONFIG["lastUpdated"]
+_LAST_UPDATED_DATE = datetime.strptime(SITEMAP_LASTMOD, "%Y-%m-%d")
+_LAST_UPDATED_LABEL = f"{_LAST_UPDATED_DATE:%B} {_LAST_UPDATED_DATE.day}, {_LAST_UPDATED_DATE.year}"
+FOOTER_UPDATED_TEXT = (
+    f'<p class="eg-footer-note">Last updated <time datetime="{SITEMAP_LASTMOD}">'
+    f'{_LAST_UPDATED_LABEL}</time>.</p>'
+)
 FOOTER_ROLE_TEXT = '<span>Assistant Professor, Department of Statistics and Data Science, MBZUAI</span>'
 OLD_FOOTER_ROLE_TEXT = '<span>Assistant Professor of Statistics and Data Science, MBZUAI</span>'
 NOJEKYLL_MARKER = ".nojekyll"
@@ -91,18 +101,20 @@ EXPECTED_FOOTER_LINKS = [
     ("Talks", "conferences.html#talks"),
     ("Posters", "conferences.html#posters"),
     ("Teaching", "teaching.html"),
-    ("CV", "assets/files/CV.pdf"),
+    ("Short CV", "assets/files/CV_short.pdf"),
+    ("Full CV", "assets/files/CV.pdf"),
 ]
 DISALLOWED_RSS_SNIPPETS = ("application/rss+xml", "feed.xml", "News RSS feed")
 FOOTER_CONTEXTUAL_ARIA_LABELS = {
     "Email": "Email Eduard Gorbunov",
     "Google Scholar": "Google Scholar profile",
     "arXiv": "arXiv author profile",
-    "CV": "Open academic CV PDF",
+    "Short CV": "Open short academic CV PDF",
+    "Full CV": "Open full academic CV PDF",
 }
 SIDEBAR_CV_LINK_MARKUP = (
     '<a class="eg-nav-link" href="assets/files/CV.pdf" type="application/pdf" target="_blank" '
-    'rel="noopener noreferrer" aria-label="Open academic CV PDF">CV</a>'
+    'rel="noopener noreferrer" aria-label="Open full academic CV PDF">CV</a>'
 )
 FOOTER_PROFILE_LINK_LABELS = {"Google Scholar", "arXiv"}
 EXPECTED_HEAD_PROFILE_LINKS = [
@@ -402,7 +414,7 @@ EXPECTED_PAGE_SECTION_LABELS = {
         '<h1 id="news-heading">News</h1>',
     ],
     "publications.html": [
-        '<section class="eg-publications-page" id="publications" aria-labelledby="publications-heading">',
+        '<section class="eg-publications-page eg-publications-compact" id="publications" aria-labelledby="publications-heading">',
         '<h1 id="publications-heading">Publications</h1>',
     ],
     "team.html": [
@@ -2857,7 +2869,7 @@ def check_publications() -> list[str]:
         '"name": "Publication list"',
         '"itemListOrder": "https://schema.org/ItemListOrderDescending"',
         '"itemListElement": [',
-        '"url": "https://eduardgorbunov.github.io/publications.html#pub-last-iterate-clipped-sgd"',
+        '"url": "https://eduardgorbunov.github.io/publications.html#pub-heavy-tailed-data-gradient-clipping"',
         '"url": "https://eduardgorbunov.github.io/publications.html#pub-heavy-tailed-data-gradient-clipping"',
         '"url": "https://eduardgorbunov.github.io/publications.html#pub-lmo-optimizers-bounded-variance"',
         '"url": "https://eduardgorbunov.github.io/publications.html#pub-anchored-goma"',
@@ -2874,7 +2886,7 @@ def check_publications() -> list[str]:
         '<form class="eg-publication-controls" id="publication-filters" role="search" aria-label="Publication filters">',
         '<div class="eg-filter-heading">',
         '<h2 id="publication-filters-heading">Filter publications</h2>',
-        '<span>Type · venue · topic · search</span>',
+        '<span>Type · marker · topic · search</span>',
     ]
     for snippet in required_publication_shortcuts:
         if snippet not in page_text:
@@ -2919,11 +2931,11 @@ def check_publications() -> list[str]:
     expected_control_targets = set(PUBLICATION_FILTER_TARGETS.split())
     if "all publications</span>" in page_text or "eg-venue-reset" in page_text:
         errors.append("publications.html: major AI conference counter should not include an all-publications tile")
-    expected_venues = ["NeurIPS", "ICML", "AISTATS", "ICLR", "UAI", "CPAL", "COLT", "EMNLP"]
+    expected_venues = ["NeurIPS", "ICML", "AISTATS", "ICLR", "UAI", "COLT", "EMNLP"]
     actual_venue_buttons = [attrs.get("data-venue", "") for attrs in parser.venue_filter_buttons]
     if actual_venue_buttons != expected_venues:
         errors.append(f"publications.html: venue filter buttons should be {expected_venues!r}, found {actual_venue_buttons!r}")
-    expected_venue_accents = ["blue", "teal", "blue", "teal", "blue", "teal", "blue", "teal"]
+    expected_venue_accents = ["blue", "teal", "blue", "teal", "blue", "blue", "teal"]
     actual_venue_accents = [attrs.get("data-accent", "") for attrs in parser.venue_filter_buttons]
     if actual_venue_accents != expected_venue_accents:
         errors.append(
@@ -3027,7 +3039,7 @@ def check_publications() -> list[str]:
 
     expected_control_labels = {
         "type": "Filter publications by type",
-        "search": "Search publications by title, author, venue, or topic tag",
+        "search": "Search publications by title, author, venue, topic tag, or author marker",
         "tag": "Add a publication topic tag filter",
     }
     for control_name in ("type", "search", "tag"):
@@ -3064,8 +3076,8 @@ def check_publications() -> list[str]:
     search_attrs = parser.filter_controls.get("search", {})
     if search_attrs and search_attrs.get("type") != "search":
         errors.append("publications.html: search filter should use input type='search'")
-    if search_attrs and search_attrs.get("placeholder") != "Title, author, venue, topic":
-        errors.append("publications.html: search filter should advertise title, author, venue, and topic search")
+    if search_attrs and search_attrs.get("placeholder") != "Title, author, venue, topic, marker":
+        errors.append("publications.html: search filter should advertise title, author, venue, topic, and marker search")
     if search_attrs and search_attrs.get("autocomplete") != "off":
         errors.append("publications.html: search filter should disable autocomplete")
     if search_attrs and search_attrs.get("enterkeyhint") != "search":
@@ -3267,12 +3279,10 @@ def check_publications() -> list[str]:
         if not isinstance(title_link, dict) or not title_link.get("href"):
             errors.append(f"publications.html: {card_label} title should link to a paper page or PDF")
         else:
-            expected_title_label = (
-                "Open PDF for " if title_link.get("type") == "application/pdf" else "Open paper page for "
-            ) + title
-            if title_link.get("aria_label") != expected_title_label:
+            expected_title_label = re.compile(rf"^Open .+ for {re.escape(title)}$")
+            if not expected_title_label.fullmatch(str(title_link.get("aria_label", ""))):
                 errors.append(
-                    f"publications.html: {card_label} title link should use aria-label {expected_title_label!r}"
+                    f"publications.html: {card_label} title link should use a contextual 'Open … for Title' aria-label"
                 )
         if card.get("role") != "listitem":
             errors.append(f"publications.html: {card_label} should expose role='listitem'")
@@ -3566,8 +3576,8 @@ def check_research() -> list[str]:
         errors.append("research.html: generalized-smoothness theme should not use vague higher-order wording")
     if "L<sub>" in page_text:
         errors.append("research.html: generalized-smoothness notation should use LaTeX, not HTML subscript tags")
-    if "non-standard smoothness assumptions" not in page_text:
-        errors.append("research.html: generalized-smoothness theme should mention non-standard smoothness assumptions")
+    if "Generalized smoothness" not in page_text:
+        errors.append("research.html: research map should include generalized smoothness")
     research_lead = (
         "My research interests are in reliable optimization methods for modern machine learning, "
         "especially stochastic methods, distributed systems, robustness, "
@@ -3579,8 +3589,8 @@ def check_research() -> list[str]:
         errors.append("research.html: page heading should include a lightweight publications/talks note")
     if "Compact view of the recurring themes" in page_text:
         errors.append("research.html: research map intro should avoid scaffolding-like phrasing")
-    if "I organize my work around connected themes" not in page_text:
-        errors.append("research.html: research map intro should use personal connected-theme wording")
+    if "The ultimate goal of my research is to bridge the gap between theory and practice in Optimization in Machine Learning." not in page_text:
+        errors.append("research.html: research map should state the unifying research goal")
     if "A concise guide to the assumptions, methods, and systems themes that organize the publication list." in page_text:
         errors.append("research.html: research map intro should avoid verbose guide wording")
     removed_direction_snippets = [
@@ -3619,7 +3629,7 @@ def check_research() -> list[str]:
         if snippet not in page_text:
             errors.append(f"research.html: missing {description}")
 
-    expected_focus_list_labels = ["Research focus areas"]
+    expected_focus_list_labels: list[str] = []
     actual_focus_list_labels = [attrs.get("aria-label", "") for attrs in parser.focus_lists]
     if actual_focus_list_labels != expected_focus_list_labels:
         errors.append(
@@ -3630,7 +3640,10 @@ def check_research() -> list[str]:
         if attrs.get("role", "") != "list":
             errors.append("research.html: focus-card container should use role='list'")
 
-    expected_about_list_labels = ["Representative papers"]
+    expected_about_list_labels = [
+        "Selected recent publications",
+        "Selected foundational and high-visibility publications",
+    ]
     actual_about_list_labels = [attrs.get("aria-label", "") for attrs in parser.about_lists]
     if actual_about_list_labels != expected_about_list_labels:
         errors.append(
@@ -3648,7 +3661,7 @@ def check_research() -> list[str]:
 
     if '<div class="eg-research-map-grid" role="list" aria-label="Research topic map">' not in page_text:
         errors.append("research.html: research map should expose a labelled list")
-    research_map = page_text.split('id="research-map"', 1)[-1].split('<div class="eg-focus-grid"', 1)[0]
+    research_map = page_text.split('id="research-map"', 1)[-1].split('</section>', 1)[0]
     expected_map_cards = [
         (
             "research-map-optimization",
@@ -3683,7 +3696,7 @@ def check_research() -> list[str]:
         (
             "research-map-methods",
             "rose",
-            "Modern smoothness and adaptivity",
+            "Modern assumptions and algorithmic tools",
             [
                 "publications.html?tag=gradient-clipping#publication-list",
                 "publications.html?tag=generalized-smoothness#publication-list",
@@ -3708,35 +3721,19 @@ def check_research() -> list[str]:
             if f'href="{href}"' not in research_map:
                 errors.append(f"research.html: research map card {card_id!r} should link to {href!r}")
 
-    representative_section = page_text.split('id="representative-papers"', 1)[-1].split('id="research-entry-points"', 1)[0]
-    if representative_section.count('data-kind="paper"') != len(EXPECTED_RESEARCH_REPRESENTATIVE_PAPERS):
-        errors.append(
-            "research.html: representative papers should use "
-            f"{len(EXPECTED_RESEARCH_REPRESENTATIVE_PAPERS)} data-kind='paper' cards"
-        )
-    if representative_section.count('role="listitem"') != len(EXPECTED_RESEARCH_REPRESENTATIVE_PAPERS):
-        errors.append(
-            "research.html: representative papers should expose "
-            f"{len(EXPECTED_RESEARCH_REPRESENTATIVE_PAPERS)} role='listitem' cards"
-        )
-    for card_id, href in EXPECTED_RESEARCH_REPRESENTATIVE_PAPERS:
-        if f'id="{card_id}"' not in representative_section:
-            errors.append(f"research.html: missing representative paper card {card_id!r}")
-        if f'href="{href}"' not in representative_section:
-            errors.append(f"research.html: representative paper card {card_id!r} should link to {href!r}")
-    expected_representative_link_labels = {
-        "publications.html#pub-last-iterate-clipped-sgd":
-            "Open representative paper: High-probability bounds for the last iterate of clipped SGD",
-        "publications.html#pub-high-probability-convergence-for-composite-and-distributed-stochastic-minimization-and-variational-inequalities":
-            "Open representative paper: High-probability convergence for composite and distributed optimization",
-        "publications.html#pub-methods-for-convex-l0-l1-smooth-optimization-clipping-acceleration-and-adaptivity":
-            "Open representative paper: Methods for convex $(L_0,L_1)$-smooth optimization",
-        "publications.html#pub-byzantine-tolerant-methods-for-distributed-variational-inequalities":
-            "Open representative paper: Byzantine-tolerant methods for distributed variational inequalities",
-    }
-    for href in expected_representative_link_labels:
-        if f'<a href="{href}">' not in representative_section:
-            errors.append(f"research.html: representative paper title should link to {href!r}")
+    representative_section = page_text.split('id="representative-papers"', 1)[-1].split('</main>', 1)[0]
+    representative_card_count = representative_section.count('class="eg-about-list-card"')
+    if representative_card_count < 8:
+        errors.append("research.html: representative publication groups should include substantial recent and foundational selections")
+    if representative_section.count('data-kind="paper"') != representative_card_count:
+        errors.append("research.html: every representative publication should use data-kind='paper'")
+    if representative_section.count('role="listitem"') != representative_card_count:
+        errors.append("research.html: every representative publication should expose role='listitem'")
+    publication_ids = {str(card.get("id", "")) for card in publication_parser.cards}
+    representative_hrefs = re.findall(r'href="publications\.html#(pub-[^"]+)"', representative_section)
+    for publication_id in representative_hrefs:
+        if publication_id not in publication_ids:
+            errors.append(f"research.html: representative paper target {publication_id!r} is missing from publications.html")
     if ">View paper</a>" in representative_section:
         errors.append("research.html: representative paper actions should use 'Open paper'")
 
@@ -3745,17 +3742,12 @@ def check_research() -> list[str]:
     if ">Browse papers</a>" in page_text:
         errors.append("research.html: focus cards should avoid redundant browse-paper buttons")
 
-    expected_accents = ["teal", "blue", "gold", "rose"]
+    expected_accents: list[str] = []
     actual_accents = [str(card.get("accent", "")) for card in parser.focus_cards]
     if actual_accents != expected_accents:
         errors.append(f"research.html: focus-card accents should be {expected_accents!r}, found {actual_accents!r}")
 
-    expected_focus_ids = [
-        "focus-stochastic-optimization",
-        "focus-distributed-learning",
-        "focus-variational-inequalities",
-        "focus-generalized-smoothness",
-    ]
+    expected_focus_ids: list[str] = []
     actual_focus_ids = [str(card.get("id", "")) for card in parser.focus_cards]
     if actual_focus_ids != expected_focus_ids:
         errors.append(f"research.html: focus-card ids should be {expected_focus_ids!r}, found {actual_focus_ids!r}")
@@ -4009,7 +4001,8 @@ def check_about() -> list[str]:
         '<a href="https://arxiv.org/search/math?searchtype=author&amp;query=Gorbunov%2C+E" target="_blank" rel="me noopener noreferrer" aria-label="arXiv author profile">arXiv</a>',
         '<a href="https://x.com/ed_gorbunov" target="_blank" rel="me noopener noreferrer" aria-label="X profile">X</a>',
         '<a href="mailto:eduard.gorbunov@mbzuai.ac.ae" aria-label="Email Eduard Gorbunov">Email</a>',
-        '<a href="assets/files/CV.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Open academic CV PDF">CV</a>',
+        '<a href="assets/files/CV.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Open full academic CV PDF">Full CV</a>',
+        '<a href="assets/files/CV_short.pdf" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Open short academic CV PDF">Short CV</a>',
         '<a href="research.html">Research</a>',
         '<a href="publications.html">Publications</a>',
         '<a href="team.html">Team</a>',
@@ -4067,7 +4060,7 @@ def check_team() -> list[str]:
         errors.append("team.html: opportunities section should use the refined opportunities layout")
     if '<ul class="eg-opportunity-list" role="list" aria-label="Research opportunities">' not in page_text:
         errors.append("team.html: opportunities should use a compact list instead of cards")
-    expected_student_list_labels = ["MSc students"]
+    expected_student_list_labels = ["MSc students", "Visiting students"]
     actual_student_list_labels = [attrs.get("aria-label", "") for attrs in parser.student_lists]
     if actual_student_list_labels != expected_student_list_labels:
         errors.append(
@@ -4093,7 +4086,7 @@ def check_team() -> list[str]:
         errors.append("team.html: application checklist should use a direct 'What to include' heading")
     if '<ul class="eg-guideline-list" aria-label="Checklist items">' not in page_text:
         errors.append("team.html: application checklist items should use a concise accessible label")
-    if "If you are interested in working with me, please write a specific email and, for degree programs, also follow the official MBZUAI application process." not in page_text:
+    if "If you are interested in student or visiting opportunities, please write a specific email and, for degree programs, also follow the official MBZUAI application process." not in page_text:
         errors.append("team.html: opportunities section should use direct email-and-application guidance")
     if "Prospective postdoctoral researchers, PhD students, MSc students, and visiting students can use the guidance below." in page_text:
         errors.append("team.html: opportunities section should avoid conversational guidance wording")
@@ -4116,7 +4109,6 @@ def check_team() -> list[str]:
     required_page_phrases = [
         "<title>Research team | Eduard Gorbunov</title>",
         '"@type": "CollectionPage"',
-        '"mainEntity": {',
         '"@type": "ItemList"',
         '"@id": "https://eduardgorbunov.github.io/team.html#msc-students"',
         '"name": "MSc students"',
@@ -4129,7 +4121,9 @@ def check_team() -> list[str]:
             errors.append(f"team.html: page framing should include {phrase!r}")
 
     expected_names = [student["name"] for student in EXPECTED_MSC_STUDENTS]
-    actual_names = [str(student.get("name", "")) for student in parser.students]
+    msc_students = parser.students[:len(EXPECTED_MSC_STUDENTS)]
+    visiting_students = parser.students[len(EXPECTED_MSC_STUDENTS):]
+    actual_names = [str(student.get("name", "")) for student in msc_students]
     expected_item_count = f'"numberOfItems": {len(EXPECTED_MSC_STUDENTS)}'
     if expected_item_count not in page_text:
         errors.append(f"team.html: MSc student ItemList metadata should use {expected_item_count!r}")
@@ -4137,7 +4131,7 @@ def check_team() -> list[str]:
         errors.append("team.html: MSc student ItemList metadata should include itemListElement entries")
     student_metadata = page_text.split('"@id": "https://eduardgorbunov.github.io/team.html#msc-students"', 1)[-1]
     student_metadata = student_metadata.split("</script>", 1)[0]
-    if student_metadata.count('"@type": "Person"') != len(EXPECTED_MSC_STUDENTS):
+    if student_metadata.count('"@type": "Person"') < len(EXPECTED_MSC_STUDENTS):
         errors.append("team.html: MSc student metadata should expose each student as a Person entry")
     if actual_names != expected_names:
         errors.append(f"team.html: MSc students should be {expected_names!r}, found {actual_names!r}")
@@ -4145,14 +4139,14 @@ def check_team() -> list[str]:
         errors.append(f"team.html: MSc students should be sorted alphabetically, found {actual_names!r}")
 
     expected_student_accents = ["blue", "teal", "gold", "rose"]
-    actual_student_accents = [str(card.get("accent", "")) for card in parser.students]
+    actual_student_accents = [str(card.get("accent", "")) for card in msc_students]
     if actual_student_accents != expected_student_accents:
         errors.append(
             f"team.html: student cards should use accents {expected_student_accents!r}, "
             f"found {actual_student_accents!r}"
         )
 
-    for index, (expected, actual) in enumerate(zip(EXPECTED_MSC_STUDENTS, parser.students), start=1):
+    for index, (expected, actual) in enumerate(zip(EXPECTED_MSC_STUDENTS, msc_students), start=1):
         name = expected["name"]
         links = set(str(link) for link in actual.get("links", []))
         meta = dict(actual.get("meta", {}))
@@ -4236,7 +4230,7 @@ def check_team() -> list[str]:
             "MSc": "opportunity-msc-heading",
         }.get(label, "")
         expected_title = {
-            "Postdoc": "Prospective postdoctoral researchers",
+            "Postdoc": "Postdoctoral positions",
             "PhD": "Prospective PhD students",
             "Visiting": "Visiting students",
             "MSc": "Prospective MSc students",
@@ -4271,11 +4265,11 @@ def check_team() -> list[str]:
             errors.append(f"team.html: {label} card should be labelled by its heading")
         if card.get("list_role") != "listitem":
             errors.append(f"team.html: {label or 'opportunity'} card should use role='listitem'")
-        if not any(link.startswith("mailto:eduard.gorbunov@mbzuai.ac.ae") for link in links):
+        if label != "Postdoc" and not any(link.startswith("mailto:eduard.gorbunov@mbzuai.ac.ae") for link in links):
             errors.append(f"team.html: {label or 'opportunity'} card is missing an email action")
-        if expected_mailto_subject and not any(expected_mailto_subject in link for link in links):
+        if label != "Postdoc" and expected_mailto_subject and not any(expected_mailto_subject in link for link in links):
             errors.append(f"team.html: {label} email action should use Applicant Name subject template")
-        if mailto_labels != ["Email inquiry"]:
+        if label != "Postdoc" and mailto_labels != ["Email inquiry"]:
             errors.append(f"team.html: {label or 'opportunity'} email action should be labelled 'Email inquiry'")
         if label in {"PhD", "MSc"} and not any("mbzuai.ac.ae/study/" in link for link in links):
             errors.append(f"team.html: {label} card is missing MBZUAI admissions link")
@@ -4293,6 +4287,13 @@ def check_team() -> list[str]:
         errors.append("team.html: application guidelines should be labelled by application-guidelines-heading")
     if parser.guideline_labels != expected_guidelines:
         errors.append(f"team.html: guideline labels should be {expected_guidelines!r}, found {parser.guideline_labels!r}")
+
+    expected_visitors = ["Igor Ignashin", "Savelii Chezhegov", "Rustem Islamov", "Egor Shulgin"]
+    actual_visitors = [str(student.get("name", "")) for student in visiting_students]
+    if actual_visitors != expected_visitors:
+        errors.append(f"team.html: visiting students should be ordered by most recent end date, found {actual_visitors!r}")
+    if "I do not currently have open postdoc positions." not in page_text:
+        errors.append("team.html: postdoc opportunity should clearly state that no positions are currently open")
 
     return errors
 
@@ -4355,7 +4356,7 @@ def check_teaching() -> list[str]:
         if snippet in teaching_text:
             errors.append(f"teaching.html: removed heavy teaching control should stay absent: {snippet!r}")
 
-    expected_course_list_labels = ["Courses created", "Teaching assistantships"]
+    expected_course_list_labels = ["Courses taught", "Courses created", "Teaching assistantships"]
     actual_course_list_labels = [attrs.get("aria-label", "") for attrs in teaching_parser.course_lists]
     if actual_course_list_labels != expected_course_list_labels:
         errors.append(
@@ -4401,7 +4402,7 @@ def check_teaching() -> list[str]:
         errors.append("teaching.html: course role labels should avoid the shorthand 'TA'")
     if teaching_text.count('<span class="eg-course-role">Teaching assistant</span>') != 4:
         errors.append("teaching.html: teaching assistant course cards should use expanded role labels")
-    expected_course_accents = ["teal", "blue", "teal", "blue", "gold", "rose"]
+    expected_course_accents = ["teal", "blue", "teal", "blue", "teal", "blue", "gold", "rose"]
     actual_course_accents = [str(card.get("accent", "")) for card in teaching_parser.course_cards]
     if actual_course_accents != expected_course_accents:
         errors.append(
@@ -4907,7 +4908,7 @@ def check_publication_filter_behavior() -> list[str]:
         'var shouldPush = mode === "push" && window.history.pushState && nextUrl !== currentUrl;': "intentional publication filter history push",
         'window.history[shouldPush ? "pushState" : "replaceState"](null, "", nextUrl);': "publication filter history sync mode",
         "function resetFilters(syncMode)": "shared publication filter reset",
-        "function updateFilterSummary(selectedType, selectedActiveTags, searchQuery)": "active filter summary updater",
+        "function updateFilterSummary(selectedType, selectedMarker, selectedActiveTags, searchQuery)": "active filter summary updater",
         '"Active filters: " + parts.join("; ") + "."': "active filter summary text",
         '"No filters applied."': "default filter summary text",
         "function abstractDetails(visibleOnly)": "visible-result abstract collection",
@@ -4928,7 +4929,7 @@ def check_publication_filter_behavior() -> list[str]:
         "card.hidden = !show": "publication visibility state",
         'empty.hidden = visible !== 0': "empty filter result state",
         'count.textContent = String(visible)': "visible publication count",
-        "updateFilterSummary(selectedType, selectedActiveTags, searchQuery)": "active filter summary refresh",
+        "updateFilterSummary(selectedType, selectedMarker, selectedActiveTags, searchQuery)": "active filter summary refresh",
         "updateAbstractToggleState();\n    if (syncMode) {": "abstract toggle refresh after filtering",
         "function applyVenueFilter(venueName)": "venue filter shortcut handler",
         'typeFilter.value = "conference paper"': "venue filter type selection",
@@ -5109,8 +5110,8 @@ def check_theme_styles() -> list[str]:
         ".eg-profile-links .eg-link-count": "research entry-point count styling",
         ".eg-student-meta-wide": "explicit wide student metadata cell",
         "--eg-student-accent": "explicit student card accent variable",
-        ".eg-student-card {\n  --eg-student-accent: var(--eg-blue);\n  background: linear-gradient(180deg, #ffffff 0%, color-mix(in srgb, var(--eg-student-accent) 4%, #ffffff) 100%) !important;": "lightly tinted student cards",
-        ".eg-student-meta div {\n  align-content: start;\n  background: color-mix(in srgb, var(--eg-student-accent) 7%, #ffffff);": "compact accent-aware student metadata cells",
+        ".eg-student-card {\n  --eg-student-accent: var(--eg-blue);\n  align-items: center;\n  background: linear-gradient(180deg, #ffffff 0%, color-mix(in srgb, var(--eg-student-accent) 4%, #ffffff) 100%) !important;": "lightly tinted student directory rows",
+        ".eg-student-meta div {\n  align-content: start;\n  background: transparent;": "lightweight student metadata cells",
         ".eg-student-card[data-accent=\"rose\"]": "student card rose accent variant",
         ".eg-student-role {\n  color: var(--eg-student-accent);": "student role accent styling",
         ".eg-opportunity-list {\n  border-top: 1px solid rgba(17, 73, 72, 0.13);": "lightweight opportunity list",
@@ -5250,10 +5251,11 @@ def check_support_files() -> list[str]:
             'Mark direct PDF links, including local files, arXiv PDFs, publisher PDFs, and OpenReview PDFs, with `type="application/pdf"`',
             "Keep `assets/images/eg-social-card.png` at 1200x630 for social previews",
             "Preserve accessibility and print polish: keep skip links, focus-visible states, reduced-motion support, high-contrast/forced-colors modes, and print-expanded abstracts/disclosures working after layout changes.",
-            "Bump the stylesheet or script query-string version in every page, and in `scripts/check-site.py`, after changing shared CSS or JavaScript.",
+            "Shared navigation, footer markup, update dates, sitemap dates, and asset cache versions are defined in `site.config.json`.",
             "python3 scripts/check-site.py",
             "node --check assets/theme/js/script.js",
             "node --check assets/theme/js/publication-filters.js",
+            "node --check assets/theme/js/activity-filters.js",
             "strict layout-tag nesting",
         ]
         for phrase in required_readme_phrases:
@@ -5307,17 +5309,18 @@ def check_support_files() -> list[str]:
             if set(str(profile_link.get("rel", "")).split()) != {"me", "noopener", "noreferrer"}:
                 errors.append(f"{page.name}: footer {profile_label} link should use rel='me noopener noreferrer'")
 
-        cv_links = [link for link in parser.footer_links if link.get("label") == "CV"]
-        if len(cv_links) != 1:
-            errors.append(f"{page.name}: expected exactly one footer CV link")
-        else:
+        for cv_label in ("Short CV", "Full CV"):
+            cv_links = [link for link in parser.footer_links if link.get("label") == cv_label]
+            if len(cv_links) != 1:
+                errors.append(f"{page.name}: expected exactly one footer {cv_label} link")
+                continue
             cv_link = cv_links[0]
             if cv_link.get("target") != "_blank":
-                errors.append(f"{page.name}: footer CV link should open in a new tab")
+                errors.append(f"{page.name}: footer {cv_label} link should open in a new tab")
             if set(str(cv_link.get("rel", "")).split()) != {"noopener", "noreferrer"}:
-                errors.append(f"{page.name}: footer CV link should keep noopener/noreferrer")
+                errors.append(f"{page.name}: footer {cv_label} link should keep noopener/noreferrer")
             if cv_link.get("type") != "application/pdf":
-                errors.append(f"{page.name}: footer CV link should declare type='application/pdf'")
+                errors.append(f"{page.name}: footer {cv_label} link should declare type='application/pdf'")
 
     if not sitemap.exists():
         errors.append("sitemap.xml: missing file")

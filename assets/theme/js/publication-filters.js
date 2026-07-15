@@ -15,6 +15,8 @@
   var overviewStats = Array.prototype.slice.call(document.querySelectorAll(".eg-publication-stat"));
   var venueStats = Array.prototype.slice.call(document.querySelectorAll(".eg-conference-summary [data-venue]"));
   var abstractToggle = document.querySelector(".eg-abstract-toggle");
+  var publicationPage = document.querySelector(".eg-publications-page");
+  var viewButtons = Array.prototype.slice.call(document.querySelectorAll("[data-publication-view]"));
   var selectedTags = [];
   var authorMarkerClasses = {
     "team": "eg-author-relation-team",
@@ -332,6 +334,35 @@
     }
   }
 
+  function setPublicationView(mode, persist) {
+    var selectedMode = mode === "detailed" ? "detailed" : "compact";
+    if (!publicationPage) {
+      return;
+    }
+
+    publicationPage.classList.toggle("eg-publications-compact", selectedMode === "compact");
+    publicationPage.classList.toggle("eg-publications-detailed", selectedMode === "detailed");
+    viewButtons.forEach(function (button) {
+      button.setAttribute("aria-pressed", button.getAttribute("data-publication-view") === selectedMode ? "true" : "false");
+    });
+
+    if (selectedMode === "compact") {
+      abstractDetails(false).forEach(function (item) {
+        item.open = false;
+        updateAbstractDisclosureState(item);
+      });
+      updateAbstractToggleState();
+    }
+
+    if (persist) {
+      try {
+        window.localStorage.setItem("eg-publication-view", selectedMode);
+      } catch (error) {
+        // The preference is optional when browser storage is unavailable.
+      }
+    }
+  }
+
   function enhanceAbstractStates() {
     cards.forEach(function (card) {
       var details = card.querySelector(".eg-publication-abstract");
@@ -533,9 +564,18 @@
 
   if (abstractToggle) {
     abstractToggle.addEventListener("click", function () {
+      if (publicationPage && publicationPage.classList.contains("eg-publications-compact")) {
+        setPublicationView("detailed", true);
+      }
       setAllAbstracts(abstractToggle.getAttribute("aria-pressed") !== "true");
     });
   }
+
+  viewButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      setPublicationView(button.getAttribute("data-publication-view"), true);
+    });
+  });
 
   typeFilter.addEventListener("change", function () {
     applyFilters("push");
@@ -609,5 +649,12 @@
   enhanceActionLabels();
   enhanceAbstractLabels();
   enhanceAbstractStates();
+  var initialView = "compact";
+  try {
+    initialView = window.localStorage.getItem("eg-publication-view") || "compact";
+  } catch (error) {
+    initialView = "compact";
+  }
+  setPublicationView(initialView, false);
   applyUrlState("replace");
 }());

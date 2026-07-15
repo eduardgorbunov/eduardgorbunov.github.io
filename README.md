@@ -19,6 +19,12 @@ The root `.nojekyll` marker keeps GitHub Pages serving the static files directly
 
 The website is intentionally independent of generated-builder assets and legacy framework bundles. Keep page edits in the static HTML files, shared styles in `assets/theme/css/modern-academic.css`, and shared behavior in `assets/theme/js/`.
 
+Shared navigation, footer markup, update dates, sitemap dates, and asset cache versions are defined in `site.config.json`. After changing shared assets or site-wide information, run:
+
+```bash
+python3 scripts/sync-site.py
+```
+
 Content conventions:
 
 - Keep the shared sidebar, metadata, canonical links, and footer consistent across pages.
@@ -27,7 +33,7 @@ Content conventions:
 - Mark direct PDF links, including local files, arXiv PDFs, publisher PDFs, and OpenReview PDFs, with `type="application/pdf"` and keep new-tab links paired with `rel="noopener noreferrer"`.
 - Keep `assets/images/eg-social-card.png` at 1200x630 for social previews; update `assets/images/eg-social-card.svg` first when changing the card.
 - Preserve accessibility and print polish: keep skip links, focus-visible states, reduced-motion support, high-contrast/forced-colors modes, and print-expanded abstracts/disclosures working after layout changes.
-- Bump the stylesheet or script query-string version in every page, and in `scripts/check-site.py`, after changing shared CSS or JavaScript.
+- Bump shared asset versions once in `site.config.json`; the synchronization script applies them to every page.
 
 There is no build step: GitHub Pages serves the files in this repository directly. For a local preview, run a static server from the repository root:
 
@@ -39,9 +45,11 @@ Useful local checks before publishing:
 
 ```bash
 python3 scripts/check-site.py
+python3 scripts/sync-site.py
 git diff --check
 node --check assets/theme/js/script.js
 node --check assets/theme/js/publication-filters.js
+node --check assets/theme/js/activity-filters.js
 ```
 
 The site check validates local links and assets, shared page-shell

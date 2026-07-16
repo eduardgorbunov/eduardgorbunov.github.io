@@ -2542,8 +2542,9 @@ def check_homepage_news() -> list[str]:
         '"@id": "https://eduardgorbunov.github.io/#news-page"',
         '"@id": "https://eduardgorbunov.github.io/#recent-news"',
         '"name": "Recent news updates"',
-        '"numberOfItems": 5',
+        '"numberOfItems": 6',
         '"itemListOrder": "https://schema.org/ItemListOrderDescending"',
+        '"url": "https://eduardgorbunov.github.io/#news-2026-motor-best-application-paper-award"',
         '"url": "https://eduardgorbunov.github.io/#news-2026-conference-acceptances"',
         '"url": "https://eduardgorbunov.github.io/#news-2025-dp-clipped-sgd"',
         '"url": "https://eduardgorbunov.github.io/#news-2025-iclr-icml-appointment"',
@@ -2777,7 +2778,7 @@ def check_homepage_news() -> list[str]:
         if snippet not in page_text:
             errors.append(f"index.html: missing compact news shortcut {snippet!r}")
     required_year_links = [
-        '<a href="#news-2026-conference-acceptances">2026</a>',
+        '<a href="#news-2026-motor-best-application-paper-award">2026</a>',
         '<a href="#news-2025-dp-clipped-sgd">2025</a>',
         '<a href="#news-2024-neurips-preprint">2024</a>',
         '<a href="#news-2023-11-28-new-preprints-a-talk-and-neurips-2023-papers">2023</a>',

@@ -2892,6 +2892,16 @@ def check_publications() -> list[str]:
     for snippet in required_publication_shortcuts:
         if snippet not in page_text:
             errors.append(f"publications.html: missing compact publication shortcut {snippet!r}")
+    required_award_action = (
+        '<a class="eg-publication-action-award" '
+        'href="assets/files/MOTOR2026_best_application_paper_award.pdf" '
+        'type="application/pdf" target="_blank" rel="noopener noreferrer" '
+        'aria-label="Open Best Application Paper Award certificate for '
+        'Last Iterate Convergence of AdaGrad-Norm for Convex Non-Smooth Optimization">'
+        'Best Application Paper Award</a>'
+    )
+    if required_award_action not in page_text:
+        errors.append("publications.html: MOTOR 2026 publication should link its Best Application Paper Award")
     if 'class="eg-profile-links eg-publication-shortcuts"' in page_text:
         errors.append("publications.html: publication page should avoid redundant shortcut buttons")
     if '<a href="#major-ai-conferences">AI conference counts</a>' in page_text:

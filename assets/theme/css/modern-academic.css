@@ -1939,6 +1939,19 @@ main > section[id],
   opacity: 0.48;
 }
 
+.eg-publication-actions a.eg-publication-action-award {
+  background: var(--eg-gold-soft);
+  border-color: color-mix(in srgb, var(--eg-gold) 42%, transparent);
+  color: var(--eg-gold) !important;
+}
+
+.eg-publication-actions a.eg-publication-action-award:hover,
+.eg-publication-actions a.eg-publication-action-award:focus {
+  background: var(--eg-gold);
+  border-color: var(--eg-gold);
+  color: #ffffff !important;
+}
+
 .eg-clear-filters:disabled:hover,
 .eg-clear-filters:disabled:focus {
   background: var(--eg-paper);

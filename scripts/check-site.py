@@ -2542,8 +2542,9 @@ def check_homepage_news() -> list[str]:
         '"@id": "https://eduardgorbunov.github.io/#news-page"',
         '"@id": "https://eduardgorbunov.github.io/#recent-news"',
         '"name": "Recent news updates"',
-        '"numberOfItems": 6',
+        '"numberOfItems": 7',
         '"itemListOrder": "https://schema.org/ItemListOrderDescending"',
+        '"url": "https://eduardgorbunov.github.io/#news-2026-local-sgd-second-order-heterogeneity"',
         '"url": "https://eduardgorbunov.github.io/#news-2026-motor-best-application-paper-award"',
         '"url": "https://eduardgorbunov.github.io/#news-2026-conference-acceptances"',
         '"url": "https://eduardgorbunov.github.io/#news-2025-dp-clipped-sgd"',
@@ -2571,6 +2572,9 @@ def check_homepage_news() -> list[str]:
             errors.append(f"index.html: person structured metadata should include {snippet!r}")
 
     required_snippets = [
+        "New Preprint on Local SGD Under Second-Order Heterogeneity",
+        "https://arxiv.org/abs/2607.14731",
+        "publications.html#pub-whats-in-a-smoothness-constant-local-sgd",
         "2026 conference acceptances",
         "My collaborators and I had several papers accepted at 2026 conferences: one at AISTATS, one at ICLR, five at ICML, two at CPAL, and two at UAI.",
         "publications.html#pub-differentially-private-clipped-sgd",
@@ -2778,7 +2782,7 @@ def check_homepage_news() -> list[str]:
         if snippet not in page_text:
             errors.append(f"index.html: missing compact news shortcut {snippet!r}")
     required_year_links = [
-        '<a href="#news-2026-motor-best-application-paper-award">2026</a>',
+        '<a href="#news-2026-local-sgd-second-order-heterogeneity">2026</a>',
         '<a href="#news-2025-dp-clipped-sgd">2025</a>',
         '<a href="#news-2024-neurips-preprint">2024</a>',
         '<a href="#news-2023-11-28-new-preprints-a-talk-and-neurips-2023-papers">2023</a>',
@@ -2870,7 +2874,7 @@ def check_publications() -> list[str]:
         '"name": "Publication list"',
         '"itemListOrder": "https://schema.org/ItemListOrderDescending"',
         '"itemListElement": [',
-        '"url": "https://eduardgorbunov.github.io/publications.html#pub-heavy-tailed-data-gradient-clipping"',
+        '"url": "https://eduardgorbunov.github.io/publications.html#pub-whats-in-a-smoothness-constant-local-sgd"',
         '"url": "https://eduardgorbunov.github.io/publications.html#pub-heavy-tailed-data-gradient-clipping"',
         '"url": "https://eduardgorbunov.github.io/publications.html#pub-lmo-optimizers-bounded-variance"',
         '"url": "https://eduardgorbunov.github.io/publications.html#pub-anchored-goma"',
@@ -3205,6 +3209,7 @@ def check_publications() -> list[str]:
         if "convex-optimization" in card.get("tags", set())
     }
     expected_convex_publications = {
+        "pub-whats-in-a-smoothness-constant-local-sgd",
         "pub-last-iterate-clipped-sgd",
         "pub-heavy-tailed-data-gradient-clipping",
         "pub-last-iterate-convergence-of-adagrad-norm-for-convex-non-smooth-optimization",

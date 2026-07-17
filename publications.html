@@ -66,38 +66,38 @@
         "@type": "ItemList",
         "@id": "https://eduardgorbunov.github.io/publications.html#publication-list",
         "name": "Publication list",
-        "numberOfItems": 74,
+        "numberOfItems": 75,
         "itemListOrder": "https://schema.org/ItemListOrderDescending",
         "itemListElement": [
           {
             "@type": "ListItem",
             "position": 1,
+            "name": "What's in a Smoothness Constant? Tighter Rates for Local SGD with Bounded Second-Order Heterogeneity",
+            "url": "https://eduardgorbunov.github.io/publications.html#pub-whats-in-a-smoothness-constant-local-sgd"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
             "name": "From Optimization to Generalization under Heavy-Tailed Data: The Role of Gradient Clipping",
             "url": "https://eduardgorbunov.github.io/publications.html#pub-heavy-tailed-data-gradient-clipping"
           },
           {
             "@type": "ListItem",
-            "position": 2,
+            "position": 3,
             "name": "General Analysis of LMO-based Optimizers: Beyond Bounded Variance",
             "url": "https://eduardgorbunov.github.io/publications.html#pub-lmo-optimizers-bounded-variance"
           },
           {
             "@type": "ListItem",
-            "position": 3,
+            "position": 4,
             "name": "Accelerated and Stable Convergence with Anchored Generalized Optimistic Method",
             "url": "https://eduardgorbunov.github.io/publications.html#pub-anchored-goma"
           },
           {
             "@type": "ListItem",
-            "position": 4,
+            "position": 5,
             "name": "Last Iterate Convergence of AdaGrad-Norm for Convex Non-Smooth Optimization",
             "url": "https://eduardgorbunov.github.io/publications.html#pub-last-iterate-convergence-of-adagrad-norm-for-convex-non-smooth-optimization"
-          },
-          {
-            "@type": "ListItem",
-            "position": 5,
-            "name": "Byzantine-Robust and Differentially Private Federated Optimization under Weaker Assumptions",
-            "url": "https://eduardgorbunov.github.io/publications.html#pub-byzantine-private-federated-optimization"
           }
         ]
       }
@@ -262,7 +262,7 @@
     </header>
     <section class="eg-publication-overview" id="publication-overview" aria-label="Publication overview" role="list">
       <a class="eg-publication-stat" href="publications.html#publication-list" data-kind="all" data-count-all="true" role="listitem">
-        <strong>74</strong>
+        <strong>75</strong>
         <span>publications</span>
       </a>
       <a class="eg-publication-stat" href="publications.html?type=conference%20paper#publication-list" data-kind="conference" data-count-type="conference paper" role="listitem">
@@ -274,7 +274,7 @@
         <span>journal papers</span>
       </a>
       <a class="eg-publication-stat" href="publications.html?type=arXiv%20preprint#publication-list" data-kind="preprint" data-count-type="arXiv preprint" role="listitem">
-        <strong>7</strong>
+        <strong>8</strong>
         <span>arXiv preprints</span>
       </a>
       <a class="eg-publication-stat" href="publications.html?type=living%20reference%20work%20entry#publication-list" data-kind="reference" data-count-type="living reference work entry" role="listitem">
@@ -401,7 +401,7 @@
     </nav>
     <noscript><p class="eg-publication-filter-summary eg-publication-noscript">Publication filters require JavaScript; the complete publication list remains visible below.</p></noscript>
     <div id="publication-filter-summary" class="eg-publication-filter-summary" role="status" aria-live="polite" aria-atomic="true">No filters applied.</div>
-    <div id="publication-count-status" class="eg-publication-count" role="status" aria-live="polite" aria-atomic="true"><span id="publication-count">74</span> <span id="publication-count-label">publications shown</span></div>
+    <div id="publication-count-status" class="eg-publication-count" role="status" aria-live="polite" aria-atomic="true"><span id="publication-count">75</span> <span id="publication-count-label">publications shown</span></div>
     <div class="eg-publication-legend" aria-label="Publication notation">
       <span><strong>Bold</strong>&nbsp;highlights my name</span>
       <span><sup>*</sup> equal contribution</span>
@@ -415,6 +415,18 @@
       <button type="button" class="eg-abstract-toggle" aria-controls="publication-list" aria-pressed="false">Expand abstracts</button>
     </div>
     <section id="publication-list" class="eg-publication-list" role="list" aria-label="Publication results" aria-describedby="publication-filter-summary publication-count-status">
+      <article class="eg-publication-card" role="listitem" id="pub-whats-in-a-smoothness-constant-local-sgd" aria-labelledby="pub-whats-in-a-smoothness-constant-local-sgd-title" data-type="arXiv preprint" data-tags="stochastic-optimization stochastic-gradient-descent convex-optimization distributed-learning federated-learning local-steps-random-reshuffling">
+  <div class="eg-publication-meta"><span>#75</span><span class="eg-publication-type-badge">arXiv preprint</span><span>July 2026</span></div>
+  <h2 id="pub-whats-in-a-smoothness-constant-local-sgd-title"><a href="https://arxiv.org/pdf/2607.14731" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Open PDF for What's in a Smoothness Constant? Tighter Rates for Local SGD with Bounded Second-Order Heterogeneity">What's in a Smoothness Constant? Tighter Rates for Local SGD with Bounded Second-Order Heterogeneity</a></h2>
+  <p class="eg-publication-authors">Kumar Kshitij Patel, Rustem Islamov, Sebastian U Stich, Aurelien Lucchi, <strong>Eduard Gorbunov</strong>, Lingxiao Wang</p>
+  <p class="eg-publication-venue eg-publication-venue-muted">arXiv preprint</p>
+  <details class="eg-publication-abstract">
+    <summary>Abstract</summary>
+    <p>Local SGD, also known as Federated Averaging, is a widely used distributed optimization algorithm. Although Local SGD often outperforms alternatives such as Mini-batch SGD in practice, theory still only partially explains when and why local updates help under realistic data heterogeneity. Recent work by [Patel et al., 2025] shows that a bounded second-order heterogeneity assumption captures the efficiency of Local SGD for strongly convex objectives, and conjectures that the same principle extends to the general convex setting. In this paper, we prove this conjecture by establishing an improved convergence guarantee for Local SGD on general convex objectives under bounded second-order heterogeneity. We also improve the best-known lower bounds for Local SGD in this setting, showing that our upper bounds are nearly tight. Together, these results provide a sharper, more fine-grained convergence theory for Local SGD. As a further application of our techniques, we provide a lower bound for serial SGD with replacement, showing how second-order heterogeneity captures the impact of rare high-curvature clients.</p>
+  </details>
+  <div class="eg-publication-tags"><span>stochastic optimization</span><span>stochastic gradient descent</span><span>convex optimization</span><span>distributed learning</span><span>federated learning</span><span>local steps/random reshuffling</span></div>
+  <div class="eg-publication-actions"><a href="https://arxiv.org/pdf/2607.14731" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Open PDF for What's in a Smoothness Constant? Tighter Rates for Local SGD with Bounded Second-Order Heterogeneity">PDF</a><a href="https://arxiv.org/abs/2607.14731" target="_blank" rel="noopener noreferrer" aria-label="Open arXiv for What's in a Smoothness Constant? Tighter Rates for Local SGD with Bounded Second-Order Heterogeneity">arXiv</a></div>
+</article>
       <article class="eg-publication-card" role="listitem" id="pub-heavy-tailed-data-gradient-clipping" aria-labelledby="pub-heavy-tailed-data-gradient-clipping-title" data-type="conference paper" data-tags="stochastic-optimization stochastic-gradient-descent convex-optimization heavy-tailed-noise gradient-clipping">
   <div class="eg-publication-meta"><span>#74</span><span class="eg-publication-type-badge">conference paper</span><span>ICML 2026</span></div>
   <h2 id="pub-heavy-tailed-data-gradient-clipping-title"><a href="https://openreview.net/forum?id=FGHVEJ2Jz9" target="_blank" rel="noopener noreferrer" aria-label="Open paper page for From Optimization to Generalization under Heavy-Tailed Data: The Role of Gradient Clipping">From Optimization to Generalization under Heavy-Tailed Data: The Role of Gradient Clipping</a></h2>

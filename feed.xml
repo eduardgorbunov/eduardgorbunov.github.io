@@ -9,8 +9,33 @@
     <copyright>Copyright 2026 Eduard Gorbunov</copyright>
     <managingEditor>eduard.gorbunov@mbzuai.ac.ae (Eduard Gorbunov)</managingEditor>
     <webMaster>eduard.gorbunov@mbzuai.ac.ae (Eduard Gorbunov)</webMaster>
-    <lastBuildDate>Sun, 05 Jul 2026 00:00:00 +0400</lastBuildDate>
+    <lastBuildDate>Fri, 17 Jul 2026 00:00:00 +0400</lastBuildDate>
     <ttl>1440</ttl>
+
+    <item>
+      <title>New Preprint on Local SGD Under Second-Order Heterogeneity</title>
+      <link>https://eduardgorbunov.github.io/#news-2026-local-sgd-second-order-heterogeneity</link>
+      <guid isPermaLink="true">https://eduardgorbunov.github.io/#news-2026-local-sgd-second-order-heterogeneity</guid>
+      <pubDate>Fri, 17 Jul 2026 00:00:00 +0400</pubDate>
+      <category>Preprint</category>
+      <category>Local SGD</category>
+      <category>Federated learning</category>
+      <description><![CDATA[
+        <p>Our new preprint, <a href="https://arxiv.org/abs/2607.14731"><em>What's in a Smoothness Constant? Tighter Rates for Local SGD with Bounded Second-Order Heterogeneity</em></a>, establishes tighter convergence guarantees and nearly matching lower bounds for Local SGD on general convex objectives under bounded second-order heterogeneity.</p>
+      ]]></description>
+    </item>
+
+    <item>
+      <title>Best Application Paper Award at MOTOR 2026</title>
+      <link>https://eduardgorbunov.github.io/#news-2026-motor-best-application-paper-award</link>
+      <guid isPermaLink="true">https://eduardgorbunov.github.io/#news-2026-motor-best-application-paper-award</guid>
+      <pubDate>Tue, 14 Jul 2026 00:00:00 +0400</pubDate>
+      <category>Award</category>
+      <category>MOTOR 2026</category>
+      <description><![CDATA[
+        <p>Our paper <em>Last Iterate Convergence of AdaGrad-Norm for Convex Non-Smooth Optimization</em> received the Best Application Paper Award at MOTOR 2026.</p>
+      ]]></description>
+    </item>
 
     <item>
       <title>2026 conference acceptances</title>

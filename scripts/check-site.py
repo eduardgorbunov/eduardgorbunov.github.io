@@ -2575,6 +2575,7 @@ def check_homepage_news() -> list[str]:
         "New Preprint on Local SGD Under Second-Order Heterogeneity",
         "https://arxiv.org/abs/2607.14731",
         "publications.html#pub-whats-in-a-smoothness-constant-local-sgd",
+        '<a href="https://conference.icc.ru/event/9/" target="_blank" rel="noopener noreferrer">Conference website</a>',
         "2026 conference acceptances",
         "My collaborators and I had several papers accepted at 2026 conferences: one at AISTATS, one at ICLR, five at ICML, two at CPAL, and two at UAI.",
         "publications.html#pub-differentially-private-clipped-sgd",

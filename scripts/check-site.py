@@ -2908,6 +2908,13 @@ def check_publications() -> list[str]:
     )
     if required_oral_distinction not in page_text:
         errors.append("publications.html: ICML 2024 oral paper should highlight its top-1.5% distinction")
+    required_spotlight_distinctions = [
+        '<p class="eg-publication-venue eg-publication-distinction"><span>NeurIPS 2024</span><strong>Spotlight</strong></p>',
+        '<p class="eg-publication-venue eg-publication-distinction"><span>NeurIPS 2020</span><strong>Spotlight</strong></p>',
+    ]
+    for distinction in required_spotlight_distinctions:
+        if distinction not in page_text:
+            errors.append(f"publications.html: missing NeurIPS spotlight distinction {distinction!r}")
     if 'class="eg-profile-links eg-publication-shortcuts"' in page_text:
         errors.append("publications.html: publication page should avoid redundant shortcut buttons")
     if '<a href="#major-ai-conferences">AI conference counts</a>' in page_text:

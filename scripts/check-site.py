@@ -2902,6 +2902,12 @@ def check_publications() -> list[str]:
     )
     if required_award_action not in page_text:
         errors.append("publications.html: MOTOR 2026 publication should link its Best Application Paper Award")
+    required_oral_distinction = (
+        '<p class="eg-publication-venue eg-publication-distinction">'
+        '<span>ICML 2024 oral</span><strong>Top 1.5% of all submissions</strong></p>'
+    )
+    if required_oral_distinction not in page_text:
+        errors.append("publications.html: ICML 2024 oral paper should highlight its top-1.5% distinction")
     if 'class="eg-profile-links eg-publication-shortcuts"' in page_text:
         errors.append("publications.html: publication page should avoid redundant shortcut buttons")
     if '<a href="#major-ai-conferences">AI conference counts</a>' in page_text:

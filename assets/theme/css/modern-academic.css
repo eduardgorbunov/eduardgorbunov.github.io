@@ -2356,6 +2356,35 @@ main > section[id],
   font-weight: 800;
 }
 
+.eg-publication-venue.eg-publication-distinction {
+  align-items: center;
+  background: var(--eg-gold-soft);
+  border: 1px solid color-mix(in srgb, var(--eg-gold) 28%, transparent);
+  border-left: 4px solid var(--eg-gold);
+  border-radius: 4px;
+  color: var(--eg-gold);
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  margin: 1px 0 8px;
+  max-width: 100%;
+  padding: 5px 9px;
+}
+
+.eg-publication-distinction span {
+  font-weight: 900;
+}
+
+.eg-publication-distinction strong {
+  border-left: 1px solid color-mix(in srgb, var(--eg-gold) 30%, transparent);
+  color: var(--eg-gold);
+  font-size: 0.75rem;
+  font-weight: 900;
+  line-height: 1.25;
+  padding-left: 8px;
+  text-transform: uppercase;
+}
+
 .eg-publication-venue-muted {
   color: var(--eg-muted);
 }

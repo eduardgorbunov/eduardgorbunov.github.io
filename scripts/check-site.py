@@ -3267,7 +3267,8 @@ def check_publications() -> list[str]:
         "federated-learning": "Federated learning",
         "communication-compression": "Communication compression",
         "decentralized-optimization": "Decentralized optimization",
-        "local-steps-random-reshuffling": "Local steps/random reshuffling",
+        "local-steps": "Local steps",
+        "random-reshuffling": "Random reshuffling",
         "low-rank-fine-tuning": "Low-rank fine-tuning",
         "high-probability-bounds": "High-probability bounds",
         "heavy-tailed-noise": "Heavy-tailed noise",
@@ -3287,6 +3288,8 @@ def check_publications() -> list[str]:
         option_markup = f'<option value="{tag_value}">{tag_label}</option>'
         if option_markup not in page_text:
             errors.append(f"publications.html: topic tag option should be labelled {tag_label!r}")
+    if "local-steps-random-reshuffling" in page_text or "Local steps/random reshuffling" in page_text:
+        errors.append("publications.html: local steps and random reshuffling should remain separate topic tags")
     if parser.tag_buttons:
         errors.append("publications.html: quick topic buttons should stay removed to keep the filter card compact")
     if 'class="eg-tag-controls"' in page_text or "Popular topic tag filters" in page_text:

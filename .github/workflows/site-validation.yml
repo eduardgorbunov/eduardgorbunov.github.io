@@ -1,0 +1,57 @@
+name: Site validation
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install schema validation tools
+        run: python3 -m pip install --disable-pip-version-check -r requirements-automation.txt
+
+      - name: Validate publication JSON Schema
+        run: python3 scripts/validate-publications-schema.py
+
+      - name: Validate reviewed publication data
+        run: python3 scripts/publication_assistant.py validate --require-approved --generated
+
+      - name: Run publication assistant tests
+        run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+
+      - name: Run static site checks
+        run: python3 scripts/check-site.py
+
+      - name: Check JavaScript syntax
+        run: |
+          node --check assets/theme/js/script.js
+          node --check assets/theme/js/publication-filters.js
+          node --check assets/theme/js/activity-filters.js
+          node --check scripts/capture-publication-previews.cjs
+
+      - name: Verify generated files are current
+        run: |
+          python3 scripts/sync-site.py
+          python3 scripts/publication_assistant.py generate
+          git diff --exit-code -- .
+          git diff --check

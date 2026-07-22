@@ -1,0 +1,44 @@
+[
+  {
+    "title": "What's in a Smoothness Constant? Tighter Rates for Local SGD with Bounded Second-Order Heterogeneity",
+    "authors": [
+      "Kumar Kshitij Patel",
+      "Rustem Islamov",
+      "Sebastian U Stich",
+      "Aurelien Lucchi",
+      "Eduard Gorbunov",
+      "Lingxiao Wang"
+    ],
+    "abstract": "Local SGD is a distributed optimization algorithm whose behavior depends on data heterogeneity. This fixture mirrors a current record so that the discovery report can test stable arXiv matching without network access or any change to the reviewed website.",
+    "published_date": "2026-07-17",
+    "publication_type": "arXiv preprint",
+    "venue": "arXiv preprint",
+    "arxiv": "2607.14731",
+    "links": {
+      "arxiv": "https://arxiv.org/abs/2607.14731",
+      "pdf": "https://arxiv.org/pdf/2607.14731"
+    },
+    "sources": {
+      "record": "https://arxiv.org/abs/2607.14731"
+    }
+  },
+  {
+    "title": "A Synthetic New Paper for Offline Review Testing",
+    "authors": [
+      "Example Student",
+      "Eduard Gorbunov"
+    ],
+    "abstract": "This deliberately synthetic fixture tests the review workflow for a new stochastic optimization publication. It contains enough substantive metadata to exercise canonical validation, topic suggestions, publication rendering, provenance reporting, and the explicit human approval boundary without querying an external service.",
+    "published_date": "2026-07-22",
+    "publication_type": "arXiv preprint",
+    "venue": "arXiv preprint",
+    "arxiv": "2607.99999",
+    "links": {
+      "arxiv": "https://arxiv.org/abs/2607.99999",
+      "pdf": "https://arxiv.org/pdf/2607.99999"
+    },
+    "sources": {
+      "record": "https://arxiv.org/abs/2607.99999"
+    }
+  }
+]

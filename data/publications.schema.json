@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eduardgorbunov.github.io/data/publications.schema.json",
+  "title": "Eduard Gorbunov website publications",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "author",
+    "protectedFields",
+    "publicationTypes",
+    "markerTypes",
+    "tagGroups",
+    "majorVenues",
+    "publications"
+  ],
+  "properties": {
+    "$schema": { "const": "./publications.schema.json" },
+    "schemaVersion": { "const": 1 },
+    "generatedFrom": { "type": "string" },
+    "createdAt": { "type": "string", "format": "date" },
+    "author": {
+      "type": "object",
+      "required": ["name", "email", "googleScholar", "arxivQuery", "openAlexAuthorId", "orcid"],
+      "properties": {
+        "name": { "const": "Eduard Gorbunov" },
+        "email": { "type": "string" },
+        "googleScholar": { "type": "string", "format": "uri" },
+        "arxivQuery": { "type": "string" },
+        "openAlexAuthorId": { "type": "string", "pattern": "^A[0-9]+$" },
+        "orcid": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9X]{4}$" }
+      },
+      "additionalProperties": false
+    },
+    "protectedFields": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "publicationTypes": { "$ref": "#/$defs/optionList" },
+    "markerTypes": { "$ref": "#/$defs/optionList" },
+    "tagGroups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "options"],
+        "properties": {
+          "label": { "type": "string" },
+          "options": { "$ref": "#/$defs/optionList" }
+        }
+      }
+    },
+    "majorVenues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "accent"],
+        "properties": {
+          "name": { "type": "string" },
+          "accent": { "enum": ["blue", "teal", "gold", "rose"] }
+        }
+      }
+    },
+    "publications": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/publication" }
+    }
+  },
+  "$defs": {
+    "optionList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["value", "label"],
+        "properties": {
+          "value": { "type": "string" },
+          "label": { "type": "string" },
+          "kind": { "type": "string" },
+          "short": { "type": "string" }
+        }
+      }
+    },
+    "link": {
+      "type": "object",
+      "required": ["href"],
+      "properties": {
+        "label": { "type": "string" },
+        "href": { "type": "string", "minLength": 1 },
+        "type": { "type": "string" },
+        "target": { "type": "string" },
+        "rel": { "type": "string" },
+        "ariaLabel": { "type": "string" },
+        "class": { "type": "string" }
+      }
+    },
+    "author": {
+      "type": "object",
+      "required": ["name", "isMe", "markers", "relations"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "isMe": { "type": "boolean" },
+        "markers": { "type": "array", "items": { "type": "string" } },
+        "relations": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "publication": {
+      "type": "object",
+      "required": [
+        "id",
+        "number",
+        "type",
+        "title",
+        "titleLink",
+        "authors",
+        "venue",
+        "abstract",
+        "tags",
+        "actions",
+        "identifiers",
+        "authorRelations",
+        "contributionNotes",
+        "distinctions",
+        "representativeSelections",
+        "news",
+        "review",
+        "provenance",
+        "pendingChanges"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^pub-" },
+        "number": { "type": "integer", "minimum": 1 },
+        "type": { "type": "string" },
+        "typeLabel": { "type": "string" },
+        "dateLabel": { "type": "string" },
+        "onlineDate": { "type": "string" },
+        "title": { "type": "string", "minLength": 1 },
+        "titleHtml": { "type": "string" },
+        "titleLink": { "$ref": "#/$defs/link" },
+        "authors": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/author" } },
+        "authorsHtml": { "type": "string" },
+        "venue": { "type": "string" },
+        "venueHtml": { "type": "string" },
+        "venueClasses": { "type": "array", "items": { "type": "string" } },
+        "abstract": { "type": "string", "minLength": 1 },
+        "abstractHtml": { "type": "string" },
+        "noteHtml": { "type": "string" },
+        "tags": { "type": "array", "minItems": 1, "items": { "type": "string" }, "uniqueItems": true },
+        "tagLabels": { "type": "array", "items": { "type": "string" } },
+        "actions": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/link" } },
+        "identifiers": {
+          "type": "object",
+          "required": ["doi", "arxiv", "openalex", "orcid"],
+          "properties": {
+            "doi": { "type": "string" },
+            "arxiv": { "type": "string" },
+            "openalex": { "type": "string" },
+            "orcid": { "type": "string" }
+          }
+        },
+        "authorRelations": { "type": "array", "items": { "type": "string" } },
+        "contributionNotes": { "type": "array" },
+        "distinctions": { "type": "array" },
+        "representativeSelections": { "type": "array" },
+        "news": {
+          "type": "object",
+          "required": ["enabled", "customText"],
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "customText": { "type": "string" }
+          }
+        },
+        "displayOverrides": { "type": "array" },
+        "review": {
+          "type": "object",
+          "required": ["status", "lastReviewed", "source"],
+          "properties": {
+            "status": { "enum": ["approved", "needs-review"] },
+            "lastReviewed": { "type": "string" },
+            "source": { "type": "string" }
+          }
+        },
+        "provenance": { "type": "object", "minProperties": 1 },
+        "pendingChanges": { "type": "object" },
+        "sourceHtmlTags": { "type": "array", "items": { "type": "string" } },
+        "sourceIndent": { "type": "string" }
+      }
+    }
+  }
+}

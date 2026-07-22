@@ -1,0 +1,130 @@
+name: Propose publication updates
+
+on:
+  schedule:
+    - cron: "0 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: publication-sync
+  cancel-in-progress: false
+
+env:
+  AUTOMATION_BRANCH: automation/publication-sync
+  GH_TOKEN: ${{ github.token }}
+
+jobs:
+  propose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install schema validation tools
+        run: python3 -m pip install --disable-pip-version-check -r requirements-automation.txt
+
+      - name: Check for an existing review pull request
+        id: existing
+        run: |
+          count="$(gh pr list --state open --head "$AUTOMATION_BRANCH" --json number --jq 'length')"
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+          if [ "$count" -gt 0 ]; then
+            echo "An open publication review already exists; preserving its human edits."
+          fi
+
+      - name: Discover publication changes
+        if: steps.existing.outputs.count == '0'
+        env:
+          OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
+          ORCID_ACCESS_TOKEN: ${{ secrets.ORCID_ACCESS_TOKEN }}
+        run: python3 scripts/publication_assistant.py discover --apply --only-changes
+
+      - name: Detect reviewable changes
+        if: steps.existing.outputs.count == '0'
+        id: changes
+        run: |
+          proposal_count="$(jq -r '.proposalCount // 0' automation/changed-publications.json)"
+          if ! git diff --quiet -- data/publications.json publications.html || [ "$proposal_count" -gt 0 ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Validate proposal without bypassing protected fields
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          PUBLICATION_REVIEW_MODE: proposal
+        run: |
+          python3 scripts/validate-publications-schema.py
+          python3 scripts/publication_assistant.py validate --generated
+          python3 -m unittest discover -s tests -p 'test_*.py' -v
+          python3 scripts/check-site.py
+          git diff --check
+
+      - name: Set up pnpm
+        if: steps.changes.outputs.changed == 'true'
+        uses: pnpm/action-setup@v4
+        with:
+          version: "11.9.0"
+
+      - name: Set up Node.js
+        if: steps.changes.outputs.changed == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: pnpm
+
+      - name: Install visual review tools
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm exec playwright install --with-deps chromium
+
+      - name: Capture desktop and mobile review screenshots
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          python3 -m http.server 8000 --bind 127.0.0.1 > /tmp/publication-preview-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8000/publications.html > /dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          pnpm run screenshots
+
+      - name: Upload publication review screenshots
+        if: steps.changes.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: publication-review-screenshots
+          path: .automation-screenshots/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Open a draft review pull request
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$AUTOMATION_BRANCH"
+          git add data/publications.json publications.html
+          git add -f automation/publication-review.md automation/publication-news-draft.md automation/changed-publications.json
+          git commit -m "Propose publication metadata updates"
+          git fetch origin "$AUTOMATION_BRANCH:refs/remotes/origin/$AUTOMATION_BRANCH" || true
+          git push --force-with-lease origin "$AUTOMATION_BRANCH"
+          pr_url="$(gh pr create --draft --title 'Review publication metadata updates' --body-file automation/publication-review.md --base master --head "$AUTOMATION_BRANCH")"
+          gh pr comment "$pr_url" --body "Desktop and mobile previews are available in the **publication-review-screenshots** artifact for [this workflow run]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID). The pull request remains a draft until every proposed record has been reviewed and explicitly approved."

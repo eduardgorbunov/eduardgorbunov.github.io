@@ -1,0 +1,12 @@
+{
+  "name": "eduard-gorbunov-academic-website",
+  "private": true,
+  "packageManager": "pnpm@11.9.0",
+  "description": "Visual review tooling for the static academic website",
+  "scripts": {
+    "screenshots": "node scripts/capture-publication-previews.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.61.1"
+  }
+}

@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 from collections import Counter
 from datetime import datetime
@@ -18,6 +19,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE_URL = "https://eduardgorbunov.github.io"
 SITE_CONFIG = json.loads((ROOT / "site.config.json").read_text(encoding="utf-8"))
 ASSET_VERSIONS = SITE_CONFIG["assetVersions"]
+
+import publication_assistant  # noqa: E402
 
 PRIMARY_STYLESHEET = "assets/theme/css/modern-academic.css"
 PRIMARY_STYLESHEET_VERSION = ASSET_VERSIONS["stylesheet"]
@@ -88,6 +91,11 @@ EXPECTED_GITIGNORE_PATTERNS = [
     "__pycache__/",
     ".pytest_cache/",
     "node_modules/",
+    ".automation-screenshots/",
+    ".publication-cache/",
+    "automation/publication-review.md",
+    "automation/publication-news-draft.md",
+    "automation/changed-publications.json",
 ]
 EXPECTED_FOOTER_LINKS = [
     ("Email", "mailto:eduard.gorbunov@mbzuai.ac.ae"),
@@ -285,6 +293,15 @@ EXPECTED_MSC_STUDENTS = [
         "datetime": "2025-09",
         "profile": "https://www.linkedin.com/in/viktor-kovalchuk-147831325/",
         "co_supervisor": "https://mtakac.com/",
+    },
+]
+EXPECTED_RESEARCH_STAFF = [
+    {
+        "name": "Ahmed El Bajdali",
+        "role": "Research Engineer",
+        "period": "2025/11 - present",
+        "datetime": "2025-11",
+        "profile": "https://www.linkedin.com/in/ahmed-el-bajdali-a158962a3/?locale=fr",
     },
 ]
 TEAM_DISALLOWED_PATTERNS = (
@@ -2875,12 +2892,22 @@ def check_publications() -> list[str]:
         '"name": "Publication list"',
         '"itemListOrder": "https://schema.org/ItemListOrderDescending"',
         '"itemListElement": [',
-        '"url": "https://eduardgorbunov.github.io/publications.html#pub-whats-in-a-smoothness-constant-local-sgd"',
-        '"url": "https://eduardgorbunov.github.io/publications.html#pub-heavy-tailed-data-gradient-clipping"',
-        '"url": "https://eduardgorbunov.github.io/publications.html#pub-lmo-optimizers-bounded-variance"',
-        '"url": "https://eduardgorbunov.github.io/publications.html#pub-anchored-goma"',
-        '"url": "https://eduardgorbunov.github.io/publications.html#pub-last-iterate-convergence-of-adagrad-norm-for-convex-non-smooth-optimization"',
     ]
+    try:
+        canonical_publications = publication_assistant.read_json(
+            ROOT / "data" / "publications.json"
+        ).get("publications", [])
+    except publication_assistant.PublicationAssistantError:
+        canonical_publications = []
+    canonical_publications = sorted(
+        canonical_publications,
+        key=lambda record: int(record.get("number", 0)),
+        reverse=True,
+    )
+    required_publication_schema.extend(
+        f'"url": "{SITE_URL}/publications.html#{record["id"]}"'
+        for record in canonical_publications[:5]
+    )
     for snippet in required_publication_schema:
         if snippet not in page_text:
             errors.append(f"publications.html: structured metadata should include {snippet!r}")
@@ -4087,13 +4114,15 @@ def check_team() -> list[str]:
         errors.append("team.html: opportunities section should be labelled by opportunities-heading")
     if 'class="eg-profile-links eg-team-shortcuts"' in page_text or 'class="eg-team-overview"' in page_text:
         errors.append("team.html: team page should avoid extra shortcut and overview cards")
+    if 'class="eg-team-section" id="research-staff" aria-labelledby="research-staff-heading"' not in page_text:
+        errors.append("team.html: research staff section should expose the research-staff anchor")
     if 'class="eg-team-section" id="msc-students" aria-labelledby="msc-students-heading"' not in page_text:
         errors.append("team.html: MSc students section should expose the msc-students anchor")
     if 'class="eg-team-section eg-opportunities-section" id="opportunities"' not in page_text:
         errors.append("team.html: opportunities section should use the refined opportunities layout")
     if '<ul class="eg-opportunity-list" role="list" aria-label="Research opportunities">' not in page_text:
         errors.append("team.html: opportunities should use a compact list instead of cards")
-    expected_student_list_labels = ["MSc students", "Visiting students"]
+    expected_student_list_labels = ["Research staff", "MSc students", "Visiting students"]
     actual_student_list_labels = [attrs.get("aria-label", "") for attrs in parser.student_lists]
     if actual_student_list_labels != expected_student_list_labels:
         errors.append(
@@ -4143,19 +4172,67 @@ def check_team() -> list[str]:
         "<title>Research team | Eduard Gorbunov</title>",
         '"@type": "CollectionPage"',
         '"@type": "ItemList"',
+        '"@id": "https://eduardgorbunov.github.io/team.html#research-staff"',
+        '"name": "Research staff"',
         '"@id": "https://eduardgorbunov.github.io/team.html#msc-students"',
         '"name": "MSc students"',
         '"itemListOrder": "https://schema.org/ItemListOrderAscending"',
         '<h1 id="team-heading">Research team</h1>',
-        "Eduard Gorbunov's research team, MSc students, and supervision opportunities at MBZUAI.",
+        "Eduard Gorbunov's research staff, students, and supervision opportunities at MBZUAI.",
     ]
     for phrase in required_page_phrases:
         if phrase not in page_text:
             errors.append(f"team.html: page framing should include {phrase!r}")
 
+    staff_count = len(EXPECTED_RESEARCH_STAFF)
+    msc_count = len(EXPECTED_MSC_STUDENTS)
+    research_staff = parser.students[:staff_count]
+    msc_students = parser.students[staff_count:staff_count + msc_count]
+    visiting_students = parser.students[staff_count + msc_count:]
+
+    actual_staff_names = [str(member.get("name", "")) for member in research_staff]
+    expected_staff_names = [member["name"] for member in EXPECTED_RESEARCH_STAFF]
+    if actual_staff_names != expected_staff_names:
+        errors.append(f"team.html: research staff should be {expected_staff_names!r}, found {actual_staff_names!r}")
+    for index, (expected, actual) in enumerate(zip(EXPECTED_RESEARCH_STAFF, research_staff), start=1):
+        name = expected["name"]
+        links = set(str(link) for link in actual.get("links", []))
+        meta = dict(actual.get("meta", {}))
+        expected_card_id = "team-member-" + re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+        expected_heading_id = f"{expected_card_id}-heading"
+        required_staff_schema = [
+            '"numberOfItems": 1',
+            f'"position": {index}',
+            f'"name": "{name}"',
+            f'"url": "https://eduardgorbunov.github.io/team.html#{expected_card_id}"',
+            f'"sameAs": "{expected["profile"]}"',
+            f'"jobTitle": "{expected["role"]}"',
+            f'"description": "{expected["role"]}, {expected["period"]}."',
+        ]
+        staff_metadata = page_text.split(
+            '"@id": "https://eduardgorbunov.github.io/team.html#research-staff"', 1
+        )[-1].split('"@id": "https://eduardgorbunov.github.io/team.html#msc-students"', 1)[0]
+        for snippet in required_staff_schema:
+            if snippet not in staff_metadata:
+                errors.append(f"team.html: research staff metadata for {name} should include {snippet!r}")
+        if actual.get("role") != expected["role"]:
+            errors.append(f"team.html: {name} should have role {expected['role']!r}")
+        if actual.get("id") != expected_card_id:
+            errors.append(f"team.html: {name} card should use id {expected_card_id!r}")
+        if actual.get("heading_id") != expected_heading_id:
+            errors.append(f"team.html: {name} heading should use id {expected_heading_id!r}")
+        if actual.get("labelledby") != expected_heading_id:
+            errors.append(f"team.html: {name} card should be labelled by its heading")
+        if actual.get("list_role") != "listitem":
+            errors.append(f"team.html: {name} card should use role='listitem'")
+        if meta.get("Period") != expected["period"]:
+            errors.append(f"team.html: {name} should list period {expected['period']!r}")
+        if list(actual.get("time_datetimes", [])) != [expected["datetime"]]:
+            errors.append(f"team.html: {name} should use datetime {expected['datetime']!r}")
+        if expected["profile"] not in links:
+            errors.append(f"team.html: {name} is missing profile link {expected['profile']!r}")
+
     expected_names = [student["name"] for student in EXPECTED_MSC_STUDENTS]
-    msc_students = parser.students[:len(EXPECTED_MSC_STUDENTS)]
-    visiting_students = parser.students[len(EXPECTED_MSC_STUDENTS):]
     actual_names = [str(student.get("name", "")) for student in msc_students]
     expected_item_count = f'"numberOfItems": {len(EXPECTED_MSC_STUDENTS)}'
     if expected_item_count not in page_text:
@@ -5290,6 +5367,10 @@ def check_support_files() -> list[str]:
             "node --check assets/theme/js/publication-filters.js",
             "node --check assets/theme/js/activity-filters.js",
             "strict layout-tag nesting",
+            "data/publications.json",
+            "python3 scripts/publication_assistant.py discover --only-changes",
+            "Google Scholar is a manual comparison link",
+            ".github/workflows/publication-sync.yml",
         ]
         for phrase in required_readme_phrases:
             if phrase not in readme_text:
@@ -5297,6 +5378,23 @@ def check_support_files() -> list[str]:
         for phrase in ("Mobirise", "mbr-", "cid-", "data-app-modern-menu"):
             if phrase in readme_text:
                 errors.append(f"{README_FILE}: maintenance notes should avoid old-builder marker {phrase!r}")
+
+    automation_files = [
+        "data/publications.json",
+        "data/publications.schema.json",
+        "package.json",
+        "pnpm-lock.yaml",
+        "requirements-automation.txt",
+        "scripts/publication_assistant.py",
+        "scripts/validate-publications-schema.py",
+        "scripts/capture-publication-previews.cjs",
+        "tests/test_publication_assistant.py",
+        ".github/workflows/site-validation.yml",
+        ".github/workflows/publication-sync.yml",
+    ]
+    for relative_path in automation_files:
+        if not (ROOT / relative_path).is_file():
+            errors.append(f"{relative_path}: missing publication automation support file")
 
     for page in sorted(ROOT.glob("*.html")):
         page_text = page.read_text(encoding="utf-8", errors="ignore")
@@ -5420,12 +5518,40 @@ def check_support_files() -> list[str]:
     return errors
 
 
+def check_publication_automation() -> list[str]:
+    """Keep canonical publication data and rendered HTML in lockstep."""
+    errors: list[str] = []
+    data_file = ROOT / "data" / "publications.json"
+    if not data_file.exists():
+        return ["data/publications.json: missing canonical publication data"]
+    try:
+        data = publication_assistant.read_json(data_file)
+    except publication_assistant.PublicationAssistantError as exc:
+        return [f"data/publications.json: {exc}"]
+
+    require_approved = os.environ.get("PUBLICATION_REVIEW_MODE") != "proposal"
+    for error in publication_assistant.validate_data(data, require_approved=require_approved):
+        errors.append(f"data/publications.json: {error}")
+    try:
+        matches, _ = publication_assistant.check_generated_page(data)
+    except publication_assistant.PublicationAssistantError as exc:
+        errors.append(f"publications.html: deterministic publication rendering failed: {exc}")
+    else:
+        if not matches:
+            errors.append(
+                "publications.html: run `python3 scripts/publication_assistant.py generate` "
+                "after editing data/publications.json"
+            )
+    return errors
+
+
 def main() -> int:
     errors = (
         check_template_cleanup()
         + check_site()
         + check_homepage_news()
         + check_publications()
+        + check_publication_automation()
         + check_activities()
         + check_research()
         + check_about()

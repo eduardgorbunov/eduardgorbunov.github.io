@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import json
-import os
 import re
 from collections import Counter
 from datetime import datetime
@@ -19,8 +18,6 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE_URL = "https://eduardgorbunov.github.io"
 SITE_CONFIG = json.loads((ROOT / "site.config.json").read_text(encoding="utf-8"))
 ASSET_VERSIONS = SITE_CONFIG["assetVersions"]
-
-import publication_assistant  # noqa: E402
 
 PRIMARY_STYLESHEET = "assets/theme/css/modern-academic.css"
 PRIMARY_STYLESHEET_VERSION = ASSET_VERSIONS["stylesheet"]
@@ -97,11 +94,6 @@ EXPECTED_GITIGNORE_PATTERNS = [
     "__pycache__/",
     ".pytest_cache/",
     "node_modules/",
-    ".automation-screenshots/",
-    ".publication-cache/",
-    "automation/publication-review.md",
-    "automation/publication-news-draft.md",
-    "automation/changed-publications.json",
 ]
 EXPECTED_FOOTER_LINKS = [
     ("Email", "mailto:eduard.gorbunov@mbzuai.ac.ae"),
@@ -2915,20 +2907,10 @@ def check_publications() -> list[str]:
         '"itemListOrder": "https://schema.org/ItemListOrderDescending"',
         '"itemListElement": [',
     ]
-    try:
-        canonical_publications = publication_assistant.read_json(
-            ROOT / "data" / "publications.json"
-        ).get("publications", [])
-    except publication_assistant.PublicationAssistantError:
-        canonical_publications = []
-    canonical_publications = sorted(
-        canonical_publications,
-        key=lambda record: int(record.get("number", 0)),
-        reverse=True,
-    )
     required_publication_schema.extend(
-        f'"url": "{SITE_URL}/publications.html#{record["id"]}"'
-        for record in canonical_publications[:5]
+        f'"url": "{SITE_URL}/publications.html#{card["id"]}"'
+        for card in parser.cards[:5]
+        if card["id"]
     )
     for snippet in required_publication_schema:
         if snippet not in page_text:
@@ -5396,10 +5378,6 @@ def check_support_files() -> list[str]:
             "node --check assets/theme/js/publication-filters.js",
             "node --check assets/theme/js/activity-filters.js",
             "strict layout-tag nesting",
-            "data/publications.json",
-            "python3 scripts/publication_assistant.py discover --only-changes",
-            "Google Scholar is a manual comparison link",
-            ".github/workflows/publication-sync.yml",
         ]
         for phrase in required_readme_phrases:
             if phrase not in readme_text:
@@ -5407,23 +5385,6 @@ def check_support_files() -> list[str]:
         for phrase in ("Mobirise", "mbr-", "cid-", "data-app-modern-menu"):
             if phrase in readme_text:
                 errors.append(f"{README_FILE}: maintenance notes should avoid old-builder marker {phrase!r}")
-
-    automation_files = [
-        "data/publications.json",
-        "data/publications.schema.json",
-        "package.json",
-        "pnpm-lock.yaml",
-        "requirements-automation.txt",
-        "scripts/publication_assistant.py",
-        "scripts/validate-publications-schema.py",
-        "scripts/capture-publication-previews.cjs",
-        "tests/test_publication_assistant.py",
-        ".github/workflows/site-validation.yml",
-        ".github/workflows/publication-sync.yml",
-    ]
-    for relative_path in automation_files:
-        if not (ROOT / relative_path).is_file():
-            errors.append(f"{relative_path}: missing publication automation support file")
 
     for page in sorted(ROOT.glob("*.html")):
         page_text = page.read_text(encoding="utf-8", errors="ignore")
@@ -5548,40 +5509,12 @@ def check_support_files() -> list[str]:
     return errors
 
 
-def check_publication_automation() -> list[str]:
-    """Keep canonical publication data and rendered HTML in lockstep."""
-    errors: list[str] = []
-    data_file = ROOT / "data" / "publications.json"
-    if not data_file.exists():
-        return ["data/publications.json: missing canonical publication data"]
-    try:
-        data = publication_assistant.read_json(data_file)
-    except publication_assistant.PublicationAssistantError as exc:
-        return [f"data/publications.json: {exc}"]
-
-    require_approved = os.environ.get("PUBLICATION_REVIEW_MODE") != "proposal"
-    for error in publication_assistant.validate_data(data, require_approved=require_approved):
-        errors.append(f"data/publications.json: {error}")
-    try:
-        matches, _ = publication_assistant.check_generated_page(data)
-    except publication_assistant.PublicationAssistantError as exc:
-        errors.append(f"publications.html: deterministic publication rendering failed: {exc}")
-    else:
-        if not matches:
-            errors.append(
-                "publications.html: run `python3 scripts/publication_assistant.py generate` "
-                "after editing data/publications.json"
-            )
-    return errors
-
-
 def main() -> int:
     errors = (
         check_template_cleanup()
         + check_site()
         + check_homepage_news()
         + check_publications()
-        + check_publication_automation()
         + check_activities()
         + check_research()
         + check_about()

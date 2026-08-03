@@ -75,8 +75,14 @@ FOOTER_UPDATED_TEXT = (
     f'<p class="eg-footer-note">Last updated <time datetime="{SITEMAP_LASTMOD}">'
     f'{_LAST_UPDATED_LABEL}</time>.</p>'
 )
-FOOTER_ROLE_TEXT = '<span>Assistant Professor, Department of Statistics and Data Science, MBZUAI</span>'
-OLD_FOOTER_ROLE_TEXT = '<span>Assistant Professor of Statistics and Data Science, MBZUAI</span>'
+FOOTER_ROLE_TEXT = (
+    '<span>Assistant Professor of Statistics and Data Science, '
+    'Division of Computing and Mathematical Sciences, MBZUAI</span>'
+)
+STALE_FOOTER_ROLE_TEXTS = (
+    '<span>Assistant Professor, Department of Statistics and Data Science, MBZUAI</span>',
+    '<span>Assistant Professor of Statistics and Data Science, MBZUAI</span>',
+)
 NOJEKYLL_MARKER = ".nojekyll"
 README_FILE = "README.md"
 GITIGNORE_FILE = ".gitignore"
@@ -202,7 +208,7 @@ EXPECTED_SIDEBAR_PROFILE_LINKS = [
 ]
 EXPECTED_SIDEBAR_AFFILIATION = (
     '<p class="eg-sidebar-affiliation"><span>MBZUAI</span>'
-    '<span>Statistics and Data Science</span></p>'
+    '<span>Division of Computing and Mathematical Sciences</span></p>'
 )
 EXPECTED_SIDEBAR_TOPIC_LINKS = [
     {
@@ -2446,6 +2452,9 @@ def check_site() -> list[str]:
             person_identity_complete = False
             for node in person_nodes:
                 affiliation = node.get("affiliation")
+                parent_organization = (
+                    affiliation.get("parentOrganization") if isinstance(affiliation, dict) else None
+                )
                 alumni_of = node.get("alumniOf")
                 if (
                     node.get("name") == "Eduard Gorbunov"
@@ -2456,9 +2465,13 @@ def check_site() -> list[str]:
                     and node.get("sameAs") == EXPECTED_PERSON_SAME_AS
                     and node.get("knowsAbout") == EXPECTED_PERSON_KNOWS_ABOUT
                     and isinstance(affiliation, dict)
-                    and affiliation.get("@type") == "CollegeOrUniversity"
-                    and affiliation.get("name") == "Mohamed bin Zayed University of Artificial Intelligence"
-                    and affiliation.get("url") == "https://mbzuai.ac.ae/"
+                    and affiliation.get("@type") == "Organization"
+                    and affiliation.get("name") == "Division of Computing and Mathematical Sciences"
+                    and isinstance(parent_organization, dict)
+                    and parent_organization.get("@type") == "CollegeOrUniversity"
+                    and parent_organization.get("name")
+                    == "Mohamed bin Zayed University of Artificial Intelligence"
+                    and parent_organization.get("url") == "https://mbzuai.ac.ae/"
                     and isinstance(alumni_of, dict)
                     and alumni_of.get("@type") == "CollegeOrUniversity"
                     and alumni_of.get("name") == "Moscow Institute of Physics and Technology"
@@ -2578,6 +2591,8 @@ def check_homepage_news() -> list[str]:
         '"@id": "https://eduardgorbunov.github.io/#person"',
         '"jobTitle": "Assistant Professor of Statistics and Data Science"',
         '"affiliation": {',
+        '"name": "Division of Computing and Mathematical Sciences"',
+        '"parentOrganization": {',
         '"name": "Mohamed bin Zayed University of Artificial Intelligence"',
         '"sameAs": [',
         '"alumniOf": {',
@@ -2649,7 +2664,7 @@ def check_homepage_news() -> list[str]:
             errors.append(f"index.html: news copy should avoid {description}")
     required_news_tone_phrases = [
         "A new preprint studies high-probability convergence with an arbitrary clipping level.",
-        "I started as an Assistant Professor in the Department of Statistics and Data Science at MBZUAI on August 1, 2025.",
+        "I started as an Assistant Professor of Statistics and Data Science at MBZUAI on August 1, 2025.",
         "Research Scientist appointment, conference updates, and a new preprint",
         "I started as a Research Scientist at MBZUAI on April 1, 2024.",
         "The paper <a href=\"https://arxiv.org/abs/2406.12564\"",
@@ -2658,14 +2673,21 @@ def check_homepage_news() -> list[str]:
     for phrase in required_news_tone_phrases:
         if phrase not in page_text:
             errors.append(f"index.html: news copy should use polished wording {phrase!r}")
-    if "The appointment as Assistant Professor of Statistics and Data Science at MBZUAI started on August 1, 2025." in page_text:
-        errors.append("index.html: appointment news item should use department-level role wording")
-    compressed_home_description = (
-        "News and research updates from Eduard Gorbunov, "
-        "Assistant Professor of Statistics and Data Science at MBZUAI."
+    division_home_description = (
+        "News and research updates from Eduard Gorbunov, Assistant Professor of Statistics and Data Science "
+        "in the Division of Computing and Mathematical Sciences at MBZUAI."
     )
-    if compressed_home_description in page_text:
-        errors.append("index.html: homepage metadata should use department-level role wording")
+    if division_home_description not in page_text:
+        errors.append("index.html: homepage metadata should identify the current division")
+    stale_home_descriptions = (
+        "News and research updates from Eduard Gorbunov, "
+        "Assistant Professor of Statistics and Data Science at MBZUAI.",
+        "News and research updates from Eduard Gorbunov, Assistant Professor of Statistics and Data Science "
+        "in the Department of Statistics and Data Science at MBZUAI.",
+    )
+    for stale_description in stale_home_descriptions:
+        if stale_description in page_text:
+            errors.append("index.html: homepage metadata should use the current division affiliation")
 
     expected_featured_venues = [
         "AISTATS 2026",
@@ -3855,21 +3877,26 @@ def check_about() -> list[str]:
 
     required_current_position = [
         "Aug 2025 - present",
-        "Assistant Professor, Department of Statistics and Data Science, MBZUAI",
-        "Tenure-track faculty appointment in the Department of Statistics and Data Science.",
+        "Assistant Professor of Statistics and Data Science, MBZUAI",
+        "Tenure-track faculty appointment in the Division of Computing and Mathematical Sciences.",
     ]
     for snippet in required_current_position:
         if snippet not in page_text:
             errors.append(f"about.html: missing current appointment detail {snippet!r}")
     polished_about_lead = (
-        "I am a tenure-track Assistant Professor in the Department of Statistics and Data Science at "
+        "I am a tenure-track Assistant Professor of Statistics and Data Science in the Division of "
+        "Computing and Mathematical Sciences at "
     )
     if polished_about_lead not in page_text:
-        errors.append("about.html: intro should use department-level faculty wording")
-    if "I am a tenure-track Assistant Professor of Statistics and Data Science at " in page_text:
-        errors.append("about.html: intro should avoid compressed faculty-title wording")
-    if '<h3 id="appointment-mbzuai-assistant-professor-title">Assistant Professor of Statistics and Data Science, MBZUAI</h3>' in page_text:
-        errors.append("about.html: current appointment heading should use department-level wording")
+        errors.append("about.html: intro should use the current title and division affiliation")
+    stale_about_wording = (
+        "I am a tenure-track Assistant Professor in the Department of Statistics and Data Science at ",
+        "Tenure-track faculty appointment in the Department of Statistics and Data Science.",
+        '<h3 id="appointment-mbzuai-assistant-professor-title">Assistant Professor, Department of Statistics and Data Science, MBZUAI</h3>',
+    )
+    for stale_wording in stale_about_wording:
+        if stale_wording in page_text:
+            errors.append("about.html: current appointment should not reference the retired department")
     polished_previous_position = (
         "Before my faculty appointment, I held Research Scientist and Postdoctoral Fellow positions at MBZUAI"
     )
@@ -3885,6 +3912,8 @@ def check_about() -> list[str]:
         '"@id": "https://eduardgorbunov.github.io/#person"',
         '"jobTitle": "Assistant Professor of Statistics and Data Science"',
         '"affiliation": {',
+        '"name": "Division of Computing and Mathematical Sciences"',
+        '"parentOrganization": {',
         '"name": "Mohamed bin Zayed University of Artificial Intelligence"',
         '"email": "mailto:eduard.gorbunov@mbzuai.ac.ae"',
         '"sameAs": [',
@@ -4075,7 +4104,7 @@ def check_about() -> list[str]:
         '<div class="eg-about-list-grid" role="list" aria-label="Research and teaching appointments">',
         1,
     )[-1]
-    current_index = appointment_list_text.find("Assistant Professor, Department of Statistics and Data Science, MBZUAI")
+    current_index = appointment_list_text.find("Assistant Professor of Statistics and Data Science, MBZUAI")
     research_scientist_index = appointment_list_text.find("Research Scientist, MBZUAI")
     if current_index == -1 or research_scientist_index == -1 or current_index > research_scientist_index:
         errors.append("about.html: current appointment should appear before previous appointments")
@@ -5418,9 +5447,10 @@ def check_support_files() -> list[str]:
             if footer_group not in page_text:
                 errors.append(f"{page.name}: missing grouped footer section {footer_group!r}")
         if FOOTER_ROLE_TEXT not in page_text:
-            errors.append(f"{page.name}: footer role should use department-level wording")
-        if OLD_FOOTER_ROLE_TEXT in page_text:
-            errors.append(f"{page.name}: footer role should avoid compressed title wording")
+            errors.append(f"{page.name}: footer role should use the current title and division affiliation")
+        for stale_footer_role in STALE_FOOTER_ROLE_TEXTS:
+            if stale_footer_role in page_text:
+                errors.append(f"{page.name}: footer role should avoid stale affiliation wording")
 
         for footer_label, expected_aria_label in FOOTER_CONTEXTUAL_ARIA_LABELS.items():
             labelled_footer_links = [link for link in parser.footer_links if link.get("label") == footer_label]

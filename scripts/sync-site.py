@@ -73,7 +73,7 @@ def render_sidebar(page_name: str, config: dict[str, object]) -> str:
         <span class="eg-sidebar-photo-frame"><img class="eg-sidebar-photo" src="assets/images/img-3924-690x1130.jpeg" alt="Eduard Gorbunov" width="104" height="104" decoding="async" fetchpriority="high"></span>
         <div class="eg-sidebar-brand">
           <span class="eg-sidebar-title-wrap"><a class="eg-sidebar-title" href="index.html">Eduard Gorbunov</a></span>
-          <p class="eg-sidebar-affiliation"><span>MBZUAI</span><span>Statistics and Data Science</span></p>
+          <p class="eg-sidebar-affiliation"><span>MBZUAI</span><span>Division of Computing and Mathematical Sciences</span></p>
           <div class="eg-sidebar-topics" role="group" aria-label="Research focus links">{topic_links}</div>
           <div class="eg-sidebar-profiles" role="group" aria-label="Profile links">{"".join(profile_links)}</div>
         </div>
@@ -92,7 +92,7 @@ def render_footer(page_name: str, date_iso: str) -> str:
     return f'''<footer class="eg-site-footer"{language}>
   <div class="eg-container">
     <div class="eg-footer-main">
-      <p><strong>Eduard Gorbunov</strong><span>Assistant Professor, Department of Statistics and Data Science, MBZUAI</span></p>
+      <p><strong>Eduard Gorbunov</strong><span>Assistant Professor of Statistics and Data Science, Division of Computing and Mathematical Sciences, MBZUAI</span></p>
       <nav class="eg-footer-links" aria-label="Footer links">
         <div class="eg-footer-link-group" aria-label="Contact and profiles">
           <a href="mailto:eduard.gorbunov@mbzuai.ac.ae" aria-label="Email Eduard Gorbunov">Email</a>

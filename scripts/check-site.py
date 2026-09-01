@@ -4523,7 +4523,7 @@ def check_teaching() -> list[str]:
         errors.append("teaching.html: course role labels should avoid the shorthand 'TA'")
     if teaching_text.count('<span class="eg-course-role">Teaching assistant</span>') != 4:
         errors.append("teaching.html: teaching assistant course cards should use expanded role labels")
-    expected_course_accents = ["teal", "blue", "teal", "blue", "teal", "blue", "gold", "rose"]
+    expected_course_accents = ["gold", "teal", "blue", "teal", "blue", "teal", "blue", "gold", "rose"]
     actual_course_accents = [str(card.get("accent", "")) for card in teaching_parser.course_cards]
     if actual_course_accents != expected_course_accents:
         errors.append(

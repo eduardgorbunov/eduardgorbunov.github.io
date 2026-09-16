@@ -4300,8 +4300,8 @@ def check_team() -> list[str]:
             errors.append(f"team.html: {name} card should be labelled by its heading")
         if actual.get("list_role") != "listitem":
             errors.append(f"team.html: {name} card should use role='listitem'")
-        if meta.get("Institution") != expected["institution"]:
-            errors.append(f"team.html: {name} should list institution {expected['institution']!r}")
+        if "Institution" in meta:
+            errors.append(f"team.html: {name} card should omit the redundant institution field")
         if meta.get("Period") != expected["period"]:
             errors.append(f"team.html: {name} should list period {expected['period']!r}")
         if time_datetimes != [expected["datetime"]]:
@@ -4321,9 +4321,9 @@ def check_team() -> list[str]:
                 errors.append(f"team.html: {name} is missing co-supervisor metadata")
             if co_supervisor not in links:
                 errors.append(f"team.html: {name} is missing co-supervisor link {co_supervisor!r}")
-            expected_wide_meta = f'<div class="eg-student-meta-wide"><dt>Co-supervisor</dt><dd><a href="{co_supervisor}"'
-            if expected_wide_meta not in page_text:
-                errors.append(f"team.html: {name} co-supervisor metadata should use eg-student-meta-wide")
+            expected_co_supervisor_meta = f'<div><dt>Co-supervisor</dt><dd><a href="{co_supervisor}"'
+            if expected_co_supervisor_meta not in page_text:
+                errors.append(f"team.html: {name} co-supervisor metadata should share the row with the period")
         elif "Co-supervisor" in meta:
             errors.append(f"team.html: {name} should not list a co-supervisor")
 

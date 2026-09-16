@@ -4259,7 +4259,7 @@ def check_team() -> list[str]:
     if actual_names != sorted(actual_names, key=str.casefold):
         errors.append(f"team.html: MSc students should be sorted alphabetically, found {actual_names!r}")
 
-    expected_student_accents = ["blue", "teal", "gold", "rose"]
+    expected_student_accents = ["rose"] * len(EXPECTED_MSC_STUDENTS)
     actual_student_accents = [str(card.get("accent", "")) for card in msc_students]
     if actual_student_accents != expected_student_accents:
         errors.append(

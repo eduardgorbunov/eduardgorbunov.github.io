@@ -4409,10 +4409,10 @@ def check_team() -> list[str]:
     if parser.guideline_labels != expected_guidelines:
         errors.append(f"team.html: guideline labels should be {expected_guidelines!r}, found {parser.guideline_labels!r}")
 
-    expected_visitors = ["Igor Ignashin", "Savelii Chezhegov", "Rustem Islamov", "Egor Shulgin"]
+    expected_visitors = ["Taha El Bakkali El Kadi", "Igor Ignashin", "Savelii Chezhegov", "Rustem Islamov", "Egor Shulgin"]
     actual_visitors = [str(student.get("name", "")) for student in visiting_students]
     if actual_visitors != expected_visitors:
-        errors.append(f"team.html: visiting students should be ordered by most recent end date, found {actual_visitors!r}")
+        errors.append(f"team.html: visiting students should list current visits first, then most recent end date, found {actual_visitors!r}")
     if "I do not currently have open postdoc positions." not in page_text:
         errors.append("team.html: postdoc opportunity should clearly state that no positions are currently open")
 

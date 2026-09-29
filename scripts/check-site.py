@@ -2672,7 +2672,7 @@ def check_homepage_news() -> list[str]:
     required_snippets = [
         "Three papers accepted to NeurIPS 2026",
         "Normalized SGD in the Convex Regime: First High-Probability Guarantees and Momentum Extension",
-        "What's in a Smoothness Constant? Tight Rates for Local SGD with Bounded Second-Order Heterogeneity",
+        "What's in a Smoothness Constant? Tight Rates for Local SGD with Bounded Second-order Heterogeneity",
         "Median-of-Means under Structured Heavy-Tailed Noise: High-Probability Bounds for Clipped Stochastic Optimization",
         "Egor Shulgin joins the team as a postdoctoral researcher",
         "Egor Shulgin</a> joined the team as a postdoctoral researcher in September 2026.",
@@ -2995,6 +2995,20 @@ def check_publications() -> list[str]:
     for snippet in required_publication_schema:
         if snippet not in page_text:
             errors.append(f"publications.html: structured metadata should include {snippet!r}")
+    required_neurips_2026_publications = [
+        'id="pub-normalized-sgd-convex-regime"',
+        "Normalized SGD in the Convex Regime: First High-Probability Guarantees and Momentum Extension",
+        "https://neurips.cc/virtual/2026/poster/150821",
+        'id="pub-whats-in-a-smoothness-constant-local-sgd"',
+        "What's in a Smoothness Constant? Tight Rates for Local SGD with Bounded Second-order Heterogeneity",
+        "https://neurips.cc/virtual/2026/poster/148945",
+        'id="pub-median-of-means-structured-heavy-tailed-noise"',
+        "Median-of-Means under Structured Heavy-Tailed Noise: High-Probability Bounds for Clipped Stochastic Optimization",
+        "https://neurips.cc/virtual/2026/poster/148757",
+    ]
+    for snippet in required_neurips_2026_publications:
+        if snippet not in page_text:
+            errors.append(f"publications.html: NeurIPS 2026 entries should include {snippet!r}")
     required_publication_shortcuts = [
         '<section class="eg-publication-overview" id="publication-overview" aria-label="Publication overview" role="list">',
         '<section class="eg-conference-summary" id="major-ai-conferences" aria-label="My major AI conference paper counts">',

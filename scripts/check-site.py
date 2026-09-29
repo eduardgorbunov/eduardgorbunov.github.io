@@ -3306,6 +3306,20 @@ def check_publications() -> list[str]:
     if expected_item_count not in page_text:
         errors.append(f"publications.html: ItemList metadata should use {expected_item_count!r}")
 
+    displayed_numbers = [
+        int(value)
+        for value in re.findall(
+            r'<div class="eg-publication-meta"><span>#(\d+)</span>',
+            page_text,
+        )
+    ]
+    expected_numbers = list(range(len(parser.cards), 0, -1))
+    if displayed_numbers != expected_numbers:
+        errors.append(
+            "publications.html: publication numbers should descend continuously in display order "
+            f"from {len(parser.cards)} to 1, found {displayed_numbers!r}"
+        )
+
     card_ids = [str(card.get("id", "")) for card in parser.cards]
     missing_card_ids = [index for index, card_id in enumerate(card_ids, start=1) if not card_id]
     duplicate_card_ids = sorted(card_id for card_id, count in Counter(card_ids).items() if card_id and count > 1)

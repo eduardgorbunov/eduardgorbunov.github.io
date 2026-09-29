@@ -297,20 +297,24 @@ EXPECTED_RESEARCH_STAFF = [
     {
         "name": "Ahmed El Bajdali",
         "role": "Research Engineer",
-        "period": "2025/11 - present",
-        "datetime": "2025-11",
+        "period": "2025/11 - 2026/09",
+        "datetimes": ["2025-11", "2026-09"],
         "profile": "https://www.linkedin.com/in/ahmed-el-bajdali-a158962a3/?locale=fr",
         "accent": "blue",
         "co_adviser": "",
+        "next_position": "Research Engineer in Saptarshi Roy’s group",
+        "next_position_url": "https://sites.google.com/umich.edu/saptarshi-roys-home-page/",
     },
     {
         "name": "Egor Shulgin",
         "role": "Postdoctoral Researcher",
         "period": "2026/09 - present",
-        "datetime": "2026-09",
+        "datetimes": ["2026-09"],
         "profile": "https://shulgin-egor.github.io/",
         "accent": "teal",
         "co_adviser": "https://scholar.google.com/citations?user=_XE1LvQAAAAJ&hl=en",
+        "next_position": "",
+        "next_position_url": "",
     },
 ]
 TEAM_DISALLOWED_PATTERNS = (
@@ -4225,6 +4229,8 @@ def check_team() -> list[str]:
         description = f'{expected["role"]}, {expected["period"]}'
         if expected["co_adviser"]:
             description += "; postdoctoral co-adviser: Eric Moulines"
+        if expected["next_position"]:
+            description += f'. Next position: {expected["next_position"]}'
         required_staff_schema = [
             f'"numberOfItems": {len(EXPECTED_RESEARCH_STAFF)}',
             f'"position": {index}',
@@ -4254,8 +4260,8 @@ def check_team() -> list[str]:
             errors.append(f"team.html: {name} card should use role='listitem'")
         if meta.get("Period") != expected["period"]:
             errors.append(f"team.html: {name} should list period {expected['period']!r}")
-        if list(actual.get("time_datetimes", [])) != [expected["datetime"]]:
-            errors.append(f"team.html: {name} should use datetime {expected['datetime']!r}")
+        if list(actual.get("time_datetimes", [])) != expected["datetimes"]:
+            errors.append(f"team.html: {name} should use datetimes {expected['datetimes']!r}")
         if expected["profile"] not in links:
             errors.append(f"team.html: {name} is missing profile link {expected['profile']!r}")
         co_adviser = expected["co_adviser"]
@@ -4266,6 +4272,15 @@ def check_team() -> list[str]:
                 errors.append(f"team.html: {name} is missing postdoctoral co-adviser link {co_adviser!r}")
         elif "Postdoctoral co-adviser" in meta:
             errors.append(f"team.html: {name} should not list a postdoctoral co-adviser")
+        next_position = expected["next_position"]
+        next_position_url = expected["next_position_url"]
+        if next_position:
+            if meta.get("Next position") != next_position:
+                errors.append(f"team.html: {name} should list next position {next_position!r}")
+            if next_position_url not in links:
+                errors.append(f"team.html: {name} is missing next-position link {next_position_url!r}")
+        elif "Next position" in meta:
+            errors.append(f"team.html: {name} should not list a next position")
 
     expected_names = [student["name"] for student in EXPECTED_MSC_STUDENTS]
     actual_names = [str(student.get("name", "")) for student in msc_students]

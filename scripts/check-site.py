@@ -295,17 +295,6 @@ EXPECTED_MSC_STUDENTS = [
 ]
 EXPECTED_RESEARCH_STAFF = [
     {
-        "name": "Ahmed El Bajdali",
-        "role": "Research Engineer",
-        "period": "2025/11 - 2026/09",
-        "datetimes": ["2025-11", "2026-09"],
-        "profile": "https://www.linkedin.com/in/ahmed-el-bajdali-a158962a3/?locale=fr",
-        "accent": "blue",
-        "co_adviser": "",
-        "next_position": "Research Engineer in Saptarshi Roy’s group",
-        "next_position_url": "https://sites.google.com/umich.edu/saptarshi-roys-home-page/",
-    },
-    {
         "name": "Egor Shulgin",
         "role": "Postdoctoral Researcher",
         "period": "2026/09 - present",
@@ -313,6 +302,74 @@ EXPECTED_RESEARCH_STAFF = [
         "profile": "https://shulgin-egor.github.io/",
         "accent": "teal",
         "co_adviser": "https://scholar.google.com/citations?user=_XE1LvQAAAAJ&hl=en",
+        "next_position": "",
+        "next_position_url": "",
+    },
+]
+EXPECTED_VISITING_STUDENTS = [
+    {
+        "name": "Taha El Bakkali El Kadi",
+        "role": "Visiting PhD student",
+        "period": "2026/08 - present",
+        "datetimes": ["2026-08"],
+        "profile": "https://scholar.google.com/citations?user=NBfzbxsAAAAJ&hl=en",
+        "accent": "gold",
+        "card_id": "visitor-taha-el-bakkali-el-kadi",
+    },
+]
+EXPECTED_ALUMNI = [
+    {
+        "name": "Ahmed El Bajdali",
+        "role": "Research Engineer",
+        "period": "2025/11 - 2026/09",
+        "datetimes": ["2025-11", "2026-09"],
+        "profile": "https://www.linkedin.com/in/ahmed-el-bajdali-a158962a3/?locale=fr",
+        "accent": "blue",
+        "card_id": "team-member-ahmed-el-bajdali",
+        "next_position": "Research Engineer in Saptarshi Roy’s group",
+        "next_position_url": "https://sites.google.com/umich.edu/saptarshi-roys-home-page/",
+    },
+    {
+        "name": "Igor Ignashin",
+        "role": "Visiting MSc student",
+        "period": "2026/01 - 2026/03",
+        "datetimes": ["2026-01", "2026-03"],
+        "profile": "https://thunderstormxx.github.io/PersonalPage/",
+        "accent": "gold",
+        "card_id": "visitor-igor-ignashin",
+        "next_position": "",
+        "next_position_url": "",
+    },
+    {
+        "name": "Savelii Chezhegov",
+        "role": "Visiting MSc student",
+        "period": "2026/01 - 2026/03",
+        "datetimes": ["2026-01", "2026-03"],
+        "profile": "https://scholar.google.com/citations?user=dRIoJ_cAAAAJ&hl=en",
+        "accent": "gold",
+        "card_id": "visitor-savelii-chezhegov",
+        "next_position": "",
+        "next_position_url": "",
+    },
+    {
+        "name": "Rustem Islamov",
+        "role": "Visiting PhD student",
+        "period": "2025/12 - 2026/02",
+        "datetimes": ["2025-12", "2026-02"],
+        "profile": "https://rustem-islamov.github.io/",
+        "accent": "gold",
+        "card_id": "visitor-rustem-islamov",
+        "next_position": "",
+        "next_position_url": "",
+    },
+    {
+        "name": "Egor Shulgin",
+        "role": "Visiting PhD student",
+        "period": "2025/10 - 2025/11",
+        "datetimes": ["2025-10", "2025-11"],
+        "profile": "https://shulgin-egor.github.io/",
+        "accent": "gold",
+        "card_id": "visitor-egor-shulgin",
         "next_position": "",
         "next_position_url": "",
     },
@@ -4144,11 +4201,13 @@ def check_team() -> list[str]:
         errors.append("team.html: research staff section should expose the research-staff anchor")
     if 'class="eg-team-section" id="msc-students" aria-labelledby="msc-students-heading"' not in page_text:
         errors.append("team.html: MSc students section should expose the msc-students anchor")
+    if 'class="eg-team-section" id="alumni" aria-labelledby="alumni-heading"' not in page_text:
+        errors.append("team.html: alumni section should expose the alumni anchor")
     if 'class="eg-team-section eg-opportunities-section" id="opportunities"' not in page_text:
         errors.append("team.html: opportunities section should use the refined opportunities layout")
     if '<ul class="eg-opportunity-list" role="list" aria-label="Research opportunities">' not in page_text:
         errors.append("team.html: opportunities should use a compact list instead of cards")
-    expected_student_list_labels = ["Research staff", "MSc students", "Visiting students"]
+    expected_student_list_labels = ["Research staff", "MSc students", "Visiting students", "Alumni"]
     actual_student_list_labels = [attrs.get("aria-label", "") for attrs in parser.student_lists]
     if actual_student_list_labels != expected_student_list_labels:
         errors.append(
@@ -4202,6 +4261,12 @@ def check_team() -> list[str]:
         '"name": "Research staff"',
         '"@id": "https://eduardgorbunov.github.io/team.html#msc-students"',
         '"name": "MSc students"',
+        '"@id": "https://eduardgorbunov.github.io/team.html#visiting-students"',
+        '"name": "Visiting students"',
+        '"@id": "https://eduardgorbunov.github.io/team.html#alumni"',
+        '"name": "Alumni"',
+        '<section class="eg-team-section" id="alumni" aria-labelledby="alumni-heading">',
+        '<h2 id="alumni-heading">Alumni</h2>',
         '"itemListOrder": "https://schema.org/ItemListOrderAscending"',
         '<h1 id="team-heading">Research team</h1>',
         "Eduard Gorbunov's research staff, students, and supervision opportunities at MBZUAI.",
@@ -4212,9 +4277,20 @@ def check_team() -> list[str]:
 
     staff_count = len(EXPECTED_RESEARCH_STAFF)
     msc_count = len(EXPECTED_MSC_STUDENTS)
+    visiting_count = len(EXPECTED_VISITING_STUDENTS)
+    alumni_count = len(EXPECTED_ALUMNI)
     research_staff = parser.students[:staff_count]
     msc_students = parser.students[staff_count:staff_count + msc_count]
-    visiting_students = parser.students[staff_count + msc_count:]
+    visiting_start = staff_count + msc_count
+    visiting_students = parser.students[visiting_start:visiting_start + visiting_count]
+    alumni_start = visiting_start + visiting_count
+    alumni = parser.students[alumni_start:alumni_start + alumni_count]
+    expected_total_cards = staff_count + msc_count + visiting_count + alumni_count
+    if len(parser.students) != expected_total_cards:
+        errors.append(
+            f"team.html: expected {expected_total_cards} team cards across current members and alumni, "
+            f"found {len(parser.students)}"
+        )
 
     actual_staff_names = [str(member.get("name", "")) for member in research_staff]
     expected_staff_names = [member["name"] for member in EXPECTED_RESEARCH_STAFF]
@@ -4448,10 +4524,100 @@ def check_team() -> list[str]:
     if parser.guideline_labels != expected_guidelines:
         errors.append(f"team.html: guideline labels should be {expected_guidelines!r}, found {parser.guideline_labels!r}")
 
-    expected_visitors = ["Taha El Bakkali El Kadi", "Igor Ignashin", "Savelii Chezhegov", "Rustem Islamov", "Egor Shulgin"]
+    expected_visitors = [visitor["name"] for visitor in EXPECTED_VISITING_STUDENTS]
     actual_visitors = [str(student.get("name", "")) for student in visiting_students]
     if actual_visitors != expected_visitors:
-        errors.append(f"team.html: visiting students should list current visits first, then most recent end date, found {actual_visitors!r}")
+        errors.append(f"team.html: visiting students should list only current visits, found {actual_visitors!r}")
+
+    visiting_metadata = page_text.split(
+        '"@id": "https://eduardgorbunov.github.io/team.html#visiting-students"', 1
+    )[-1].split('"@id": "https://eduardgorbunov.github.io/team.html#alumni"', 1)[0]
+    if f'"numberOfItems": {len(EXPECTED_VISITING_STUDENTS)}' not in visiting_metadata:
+        errors.append("team.html: visiting-student metadata should count current visitors only")
+    for index, (expected, actual) in enumerate(zip(EXPECTED_VISITING_STUDENTS, visiting_students), start=1):
+        name = expected["name"]
+        links = set(str(link) for link in actual.get("links", []))
+        meta = dict(actual.get("meta", {}))
+        expected_heading_id = f'{expected["card_id"]}-heading'
+        required_visitor_schema = [
+            f'"position": {index}',
+            f'"name": "{name}"',
+            f'"url": "https://eduardgorbunov.github.io/team.html#{expected["card_id"]}"',
+            f'"sameAs": "{expected["profile"]}"',
+            f'"description": "{expected["role"]}, {expected["period"]}."',
+        ]
+        for snippet in required_visitor_schema:
+            if snippet not in visiting_metadata:
+                errors.append(f"team.html: visiting-student metadata for {name} should include {snippet!r}")
+        if actual.get("role") != expected["role"]:
+            errors.append(f"team.html: {name} should have role {expected['role']!r}")
+        if actual.get("id") != expected["card_id"]:
+            errors.append(f"team.html: {name} card should use id {expected['card_id']!r}")
+        if actual.get("heading_id") != expected_heading_id or actual.get("labelledby") != expected_heading_id:
+            errors.append(f"team.html: {name} visiting card should use heading id {expected_heading_id!r}")
+        if actual.get("accent") != expected["accent"]:
+            errors.append(f"team.html: {name} should use accent {expected['accent']!r}")
+        if meta.get("Period") != expected["period"]:
+            errors.append(f"team.html: {name} should list period {expected['period']!r}")
+        if list(actual.get("time_datetimes", [])) != expected["datetimes"]:
+            errors.append(f"team.html: {name} should use datetimes {expected['datetimes']!r}")
+        if expected["profile"] not in links:
+            errors.append(f"team.html: {name} is missing profile link {expected['profile']!r}")
+
+    expected_alumni = [alumnus["name"] for alumnus in EXPECTED_ALUMNI]
+    actual_alumni = [str(member.get("name", "")) for member in alumni]
+    if actual_alumni != expected_alumni:
+        errors.append(
+            f"team.html: alumni should be ordered by most recent end date, found {actual_alumni!r}"
+        )
+
+    alumni_metadata = page_text.split(
+        '"@id": "https://eduardgorbunov.github.io/team.html#alumni"', 1
+    )[-1].split("</script>", 1)[0]
+    if f'"numberOfItems": {len(EXPECTED_ALUMNI)}' not in alumni_metadata:
+        errors.append("team.html: alumni metadata should count all former team members and visitors")
+    for index, (expected, actual) in enumerate(zip(EXPECTED_ALUMNI, alumni), start=1):
+        name = expected["name"]
+        links = set(str(link) for link in actual.get("links", []))
+        meta = dict(actual.get("meta", {}))
+        expected_heading_id = f'{expected["card_id"]}-heading'
+        description = f'{expected["role"]}, {expected["period"]}'
+        if expected["next_position"]:
+            description += f'. Next position: {expected["next_position"]}'
+        required_alumni_schema = [
+            f'"position": {index}',
+            f'"name": "{name}"',
+            f'"url": "https://eduardgorbunov.github.io/team.html#{expected["card_id"]}"',
+            f'"sameAs": "{expected["profile"]}"',
+            f'"description": "{description}."',
+        ]
+        if expected["role"] == "Research Engineer":
+            required_alumni_schema.append('"jobTitle": "Research Engineer"')
+        for snippet in required_alumni_schema:
+            if snippet not in alumni_metadata:
+                errors.append(f"team.html: alumni metadata for {name} should include {snippet!r}")
+        if actual.get("role") != expected["role"]:
+            errors.append(f"team.html: alumnus {name} should have role {expected['role']!r}")
+        if actual.get("id") != expected["card_id"]:
+            errors.append(f"team.html: alumnus {name} should use card id {expected['card_id']!r}")
+        if actual.get("heading_id") != expected_heading_id or actual.get("labelledby") != expected_heading_id:
+            errors.append(f"team.html: alumnus {name} should use heading id {expected_heading_id!r}")
+        if actual.get("accent") != expected["accent"]:
+            errors.append(f"team.html: alumnus {name} should use accent {expected['accent']!r}")
+        if meta.get("Period") != expected["period"]:
+            errors.append(f"team.html: alumnus {name} should list period {expected['period']!r}")
+        if list(actual.get("time_datetimes", [])) != expected["datetimes"]:
+            errors.append(f"team.html: alumnus {name} should use datetimes {expected['datetimes']!r}")
+        if expected["profile"] not in links:
+            errors.append(f"team.html: alumnus {name} is missing profile link {expected['profile']!r}")
+        if expected["next_position"]:
+            if meta.get("Next position") != expected["next_position"]:
+                errors.append(f"team.html: alumnus {name} should list next position {expected['next_position']!r}")
+            if expected["next_position_url"] not in links:
+                errors.append(f"team.html: alumnus {name} is missing next-position link")
+        elif "Next position" in meta:
+            errors.append(f"team.html: alumnus {name} should not list a next position")
+
     if "I do not currently have open postdoc positions." not in page_text:
         errors.append("team.html: postdoc opportunity should clearly state that no positions are currently open")
 

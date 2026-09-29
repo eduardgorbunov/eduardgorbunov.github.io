@@ -326,7 +326,7 @@ EXPECTED_ALUMNI = [
         "profile": "https://www.linkedin.com/in/ahmed-el-bajdali-a158962a3/?locale=fr",
         "accent": "blue",
         "card_id": "team-member-ahmed-el-bajdali",
-        "next_position": "Research Engineer in Saptarshi Roy’s group",
+        "next_position": "Research Engineer in Saptarshi Roy’s group, MBZUAI",
         "next_position_url": "https://sites.google.com/umich.edu/saptarshi-roys-home-page/",
     },
     {

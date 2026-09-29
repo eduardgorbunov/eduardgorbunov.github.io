@@ -300,6 +300,17 @@ EXPECTED_RESEARCH_STAFF = [
         "period": "2025/11 - present",
         "datetime": "2025-11",
         "profile": "https://www.linkedin.com/in/ahmed-el-bajdali-a158962a3/?locale=fr",
+        "accent": "blue",
+        "co_adviser": "",
+    },
+    {
+        "name": "Egor Shulgin",
+        "role": "Postdoctoral Researcher",
+        "period": "2026/09 - present",
+        "datetime": "2026-09",
+        "profile": "https://shulgin-egor.github.io/",
+        "accent": "teal",
+        "co_adviser": "https://scholar.google.com/citations?user=_XE1LvQAAAAJ&hl=en",
     },
 ]
 TEAM_DISALLOWED_PATTERNS = (
@@ -4211,14 +4222,17 @@ def check_team() -> list[str]:
         meta = dict(actual.get("meta", {}))
         expected_card_id = "team-member-" + re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
         expected_heading_id = f"{expected_card_id}-heading"
+        description = f'{expected["role"]}, {expected["period"]}'
+        if expected["co_adviser"]:
+            description += "; postdoctoral co-adviser: Eric Moulines"
         required_staff_schema = [
-            '"numberOfItems": 1',
+            f'"numberOfItems": {len(EXPECTED_RESEARCH_STAFF)}',
             f'"position": {index}',
             f'"name": "{name}"',
             f'"url": "https://eduardgorbunov.github.io/team.html#{expected_card_id}"',
             f'"sameAs": "{expected["profile"]}"',
             f'"jobTitle": "{expected["role"]}"',
-            f'"description": "{expected["role"]}, {expected["period"]}."',
+            f'"description": "{description}."',
         ]
         staff_metadata = page_text.split(
             '"@id": "https://eduardgorbunov.github.io/team.html#research-staff"', 1
@@ -4228,6 +4242,8 @@ def check_team() -> list[str]:
                 errors.append(f"team.html: research staff metadata for {name} should include {snippet!r}")
         if actual.get("role") != expected["role"]:
             errors.append(f"team.html: {name} should have role {expected['role']!r}")
+        if actual.get("accent") != expected["accent"]:
+            errors.append(f"team.html: {name} should use accent {expected['accent']!r}")
         if actual.get("id") != expected_card_id:
             errors.append(f"team.html: {name} card should use id {expected_card_id!r}")
         if actual.get("heading_id") != expected_heading_id:
@@ -4242,6 +4258,14 @@ def check_team() -> list[str]:
             errors.append(f"team.html: {name} should use datetime {expected['datetime']!r}")
         if expected["profile"] not in links:
             errors.append(f"team.html: {name} is missing profile link {expected['profile']!r}")
+        co_adviser = expected["co_adviser"]
+        if co_adviser:
+            if meta.get("Postdoctoral co-adviser") != "Eric Moulines":
+                errors.append(f"team.html: {name} should list Eric Moulines as postdoctoral co-adviser")
+            if co_adviser not in links:
+                errors.append(f"team.html: {name} is missing postdoctoral co-adviser link {co_adviser!r}")
+        elif "Postdoctoral co-adviser" in meta:
+            errors.append(f"team.html: {name} should not list a postdoctoral co-adviser")
 
     expected_names = [student["name"] for student in EXPECTED_MSC_STUDENTS]
     actual_names = [str(student.get("name", "")) for student in msc_students]

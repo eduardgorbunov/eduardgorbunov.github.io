@@ -3014,6 +3014,7 @@ def check_publications() -> list[str]:
         "High-Probability Convergence of Clipped SGD under Heavy-Tailed Noise and $(L_0,L_1)$-Smoothness",
         "May 2025 · revised September 2026",
         "Taha El Bakkali El Kadi",
+        "A matching lower bound for any fixed stepsize and clipping threshold",
         "https://arxiv.org/pdf/2505.20817",
         "https://arxiv.org/abs/2505.20817",
     ]

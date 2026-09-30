@@ -3009,6 +3009,17 @@ def check_publications() -> list[str]:
     for snippet in required_neurips_2026_publications:
         if snippet not in page_text:
             errors.append(f"publications.html: NeurIPS 2026 entries should include {snippet!r}")
+    required_clipped_sgd_v3 = [
+        'id="pub-convergence-of-clipped-sgd-for-convex-l0-l1-smooth-optimization-with-heavy"',
+        "High-Probability Convergence of Clipped SGD under Heavy-Tailed Noise and $(L_0,L_1)$-Smoothness",
+        "May 2025 · revised September 2026",
+        "Taha El Bakkali El Kadi",
+        "https://arxiv.org/pdf/2505.20817",
+        "https://arxiv.org/abs/2505.20817",
+    ]
+    for snippet in required_clipped_sgd_v3:
+        if snippet not in page_text:
+            errors.append(f"publications.html: clipped SGD arXiv v3 entry should include {snippet!r}")
     required_publication_shortcuts = [
         '<section class="eg-publication-overview" id="publication-overview" aria-label="Publication overview" role="list">',
         '<section class="eg-conference-summary" id="major-ai-conferences" aria-label="My major AI conference paper counts">',

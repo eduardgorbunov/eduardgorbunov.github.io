@@ -301,7 +301,7 @@ EXPECTED_RESEARCH_STAFF = [
         "datetimes": ["2026-09"],
         "profile": "https://shulgin-egor.github.io/",
         "accent": "teal",
-        "co_adviser": "https://scholar.google.com/citations?user=_XE1LvQAAAAJ&hl=en",
+        "co_advisor": "https://scholar.google.com/citations?user=_XE1LvQAAAAJ&hl=en",
         "next_position": "",
         "next_position_url": "",
     },
@@ -4339,8 +4339,8 @@ def check_team() -> list[str]:
         expected_card_id = "team-member-" + re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
         expected_heading_id = f"{expected_card_id}-heading"
         description = f'{expected["role"]}, {expected["period"]}'
-        if expected["co_adviser"]:
-            description += "; postdoctoral co-adviser: Eric Moulines"
+        if expected["co_advisor"]:
+            description += "; postdoctoral co-advisor: Eric Moulines"
         if expected["next_position"]:
             description += f'. Next position: {expected["next_position"]}'
         required_staff_schema = [
@@ -4376,14 +4376,14 @@ def check_team() -> list[str]:
             errors.append(f"team.html: {name} should use datetimes {expected['datetimes']!r}")
         if expected["profile"] not in links:
             errors.append(f"team.html: {name} is missing profile link {expected['profile']!r}")
-        co_adviser = expected["co_adviser"]
-        if co_adviser:
-            if meta.get("Postdoctoral co-adviser") != "Eric Moulines":
-                errors.append(f"team.html: {name} should list Eric Moulines as postdoctoral co-adviser")
-            if co_adviser not in links:
-                errors.append(f"team.html: {name} is missing postdoctoral co-adviser link {co_adviser!r}")
-        elif "Postdoctoral co-adviser" in meta:
-            errors.append(f"team.html: {name} should not list a postdoctoral co-adviser")
+        co_advisor = expected["co_advisor"]
+        if co_advisor:
+            if meta.get("Postdoctoral co-advisor") != "Eric Moulines":
+                errors.append(f"team.html: {name} should list Eric Moulines as postdoctoral co-advisor")
+            if co_advisor not in links:
+                errors.append(f"team.html: {name} is missing postdoctoral co-advisor link {co_advisor!r}")
+        elif "Postdoctoral co-advisor" in meta:
+            errors.append(f"team.html: {name} should not list a postdoctoral co-advisor")
         next_position = expected["next_position"]
         next_position_url = expected["next_position_url"]
         if next_position:

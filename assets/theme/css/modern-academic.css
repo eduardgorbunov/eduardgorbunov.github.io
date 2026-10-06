@@ -2267,6 +2267,20 @@ main > section[id],
   font-weight: 900;
 }
 
+.eg-publication-authors a {
+  color: var(--eg-teal);
+  font-weight: 700;
+  text-decoration-color: color-mix(in srgb, var(--eg-teal) 45%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.14em;
+}
+
+.eg-publication-authors a:hover,
+.eg-publication-authors a:focus-visible {
+  color: var(--eg-ink);
+  text-decoration-color: currentColor;
+}
+
 .eg-author-marker {
   color: var(--eg-teal);
   font-size: 0.7em;

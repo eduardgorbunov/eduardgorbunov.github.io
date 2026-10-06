@@ -3029,7 +3029,7 @@ def check_publications() -> list[str]:
     required_normalized_gd_preprint = [
         'id="pub-last-iterate-normalized-gradient-descent-holder-smoothness"',
         "Last-Iterate Convergence Rate of Normalized Gradient Descent under Hölder Smoothness",
-        '<p class="eg-publication-authors"><a href="https://yukitakezawa.github.io/" target="_blank" rel="noopener noreferrer">Yuki Takezawa</a>, <strong>Eduard Gorbunov</strong></p>',
+        '<p class="eg-publication-authors"><a href="https://yukitakezawa.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Open profile for Yuki Takezawa">Yuki Takezawa</a>, <strong>Eduard Gorbunov</strong></p>',
         "October 2026",
         "https://arxiv.org/pdf/2610.06070",
         "https://arxiv.org/abs/2610.06070",
@@ -3530,6 +3530,37 @@ def check_publications() -> list[str]:
         author_strongs = {str(value).strip() for value in line.get("strongs", [])}
         if "Eduard Gorbunov" in author_text and "Eduard Gorbunov" not in author_strongs:
             errors.append(f"publications.html: author line {index} does not highlight Eduard Gorbunov")
+
+    author_blocks = re.findall(r'<p class="eg-publication-authors">(.*?)</p>', page_text)
+    for index, author_markup in enumerate(author_blocks, start=1):
+        clean_markup = re.sub(
+            r'<span class="eg-author-note">.*?</span></span>',
+            "",
+            author_markup,
+        )
+        clean_markup = re.sub(r"<sup\b[^>]*>.*?</sup>", "", clean_markup)
+        plain_authors = unescape(re.sub(r"<[^>]+>", "", clean_markup))
+        coauthors = [
+            name.strip()
+            for name in re.split(r",\s*|\s+and\s+", plain_authors)
+            if name.strip() and name.strip() != "Eduard Gorbunov"
+        ]
+        linked_coauthors = {
+            unescape(re.sub(r"<[^>]+>", "", link_text)).strip()
+            for link_text in re.findall(r"<a\b[^>]*>(.*?)</a>", clean_markup)
+        }
+        missing_links = [name for name in coauthors if name not in linked_coauthors]
+        if missing_links:
+            errors.append(
+                f"publications.html: author line {index} has unlinked co-authors: "
+                + ", ".join(missing_links)
+            )
+
+        for link_attrs in re.findall(r"<a\b([^>]*)>", clean_markup):
+            if 'target="_blank"' not in link_attrs or 'rel="noopener noreferrer"' not in link_attrs:
+                errors.append(
+                    f"publications.html: author line {index} profile links should open safely in a new tab"
+                )
 
     return errors
 

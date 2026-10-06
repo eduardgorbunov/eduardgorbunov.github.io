@@ -2636,8 +2636,9 @@ def check_homepage_news() -> list[str]:
         '"@id": "https://eduardgorbunov.github.io/#news-page"',
         '"@id": "https://eduardgorbunov.github.io/#recent-news"',
         '"name": "Recent news updates"',
-        '"numberOfItems": 9',
+        '"numberOfItems": 10',
         '"itemListOrder": "https://schema.org/ItemListOrderDescending"',
+        '"url": "https://eduardgorbunov.github.io/#news-2026-normalized-gradient-descent-last-iterate"',
         '"url": "https://eduardgorbunov.github.io/#news-2026-neurips-acceptances"',
         '"url": "https://eduardgorbunov.github.io/#news-2026-egor-shulgin-postdoc"',
         '"url": "https://eduardgorbunov.github.io/#news-2026-local-sgd-second-order-heterogeneity"',
@@ -2670,6 +2671,10 @@ def check_homepage_news() -> list[str]:
             errors.append(f"index.html: person structured metadata should include {snippet!r}")
 
     required_snippets = [
+        "New preprint on last-iterate convergence of normalized gradient descent",
+        "https://arxiv.org/abs/2610.06070",
+        "https://yukitakezawa.github.io/",
+        "publications.html#pub-last-iterate-normalized-gradient-descent-holder-smoothness",
         "Three papers accepted to NeurIPS 2026",
         "Normalized SGD in the Convex Regime: First High-Probability Guarantees and Momentum Extension",
         "What's in a Smoothness Constant? Tight Rates for Local SGD with Bounded Second-order Heterogeneity",
@@ -2894,7 +2899,7 @@ def check_homepage_news() -> list[str]:
         if snippet not in page_text:
             errors.append(f"index.html: missing compact news shortcut {snippet!r}")
     required_year_links = [
-        '<a href="#news-2026-neurips-acceptances">2026</a>',
+        '<a href="#news-2026-normalized-gradient-descent-last-iterate">2026</a>',
         '<a href="#news-2025-dp-clipped-sgd">2025</a>',
         '<a href="#news-2024-neurips-preprint">2024</a>',
         '<a href="#news-2023-11-28-new-preprints-a-talk-and-neurips-2023-papers">2023</a>',
@@ -3021,6 +3026,17 @@ def check_publications() -> list[str]:
     for snippet in required_clipped_sgd_v3:
         if snippet not in page_text:
             errors.append(f"publications.html: clipped SGD arXiv v3 entry should include {snippet!r}")
+    required_normalized_gd_preprint = [
+        'id="pub-last-iterate-normalized-gradient-descent-holder-smoothness"',
+        "Last-Iterate Convergence Rate of Normalized Gradient Descent under Hölder Smoothness",
+        '<p class="eg-publication-authors"><a href="https://yukitakezawa.github.io/" target="_blank" rel="noopener noreferrer">Yuki Takezawa</a>, <strong>Eduard Gorbunov</strong></p>',
+        "October 2026",
+        "https://arxiv.org/pdf/2610.06070",
+        "https://arxiv.org/abs/2610.06070",
+    ]
+    for snippet in required_normalized_gd_preprint:
+        if snippet not in page_text:
+            errors.append(f"publications.html: normalized gradient descent preprint should include {snippet!r}")
     required_publication_shortcuts = [
         '<section class="eg-publication-overview" id="publication-overview" aria-label="Publication overview" role="list">',
         '<section class="eg-conference-summary" id="major-ai-conferences" aria-label="My major AI conference paper counts">',

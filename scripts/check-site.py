@@ -4125,6 +4125,14 @@ def check_about() -> list[str]:
         errors.append("about.html: PhD defense video link should use title-case 'Video'")
     if "since 2024" not in page_text:
         errors.append("about.html: editorial service should use polished 'since 2024' wording")
+    required_statistics_and_computing_role = (
+        '<li>Associate Editor, <a href="https://link.springer.com/journal/11222" '
+        'target="_blank" rel="noopener noreferrer" '
+        'aria-label="Open the Statistics and Computing journal website">'
+        'Statistics and Computing</a>, since 2026.</li>'
+    )
+    if required_statistics_and_computing_role not in page_text:
+        errors.append("about.html: editorial service should include the Statistics and Computing role since 2026")
     if "from 2024" in page_text:
         errors.append("about.html: editorial service should not use informal 'from 2024' wording")
     if 'id="appointments"' not in page_text:

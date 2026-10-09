@@ -943,10 +943,10 @@ main > section[id],
 }
 
 .eg-news-document-preview img {
-  aspect-ratio: 1200 / 1681;
+  aspect-ratio: auto;
   display: block;
   height: auto;
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
 }
 

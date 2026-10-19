@@ -2148,6 +2148,7 @@ main > section[id],
 
 .eg-publication-card {
   border-left: 5px solid var(--eg-blue) !important;
+  min-width: 0;
   padding: 17px 20px;
 }
 
@@ -2489,6 +2490,7 @@ main > section[id],
   font-size: 0.93rem;
   line-height: 1.55;
   margin: 0;
+  overflow-x: auto;
   padding: 11px 13px 12px;
 }
 

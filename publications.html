@@ -43,7 +43,7 @@
     "url": "https://eduardgorbunov.github.io/publications.html",
     "name": "Publications | Eduard Gorbunov",
     "description": "Publications by Eduard Gorbunov on stochastic optimization, distributed learning, variational inequalities, robustness, privacy, and related areas.",
-    "dateModified": "2026-10-19",
+    "dateModified": "2026-10-20",
     "inLanguage": "en",
     "isPartOf": {
       "@id": "https://eduardgorbunov.github.io/#website"
@@ -274,11 +274,11 @@
         <span>conference papers</span>
       </a>
       <a class="eg-publication-stat" href="publications.html?type=journal%20paper#publication-list" data-kind="journal" data-count-type="journal paper" role="listitem">
-        <strong>16</strong>
+        <strong>17</strong>
         <span>journal papers</span>
       </a>
       <a class="eg-publication-stat" href="publications.html?type=arXiv%20preprint#publication-list" data-kind="preprint" data-count-type="arXiv preprint" role="listitem">
-        <strong>9</strong>
+        <strong>8</strong>
         <span>arXiv preprints</span>
       </a>
       <a class="eg-publication-stat" href="publications.html?type=living%20reference%20work%20entry#publication-list" data-kind="reference" data-count-type="living reference work entry" role="listitem">
@@ -639,17 +639,17 @@
   <div class="eg-publication-tags"><span>stochastic optimization</span><span>distributed learning</span><span>federated learning</span><span>gradient clipping</span><span>differential privacy</span></div>
   <div class="eg-publication-actions"><a href="https://arxiv.org/pdf/2502.11682" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Open PDF for Double Momentum and Error Feedback for Clipping with Fast Rates and Differential Privacy">PDF</a><a href="https://arxiv.org/abs/2502.11682" target="_blank" rel="noopener noreferrer" aria-label="Open arXiv for Double Momentum and Error Feedback for Clipping with Fast Rates and Differential Privacy">arXiv</a></div>
 </article>
-<article class="eg-publication-card" role="listitem" id="pub-linear-convergence-rate-in-convex-setup-is-possible-gradient-descent-method-variants" aria-labelledby="pub-linear-convergence-rate-in-convex-setup-is-possible-gradient-descent-method-variants-title" data-type="arXiv preprint" data-tags="convex-optimization generalized-smoothness gradient-clipping coordinate-descent-type-methods">
-  <div class="eg-publication-meta"><span>#62</span><span class="eg-publication-type-badge">arXiv preprint</span><span>December 2024</span></div>
-  <h2 id="pub-linear-convergence-rate-in-convex-setup-is-possible-gradient-descent-method-variants-title"><a href="https://arxiv.org/pdf/2412.17050" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Open PDF for Linear Convergence Rate in Convex Setup is Possible! Gradient Descent Method Variants under $(L_0,L_1)$-Smoothness">Linear Convergence Rate in Convex Setup is Possible! Gradient Descent Method Variants under $(L_0,L_1)$-Smoothness</a></h2>
+<article class="eg-publication-card" role="listitem" id="pub-linear-convergence-rate-in-convex-setup-is-possible-gradient-descent-method-variants" aria-labelledby="pub-linear-convergence-rate-in-convex-setup-is-possible-gradient-descent-method-variants-title" data-type="journal paper" data-tags="convex-optimization generalized-smoothness gradient-clipping coordinate-descent-type-methods">
+  <div class="eg-publication-meta"><span>#62</span><span class="eg-publication-type-badge">journal paper</span><span>IEEE Access 2026</span></div>
+  <h2 id="pub-linear-convergence-rate-in-convex-setup-is-possible-gradient-descent-method-variants-title"><a href="https://doi.org/10.1109/ACCESS.2026.3741944" target="_blank" rel="noopener noreferrer" aria-label="Open published article for Fast Initial Convergence Under $(L_0,L_1)$-Smoothness: Gradient and Coordinate Methods">Fast Initial Convergence Under $(L_0,L_1)$-Smoothness: Gradient and Coordinate Methods</a></h2>
   <p class="eg-publication-authors"><a href="https://scholar.google.com/citations?user=D1ji84AAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer" aria-label="Open profile for Aleksandr Lobanov">Aleksandr Lobanov</a>, <a href="https://scholar.google.com/citations?user=AmeE8qkAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer" aria-label="Open profile for Alexander Gasnikov">Alexander Gasnikov</a>, <strong>Eduard Gorbunov</strong>, <a href="http://mtakac.com/" target="_blank" rel="noopener noreferrer" aria-label="Open profile for Martin Takáč">Martin Takáč</a></p>
-  <p class="eg-publication-venue eg-publication-venue-muted">arXiv preprint</p>
+  <p class="eg-publication-venue">IEEE Access, vol. 14, 2026</p>
   <details class="eg-publication-abstract">
     <summary>Abstract</summary>
-    <p>The gradient descent (GD) method is a fundamental and likely the most popular optimization algorithm in machine learning (ML), with a history traced back to a paper in 1847 (Cauchy, 1847). It was studied under various assumptions, including so-called $(L_0,L_1)$-smoothness, which received noticeable attention in the ML community recently. In this paper, we provide a refined convergence analysis of gradient descent and its variants, assuming generalized smoothness. In particular, we show that $(L_0,L_1)$-GD has the following behavior in the convex setup: as long as $\|\nabla f(x^k)\| \geq \frac{L_0}{L_1}$ the algorithm has linear convergence in function suboptimality, and when $\|\nabla f(x^k)\| &lt; \frac{L_0}{L_1}$ is satisfied, $(L_0,L_1)$-GD has standard sublinear rate. Moreover, we also show that this behavior is common for its variants with different types of oracle: Normalized Gradient Descent as well as Clipped Gradient Descent (the case when the full gradient $\nabla f(x)$ is available); Random Coordinate Descent (when the gradient component $\nabla_{i} f(x)$ is available); Random Coordinate Descent with Order Oracle (when only $\text{sign} [f(y) - f(x)]$ is available). In addition, we also extend our analysis of $(L_0,L_1)$-GD to the strongly convex case.</p>
+    <p>We study gradient descent (GD) and its variants for convex objectives satisfying $(L_0,L_1)$-smoothness. Our analysis reveals a fast initial regime that is hidden by worst-case sublinear bounds: while $\|\nabla f(x_k)\| \geq L_0/L_1$, the objective residual decreases geometrically, and after the trajectory crosses this threshold the method retains the standard $O(1/N)$ guarantee. We establish this trajectory-level behavior for $(L_0,L_1)$-GD, whose step adapts to the gradient norm, and for clipped GD with an arbitrary clipping threshold; we also characterize the corresponding geometric regime of normalized GD. We then develop, to the best of our knowledge, the first convergence guarantees under coordinate-wise $(L_0,L_1)$-smoothness for random coordinate descent and its order-oracle counterpart, which uses only $\operatorname{sign}(f(y)-f(x))$; for the latter, we also quantify the comparison complexity of the one-dimensional search. Strong convexity yields three explicit contraction factors across the trajectory. Numerical examples verify the predicted transition and illustrate the advantage of adapting the step to generalized smoothness.</p>
   </details>
   <div class="eg-publication-tags"><span>convex optimization</span><span>generalized smoothness</span><span>gradient clipping</span><span>coordinate descent type methods</span></div>
-  <div class="eg-publication-actions"><a href="https://arxiv.org/pdf/2412.17050" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Open PDF for Linear Convergence Rate in Convex Setup is Possible! Gradient Descent Method Variants under $(L_0,L_1)$-Smoothness">PDF</a><a href="https://arxiv.org/abs/2412.17050" target="_blank" rel="noopener noreferrer" aria-label="Open arXiv for Linear Convergence Rate in Convex Setup is Possible! Gradient Descent Method Variants under $(L_0,L_1)$-Smoothness">arXiv</a></div>
+  <div class="eg-publication-actions"><a href="https://doi.org/10.1109/ACCESS.2026.3741944" target="_blank" rel="noopener noreferrer" aria-label="Open published article for Fast Initial Convergence Under $(L_0,L_1)$-Smoothness: Gradient and Coordinate Methods">Published article</a><a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=11731779" type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label="Open PDF for Fast Initial Convergence Under $(L_0,L_1)$-Smoothness: Gradient and Coordinate Methods">PDF</a><a href="https://arxiv.org/abs/2412.17050" target="_blank" rel="noopener noreferrer" aria-label="Open arXiv for Fast Initial Convergence Under $(L_0,L_1)$-Smoothness: Gradient and Coordinate Methods">arXiv</a></div>
 </article>
 <article class="eg-publication-card" role="listitem" id="pub-methods-with-local-steps-and-random-reshuffling-for-generally-smooth-non-convex" aria-labelledby="pub-methods-with-local-steps-and-random-reshuffling-for-generally-smooth-non-convex-title" data-type="conference paper" data-tags="stochastic-optimization distributed-learning federated-learning local-steps random-reshuffling generalized-smoothness">
   <div class="eg-publication-meta"><span>#61</span><span class="eg-publication-type-badge">conference paper</span><span>December 2024</span></div>
@@ -1408,7 +1408,7 @@
         </div>
       </nav>
     </div>
-    <p class="eg-footer-note">Last updated <time datetime="2026-10-19">October 19, 2026</time>.</p>
+    <p class="eg-footer-note">Last updated <time datetime="2026-10-20">October 20, 2026</time>.</p>
   </div>
 </footer>
 

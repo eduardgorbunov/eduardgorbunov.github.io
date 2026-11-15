@@ -301,7 +301,23 @@ EXPECTED_RESEARCH_STAFF = [
         "datetimes": ["2026-09"],
         "profile": "https://shulgin-egor.github.io/",
         "accent": "teal",
-        "co_advisor": "https://scholar.google.com/citations?user=_XE1LvQAAAAJ&hl=en",
+        "co_advisors": [
+            {"name": "Eric Moulines", "url": "https://scholar.google.com/citations?user=_XE1LvQAAAAJ&hl=en"},
+        ],
+        "next_position": "",
+        "next_position_url": "",
+    },
+    {
+        "name": "Abdurakhmon Sadiev",
+        "role": "Postdoctoral Researcher",
+        "period": None,
+        "datetimes": [],
+        "profile": "https://scholar.google.com/citations?user=g0CzD50AAAAJ&hl=en",
+        "accent": "teal",
+        "co_advisors": [
+            {"name": "Samuel Horváth", "url": "https://sites.google.com/view/samuelhorvath"},
+            {"name": "Mladen Kolar", "url": "https://mkolar.coffeejunkies.org"},
+        ],
         "next_position": "",
         "next_position_url": "",
     },
@@ -2636,7 +2652,7 @@ def check_homepage_news() -> list[str]:
         '"@id": "https://eduardgorbunov.github.io/#news-page"',
         '"@id": "https://eduardgorbunov.github.io/#recent-news"',
         '"name": "Recent news updates"',
-        '"numberOfItems": 13',
+        '"numberOfItems": 14',
         '"itemListOrder": "https://schema.org/ItemListOrderDescending"',
         '"url": "https://eduardgorbunov.github.io/#news-2026-normalized-gradient-descent-last-iterate"',
         '"url": "https://eduardgorbunov.github.io/#news-2026-neurips-acceptances"',
@@ -2899,7 +2915,7 @@ def check_homepage_news() -> list[str]:
         if snippet not in page_text:
             errors.append(f"index.html: missing compact news shortcut {snippet!r}")
     required_year_links = [
-        '<a href="#news-2026-weak-tail-gradient-clipping">2026</a>',
+        '<a href="#news-2026-abdurakhmon-sadiev-postdoc">2026</a>',
         '<a href="#news-2025-dp-clipped-sgd">2025</a>',
         '<a href="#news-2024-neurips-preprint">2024</a>',
         '<a href="#news-2023-11-28-new-preprints-a-talk-and-neurips-2023-papers">2023</a>',
@@ -4405,9 +4421,15 @@ def check_team() -> list[str]:
         meta = dict(actual.get("meta", {}))
         expected_card_id = "team-member-" + re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
         expected_heading_id = f"{expected_card_id}-heading"
-        description = f'{expected["role"]}, {expected["period"]}'
-        if expected["co_advisor"]:
-            description += "; postdoctoral co-advisor: Eric Moulines"
+        period = expected.get("period")
+        co_advisors = expected.get("co_advisors", [])
+        co_advisor_label = "Postdoctoral co-advisor" + ("s" if len(co_advisors) > 1 else "")
+        co_advisor_names = " and ".join(advisor["name"] for advisor in co_advisors)
+        description = expected["role"]
+        if period:
+            description += f", {period}"
+        if co_advisors:
+            description += f"; {co_advisor_label.lower()}: {co_advisor_names}"
         if expected["next_position"]:
             description += f'. Next position: {expected["next_position"]}'
         required_staff_schema = [
@@ -4437,20 +4459,23 @@ def check_team() -> list[str]:
             errors.append(f"team.html: {name} card should be labelled by its heading")
         if actual.get("list_role") != "listitem":
             errors.append(f"team.html: {name} card should use role='listitem'")
-        if meta.get("Period") != expected["period"]:
-            errors.append(f"team.html: {name} should list period {expected['period']!r}")
+        if period:
+            if meta.get("Period") != period:
+                errors.append(f"team.html: {name} should list period {period!r}")
+        elif "Period" in meta:
+            errors.append(f"team.html: {name} should not list an unconfirmed period")
         if list(actual.get("time_datetimes", [])) != expected["datetimes"]:
             errors.append(f"team.html: {name} should use datetimes {expected['datetimes']!r}")
         if expected["profile"] not in links:
             errors.append(f"team.html: {name} is missing profile link {expected['profile']!r}")
-        co_advisor = expected["co_advisor"]
-        if co_advisor:
-            if meta.get("Postdoctoral co-advisor") != "Eric Moulines":
-                errors.append(f"team.html: {name} should list Eric Moulines as postdoctoral co-advisor")
-            if co_advisor not in links:
-                errors.append(f"team.html: {name} is missing postdoctoral co-advisor link {co_advisor!r}")
-        elif "Postdoctoral co-advisor" in meta:
-            errors.append(f"team.html: {name} should not list a postdoctoral co-advisor")
+        if co_advisors:
+            if meta.get(co_advisor_label) != co_advisor_names:
+                errors.append(f"team.html: {name} should list {co_advisor_names} as {co_advisor_label.lower()}")
+            for advisor in co_advisors:
+                if advisor["url"] not in links:
+                    errors.append(f"team.html: {name} is missing postdoctoral co-advisor link {advisor['url']!r}")
+        elif "Postdoctoral co-advisor" in meta or "Postdoctoral co-advisors" in meta:
+            errors.append(f"team.html: {name} should not list postdoctoral co-advisors")
         next_position = expected["next_position"]
         next_position_url = expected["next_position_url"]
         if next_position:

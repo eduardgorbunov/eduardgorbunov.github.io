@@ -310,8 +310,8 @@ EXPECTED_RESEARCH_STAFF = [
     {
         "name": "Abdurakhmon Sadiev",
         "role": "Postdoctoral Researcher",
-        "period": None,
-        "datetimes": [],
+        "period": "2026/11 - present",
+        "datetimes": ["2026-11"],
         "profile": "https://scholar.google.com/citations?user=g0CzD50AAAAJ&hl=en",
         "accent": "teal",
         "co_advisors": [
